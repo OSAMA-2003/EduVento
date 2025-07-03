@@ -8,11 +8,15 @@ interface CoursePageProps {
   };
 }
 
-export default function CoursePage({ params }: CoursePageProps) {
+export default async function CoursePage({ params }: CoursePageProps) {
+  const courseId = params.id;
+
+  
+
   return (
     <main className="min-h-screen bg-white">
       <Navigation />
-      <CourseDetails courseId={params.id} />
+      <CourseDetails courseId={courseId} />
       <Footer />
     </main>
   );
