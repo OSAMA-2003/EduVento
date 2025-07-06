@@ -5,14 +5,27 @@ import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { Calendar, ArrowLeft } from 'lucide-react';
 
+interface Blog {
+  id: number;
+  image: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+}
+
+interface BlogCardProps {
+  blog: Blog;
+}
+
 const BlogsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const blogs = [
+  const blogs: Blog[] = [
     {
       id: 1,
-      image: 'https://imgs.search.brave.com/awksT_Zoh8G9Qn5d-CbZP4gAPcl0EDxLP0J88fgAnB4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTg3/ODA1MTU2L3ZlY3Rv/ci9wcm9maWxlLXBp/Y3R1cmUtdmVjdG9y/LWlsbHVzdHJhdGlv/bi5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Z2t2TERDZ3NI/SC04SGVRZTdKc2po/bE9ZNnZSQkprX3NL/VzlseWFMZ21Mbz0',
+      image: 'https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=800',
       title: 'أهمية التعلم المستمر في عصر التكنولوجيا',
       excerpt: 'في عالم يتطور باستمرار، يصبح التعلم المستمر ضرورة حتمية للبقاء في المقدمة والتأقلم مع التطورات السريعة.',
       date: '15 يناير 2024',
@@ -20,7 +33,7 @@ const BlogsSection = () => {
     },
     {
       id: 2,
-      image: 'https://imgs.search.brave.com/awksT_Zoh8G9Qn5d-CbZP4gAPcl0EDxLP0J88fgAnB4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTg3/ODA1MTU2L3ZlY3Rv/ci9wcm9maWxlLXBp/Y3R1cmUtdmVjdG9y/LWlsbHVzdHJhdGlv/bi5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Z2t2TERDZ3NI/SC04SGVRZTdKc2po/bE9ZNnZSQkprX3NL/VzlseWFMZ21Mbz0',
+      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800',
       title: 'مستقبل البرمجة والذكاء الاصطناعي',
       excerpt: 'كيف سيؤثر الذكاء الاصطناعي على مجال البرمجة وما هي المهارات المطلوبة للنجاح في المستقبل القريب.',
       date: '12 يناير 2024',
@@ -28,7 +41,7 @@ const BlogsSection = () => {
     },
     {
       id: 3,
-      image: 'https://imgs.search.brave.com/awksT_Zoh8G9Qn5d-CbZP4gAPcl0EDxLP0J88fgAnB4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTg3/ODA1MTU2L3ZlY3Rv/ci9wcm9maWxlLXBp/Y3R1cmUtdmVjdG9y/LWlsbHVzdHJhdGlv/bi5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Z2t2TERDZ3NI/SC04SGVRZTdKc2po/bE9ZNnZSQkprX3NL/VzlseWFMZ21Mbz0',
+      image: 'https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800',
       title: 'نصائح لتحسين مهارات التصميم الجرافيكي',
       excerpt: 'اكتشف أهم النصائح والتقنيات التي تساعدك على تطوير مهاراتك في التصميم الجرافيكي بشكل احترافي.',
       date: '10 يناير 2024',
@@ -36,7 +49,7 @@ const BlogsSection = () => {
     },
     {
       id: 4,
-      image: 'https://imgs.search.brave.com/awksT_Zoh8G9Qn5d-CbZP4gAPcl0EDxLP0J88fgAnB4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTg3/ODA1MTU2L3ZlY3Rv/ci9wcm9maWxlLXBp/Y3R1cmUtdmVjdG9y/LWlsbHVzdHJhdGlv/bi5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Z2t2TERDZ3NI/SC04SGVRZTdKc2po/bE9ZNnZSQkprX3NL/VzlseWFMZ21Mbz0',
+      image: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800',
       title: 'أساسيات تطوير المواقع الإلكترونية',
       excerpt: 'دليل شامل للمبتدئين في تعلم أساسيات تطوير المواقع الإلكترونية والأدوات المطلوبة للبدء.',
       date: '8 يناير 2024',
@@ -44,7 +57,7 @@ const BlogsSection = () => {
     },
     {
       id: 5,
-      image: 'https://imgs.search.brave.com/awksT_Zoh8G9Qn5d-CbZP4gAPcl0EDxLP0J88fgAnB4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTg3/ODA1MTU2L3ZlY3Rv/ci9wcm9maWxlLXBp/Y3R1cmUtdmVjdG9y/LWlsbHVzdHJhdGlv/bi5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Z2t2TERDZ3NI/SC04SGVRZTdKc2po/bE9ZNnZSQkprX3NL/VzlseWFMZ21Mbz0',
+      image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
       title: 'استراتيجيات التسويق الرقمي الحديثة',
       excerpt: 'تعرف على أحدث استراتيجيات التسويق الرقمي وكيفية تطبيقها بفعالية لتحقيق أفضل النتائج.',
       date: '5 يناير 2024',
@@ -52,7 +65,7 @@ const BlogsSection = () => {
     },
     {
       id: 6,
-      image: 'https://imgs.search.brave.com/awksT_Zoh8G9Qn5d-CbZP4gAPcl0EDxLP0J88fgAnB4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTg3/ODA1MTU2L3ZlY3Rv/ci9wcm9maWxlLXBp/Y3R1cmUtdmVjdG9y/LWlsbHVzdHJhdGlv/bi5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Z2t2TERDZ3NI/SC04SGVRZTdKc2po/bE9ZNnZSQkprX3NL/VzlseWFMZ21Mbz0',
+      image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800',
       title: 'مهارات القيادة في العصر الرقمي',
       excerpt: 'كيف تطور مهارات القيادة في عالم رقمي متغير وما هي الصفات المطلوبة للقائد الناجح.',
       date: '3 يناير 2024',
@@ -60,36 +73,37 @@ const BlogsSection = () => {
     },
   ];
 
-  const BlogCard = ({ blog }) => (
-  <div className="bg-white mx-5 md:mx-2 rounded-3xl shadow-md group text-center w-52 md:w-72 pt-12 pb-8 px-4 relative hover:shadow-xl transition duration-300 hover:scale-105">
-    {/* صورة دائرية بارزة */}
-    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-md">
-      <img
-        src={blog.image}
-        alt={blog.title}
-        className="w-full h-full object-cover"
-      />
-    </div>
+  const BlogCard = ({ blog }: BlogCardProps) => (
+    <div className="bg-white mx-5 md:mx-2 rounded-3xl shadow-md group text-center w-52 md:w-72 pt-12 pb-8 px-4 relative hover:shadow-xl transition duration-300 hover:scale-105">
+      {/* صورة دائرية بارزة */}
+      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-md">
+        <img
+          src={blog.image}
+          alt={blog.title}
+          className="w-full h-full object-cover"
+        />
+      </div>
 
-    {/* محتوى البطاقة */}
-    <div className="mt-12">
-      <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
-        {blog.title}
-      </h3>
-      <p className="text-sm text-gray-500 mb-4 line-clamp-3">
-        {blog.excerpt}
-      </p>
-      <div className="text-xs text-gray-400 flex justify-center items-center gap-2">
-        <Calendar className="h-4 w-4" />
-        <span>{blog.date}</span>
-        <span>•</span>
-        <span>{blog.readTime}</span>
+      <div className="mt-12">
+        <h3 className="text-lg font-bold text-gray-900 mb-2">{blog.title}</h3>
+        <p className="text-sm text-gray-600 mb-4 line-clamp-3">{blog.excerpt}</p>
+
+        <div className="flex justify-center items-center gap-2 text-sm text-gray-500 mb-4">
+          <Calendar className="h-4 w-4" />
+          <span>{blog.date}</span>
+          <span>•</span>
+          <span>{blog.readTime}</span>
+        </div>
+
+        <button className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold transition-colors text-sm">
+          اقرأ المزيد
+          <ArrowLeft className="h-4 w-4" />
+        </button>
       </div>
     </div>
-  </div>
-);
+  );
 
-  const Marquee = ({ children, reverse = false }) => {
+  const Marquee = ({ children, reverse = false }: { children: React.ReactNode; reverse?: boolean }) => {
     return (
       <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]" dir="ltr">
         <motion.div
@@ -100,12 +114,12 @@ const BlogsSection = () => {
           transition={{
             x: {
               repeat: Infinity,
-              repeatType: "loop",
-              duration: 20,
-              ease: "linear",
+              repeatType: 'loop',
+              duration: 30,
+              ease: 'linear',
             },
           }}
-          style={{ width: "max-content" }}
+          style={{ width: 'max-content' }}
         >
           {children}
           {children}
@@ -117,13 +131,14 @@ const BlogsSection = () => {
   return (
     <section className="py-20 px-5 md:px-20 bg-gradient-to-br from-gray-50 to-gray-100" ref={ref} dir="ltr">
       <div className="container mx-auto px-4">
+        {/* عنوان القسم */}
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
         >
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -131,7 +146,7 @@ const BlogsSection = () => {
           >
             أحدث المقالات
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-600 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -141,25 +156,24 @@ const BlogsSection = () => {
           </motion.p>
         </motion.div>
 
+        {/* صفين للمدونات بالتمرير التلقائي */}
         <div className="relative">
-          {/* First row - left to right */}
           <Marquee>
             {blogs.map((blog) => (
               <BlogCard key={blog.id} blog={blog} />
             ))}
           </Marquee>
 
-          {/* Second row - right to left */}
-          <div className="mt-8 ">
-            <Marquee reverse >
+          <div className="mt-8">
+            <Marquee reverse>
               {blogs.map((blog) => (
-                <BlogCard  key={`reverse-${blog.id}`} blog={blog} />
+                <BlogCard key={`reverse-${blog.id}`} blog={blog} />
               ))}
             </Marquee>
           </div>
         </div>
 
-        {/* Call to action */}
+        {/* زر CTA */}
         <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, y: 30 }}
@@ -173,12 +187,6 @@ const BlogsSection = () => {
       </div>
 
       <style jsx>{`
-        .line-clamp-2 {
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
         .line-clamp-3 {
           display: -webkit-box;
           -webkit-line-clamp: 3;
