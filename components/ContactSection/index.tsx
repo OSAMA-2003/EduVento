@@ -87,23 +87,6 @@ const ContactSection = () => {
                 </div>
               </div>
             </div>
-
-            <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-8 rounded-xl text-white">
-              <h4 className="text-xl font-bold mb-4">انضم إلى مجتمعنا</h4>
-              <p className="mb-6">
-                احصل على آخر الأخبار والعروض الخاصة مباشرة في بريدك الإلكتروني
-              </p>
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="بريدك الإلكتروني"
-                  className="flex-1 px-4 py-2 rounded-lg text-gray-900"
-                />
-                <button className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                  اشتراك
-                </button>
-              </div>
-            </div>
           </motion.div>
 
           {/* Contact Form */}

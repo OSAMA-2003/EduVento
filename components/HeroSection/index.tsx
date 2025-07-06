@@ -14,18 +14,18 @@ const HeroSection = () => {
   const slides = [
     {
       image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-      title: 'تعلم المهارات التقنية الحديثة',
-      subtitle: 'انضم إلى آلاف الطلاب واكتسب مهارات جديدة في البرمجة والتصميم',
+      title: "لو لسه بتدوّر على أول خطوة… إحنا هنقولك تبدأ منين",
+      subtitle: "",
     },
     {
       image: 'https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-      title: 'دورات معتمدة من خبراء المجال',
-      subtitle: 'احصل على شهادات معتمدة من مدربين محترفين لتطوير مسيرتك المهنية',
+      title: "الكل بيتكلم عن الكورسات... بس مين بيحكيلك عن الواقع؟",
+      subtitle: "",
     },
     {
       image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
-      title: 'تعلم من أي مكان وفي أي وقت',
-      subtitle: 'مرونة كاملة في التعلم مع دعم فني متواصل على مدار الساعة',
+      title: "الجامعة مش كفاية… وإحنا هنا علشان نكمّل الصورة!",
+      subtitle: "",
     },
   ];
 
@@ -92,12 +92,9 @@ const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
                 <button className="bg-[#132cb2] hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
-                  ابدأ التعلم الآن
+                اعرف اكتر   
                 </button>
-                <button className="border-2 border-white text-white hover:bg-white hover:text-[#132cb2] px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 flex items-center gap-2">
-                  تصفح الكورسات
-                  <ArrowLeft className="h-5 w-5" />
-                </button>
+                
               </motion.div>
             </motion.div>
           </AnimatePresence>

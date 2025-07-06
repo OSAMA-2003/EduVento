@@ -57,9 +57,9 @@ const AboutContent = () => {
   ];
 
   return (
-    <div className="pt-14 pb-16 " ref={ref}>
+    <div className="pt-10 md:pt-14 pb-16 " ref={ref}>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-[#132cb2] to-purple-800 text-white">
+      <section className="py-10 md:py-20 bg-gradient-to-br from-[#132cb2] to-purple-800 text-white">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center max-w-4xl mx-auto"

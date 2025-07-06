@@ -59,9 +59,9 @@ const ContactContent = () => {
   ];
 
   return (
-    <div className="pt-14 pb-16" ref={ref}>
+    <div className="pt-10 md:pt-20 pb-16" ref={ref}>
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-[#132cb2] to-purple-800 text-white">
+      <section className="py-14 md:py-20 bg-gradient-to-br from-[#132cb2] to-purple-800 text-white">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center max-w-4xl mx-auto"
@@ -80,8 +80,8 @@ const ContactContent = () => {
       </section>
 
       {/* Contact Info Cards */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="pt-24 pb-20 bg-white">
+        <div className="container mx-auto py-10 px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {contactInfo.map((info, index) => (
               <motion.div
@@ -264,23 +264,7 @@ const ContactContent = () => {
                 </div>
               </div>
 
-              {/* Newsletter */}
-              <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-8 rounded-xl text-white">
-                <h4 className="text-xl font-bold mb-4">انضم إلى نشرتنا الإخبارية</h4>
-                <p className="mb-6">
-                  احصل على آخر الأخبار والعروض الخاصة مباشرة في بريدك الإلكتروني
-                </p>
-                <div className="flex gap-2">
-                  <input
-                    type="email"
-                    placeholder="بريدك الإلكتروني"
-                    className="flex-1 px-4 py-2 rounded-lg text-gray-900"
-                  />
-                  <button className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-                    اشتراك
-                  </button>
-                </div>
-              </div>
+              
             </motion.div>
           </div>
         </div>
