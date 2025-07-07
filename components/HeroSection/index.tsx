@@ -30,7 +30,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative mt-14 h-screen overflow-hidden">
+    <section className="relative  h-screen overflow-hidden">
       <Swiper
         modules={[Autoplay, EffectFade]}
         effect="fade"

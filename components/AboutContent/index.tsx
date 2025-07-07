@@ -35,34 +35,34 @@ const AboutContent = () => {
     },
   ];
 
-  const team = [
-    {
-      name: 'أحمد قدري',
-      role: 'المؤسس والمدير التنفيذي',
-      image: '/images/ahmed.jpg',
-      bio: 'خبير في التكنولوجيا والتعليم الرقمي مع أكثر من 15 عام خبرة',
-    },
-    {
-      name: 'سارة أحمد',
-      role: 'مديرة المحتوى التعليمي',
-      image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop&crop=face',
-      bio: 'متخصصة في تطوير المناهج التعليمية والتصميم التعليمي',
-    },
-    {
-      name: ' أسامة أحمد',
-      role: 'مدير التطوير التقني',
-      image: '/images/osama.jpg',
-      bio: 'مطور برمجيات محترف ومتخصص في تقنيات الويب الحديثة',
-    },
-  ];
+  // const team = [
+  //   {
+  //     name: 'أحمد قدري',
+  //     role: 'المؤسس والمدير التنفيذي',
+  //     image: '/images/ahmed.jpg',
+  //     bio: 'خبير في التكنولوجيا والتعليم الرقمي مع أكثر من 15 عام خبرة',
+  //   },
+  //   {
+  //     name: 'سارة أحمد',
+  //     role: 'مديرة المحتوى التعليمي',
+  //     image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop&crop=face',
+  //     bio: 'متخصصة في تطوير المناهج التعليمية والتصميم التعليمي',
+  //   },
+  //   {
+  //     name: ' أسامة أحمد',
+  //     role: 'مدير التطوير التقني',
+  //     image: '/images/osama.jpg',
+  //     bio: 'مطور برمجيات محترف ومتخصص في تقنيات الويب الحديثة',
+  //   },
+  // ];
 
   return (
-    <div className="pt-10 md:pt-14 pb-16 " ref={ref}>
+    <div className="pb-16  overflow-hidden "   ref={ref}>
       {/* Hero Section */}
       <section className="py-10 md:py-20 bg-gradient-to-br from-[#132cb2] to-purple-800 text-white">
         <div className="container mx-auto px-4">
           <motion.div
-            className="text-center max-w-4xl mx-auto"
+            className="text-center  pt-10 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8 }}
@@ -182,7 +182,7 @@ const AboutContent = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-gray-50">
+      {/* <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-10 md:px-20">
           <motion.div
             className="text-center mb-16"
@@ -227,7 +227,7 @@ const AboutContent = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

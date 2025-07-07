@@ -59,10 +59,10 @@ const ContactContent = () => {
   ];
 
   return (
-    <div className="pt-10 md:pt-20 pb-16" ref={ref}>
+    <div className="pb-16 overflow-hidden " ref={ref}>
       {/* Hero Section */}
-      <section className="py-14 md:py-20 bg-gradient-to-br from-[#132cb2] to-purple-800 text-white">
-        <div className="container mx-auto px-4">
+      <section className="py-14  md:py-20 bg-gradient-to-br from-[#132cb2] to-purple-800 text-white">
+        <div className="container pt-10 mx-auto px-4">
           <motion.div
             className="text-center max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 50 }}
