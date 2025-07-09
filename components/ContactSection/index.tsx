@@ -37,11 +37,12 @@ const ContactSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">
             تواصل معنا
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            نحن هنا لمساعدتك في رحلتك التعليمية. تواصل معنا وسنكون سعداء بالإجابة على استفساراتك
+            سواء كنت لسه طالب بتدور على طريقك، أو خريج محتار تبدأ منين…
+            تعالى نساعدك تلاقي الاتجاه الصح، وتبدأ أول خطوة حقيقية ناحية مستقبلك.
           </p>
         </motion.div>
 
@@ -54,7 +55,7 @@ const ContactSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              <h3 className="text-2xl font-bold gradient-text mb-6">
                 معلومات التواصل
               </h3>
               <div className="space-y-6">
@@ -63,7 +64,7 @@ const ContactSection = () => {
                     <Phone className="h-6 w-6 text-blue-600" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900">الهاتف</p>
+                    <p className="font-semibold gradient-text">الهاتف</p>
                     <p className="text-gray-600">+20 12 345 6789</p>
                   </div>
                 </div>
@@ -72,7 +73,7 @@ const ContactSection = () => {
                     <Mail className="h-6 w-6 text-blue-600" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900">البريد الإلكتروني</p>
+                    <p className="font-semibold gradient-text">البريد الإلكتروني</p>
                     <p className="text-gray-600">eduvento@academy.com</p>
                   </div>
                 </div>
@@ -81,11 +82,27 @@ const ContactSection = () => {
                     <MapPin className="h-6 w-6 text-blue-600" />
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900">العنوان</p>
+                    <p className="font-semibold gradient-text">العنوان</p>
                     <p className="text-gray-600">  سوهاج ,  مصر </p>
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div className="bg-blue-50 p-6 rounded-lg">
+              <h4 className="text-lg font-semibold gradient-text mb-4">
+                في Eduvento، مش بنجمع بياناتك وخلاص…
+              </h4>
+              <p className="text-gray-700 mb-3">
+                إحنا فعلاً بنقرا كل رسالة، وبنرد عليك بشكل يناسب حالتك أنت.
+              </p>
+              <p className="text-gray-700">
+                اكتبلنا إنت فين دلوقتي، بتفكر في إيه، وإيه نفسك توصله...
+                وهنرجع لك برد مفيد وواضح يساعدك بشكل " مجاني تماما "
+              </p>
+              <p className="text-gray-700 mt-3 font-medium">
+                يمكن تكون الرسالة دي هي أول خطوة في أكبر تغيير في حياتك.
+              </p>
             </div>
           </motion.div>
 
@@ -97,7 +114,7 @@ const ContactSection = () => {
           >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium gradient-text mb-2">
                   الاسم
                 </label>
                 <input
@@ -107,12 +124,12 @@ const ContactSection = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="اكتب اسمك"
                 />
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium gradient-text mb-2">
                   البريد الإلكتروني
                 </label>
                 <input
@@ -122,12 +139,12 @@ const ContactSection = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="example@email.com"
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium gradient-text mb-2">
                   الرسالة
                 </label>
                 <textarea
@@ -137,7 +154,7 @@ const ContactSection = () => {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
                   placeholder="اكتب رسالتك هنا..."
                 />
               </div>

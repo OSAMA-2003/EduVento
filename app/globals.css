@@ -113,3 +113,21 @@
 body{
   font-family: "Cairo", sans-serif !important;
 }
+
+.bg-gradient{
+ background: linear-gradient(#132cb2, #0179d5);
+}
+.nav-gradient{
+ background: linear-gradient(to bottom left ,#021bab, #0179d5);
+}
+
+.gradient-text {
+  background: linear-gradient(#132cb2, #0179d5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  /* Optional for smoother rendering */
+  display: inline-block;
+}

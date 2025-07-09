@@ -2,8 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+
+// Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const testimonials = [
   {
@@ -51,13 +56,18 @@ const testimonials = [
 ];
 
 const WhatPeopleSay = () => {
-  const [activeIndex, setActiveIndex] = useState(Math.floor(testimonials.length / 2));
-  const [swiper, setSwiper] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
+
+  const [slidesPerView, setSlidesPerView] = useState(3);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth < 768) {
+        setSlidesPerView(1);
+      } else if (window.innerWidth < 1024) {
+        setSlidesPerView(2);
+      } else {
+        setSlidesPerView(3);
+      }
     };
     
     handleResize();
@@ -71,85 +81,148 @@ const WhatPeopleSay = () => {
       : '/images/woman.png';
   };
 
+ 
+
   return (
-    <section className="py-20 text-center bg-white" dir="rtl">
-      <h2 className="text-3xl md:text-4xl font-bold mb-2">ماذا يقول الناس</h2>
-      <p className="text-gray-500 mb-10">آراء حقيقية عن سمة التعليم لووردبريس</p>
-
-      <div className="w-full max-w-xs mx-auto h-px bg-gray-200 mb-10"></div>
-
-      {/* Avatar Navigation */}
-      <div className="mb-8 px-4 max-w-4xl mx-auto">
-        <div className="flex justify-center items-center space-x-4 space-x-reverse">
-          {testimonials.map((testimonial, index) => {
-            const isActive = activeIndex === index;
-            const isPrev = activeIndex === (index + 1) % testimonials.length;
-            const isNext = activeIndex === (index - 1 + testimonials.length) % testimonials.length;
-            const isVisible = isActive || isPrev || isNext;
-            
-            if (!isVisible) return null;
-            
-            return (
-              <div
-                key={testimonial.id}
-                className={`
-                  w-16 h-16 rounded-full overflow-hidden border-2 transition-all duration-300 cursor-pointer
-                  ${isActive 
-                    ? 'border-blue-500 scale-110 shadow-lg opacity-100' 
-                    : 'border-gray-300 opacity-50 hover:opacity-75 scale-90'}
-                `}
-                onClick={() => {
-                  if (swiper) {
-                    swiper.slideToLoop(index);
-                  }
-                }}
-              >
-                <img
-                  src={getAvatarImage(testimonial.gender)}
-                  alt={`${testimonial.name} avatar`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            );
-          })}
+    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden" dir="rtl">
+    
+      <div className="max-w-7xl mx-auto px-4 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-5 md:mb-10">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient rounded-full mb-6">
+            <Quote className="w-8 h-8 text-white" />
+          </div>
+          <br></br>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text block ">
+            ماذا يقول عملاؤنا
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            اكتشف تجارب حقيقية من مستخدمين راضين عن منصة التعلم الخاصة بنا
+          </p>
         </div>
+
+        {/* Swiper Container */}
+        <div className="relative  ">
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={slidesPerView}
+            centeredSlides={true}
+            loop={true}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+            }}
+            navigation={{
+              nextEl: '.swiper-button-next-custom',
+              prevEl: '.swiper-button-prev-custom',
+            }}
+            pagination={{
+              el: '.swiper-pagination-custom',
+              clickable: true,
+              bulletClass: 'swiper-pagination-bullet-custom',
+              bulletActiveClass: 'swiper-pagination-bullet-active-custom',
+            }}
+            breakpoints={{
+              320: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 15,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 20,
+              },
+            }}
+            className="testimonials-swiper  "
+          >
+            {testimonials.map((testimonial, index) => (
+              <SwiperSlide className='p-8 md:py-20 md:px-5' key={testimonial.id}>
+  {({ isActive }) => (
+    <div
+      className={`transition-all duration-500 transform flex flex-col justify-between items-start p-6 rounded-2xl shadow-xl h-[360px] w-full max-w-[350px] mx-auto
+        ${isActive ? 'bg-gradient scale-105 z-10 text-white' : 'bg-white text-gray-800'}
+      `}
+    >
+      {/* Quote Icon */}
+      <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-4
+        ${isActive ? 'bg-white/20 text-white' : 'bg-gradient-to-r from-blue-100 to-purple-100 text-blue-600'}
+      `}>
+        <Quote className="w-5 h-5" />
       </div>
 
-      <Swiper
-        modules={[Autoplay]}
-        slidesPerView={1}
-        loop
-        autoplay={{ 
-          delay: 5000, 
-          disableOnInteraction: false 
-        }}
-        onSwiper={(swiperInstance) => {
-          setSwiper(swiperInstance);
-          // Start from the middle slide
-          swiperInstance.slideToLoop(Math.floor(testimonials.length / 2), 0);
-        }}
-        onSlideChange={(swiper) => {
-          setActiveIndex(swiper.realIndex);
-        }}
-        className="max-w-4xl mx-auto"
-      >
-        {testimonials.map((testimonial, index) => (
-          <SwiperSlide key={testimonial.id}>
-            <div className="text-center px-4">
-              {/* Content */}
-              <div>
-                <h3 className="text-xl font-semibold">{testimonial.name}</h3>
-                <p className="text-gray-500 mb-4">{testimonial.role}</p>
-                <p className="text-lg text-gray-800 leading-relaxed px-4 md:px-10">
-                  {testimonial.quote}
-                </p>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {/* Quote */}
+      <p className={`text-base leading-relaxed mb-4 ${isActive ? 'text-white' : 'text-gray-700'}`}>
+        {testimonial.quote}
+      </p>
+
+      {/* Author Info */}
+      <div className="flex items-center gap-4 mt-auto">
+        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md">
+          <img
+            src={getAvatarImage(testimonial.gender)}
+            alt={`${testimonial.name} avatar`}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div>
+          <h4 className={`font-bold text-md ${isActive ? 'text-white' : 'text-gray-800'}`}>
+            {testimonial.name}
+          </h4>
+          <p className={`${isActive ? 'text-white/80' : 'text-gray-600'}`}>
+            {testimonial.role}
+          </p>
+        </div>
+      </div>
+    </div>
+  )}
+</SwiperSlide>
+
+            ))}
+          </Swiper>
+
+          {/* Custom Navigation Buttons */}
+          {/* <div className="swiper-button-next-custom absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center hover:bg-gray-50 group cursor-pointer">
+            <ChevronLeft className="w-6 h-6 text-gray-600 group-hover:text-blue-600 transition-colors" />
+          </div>
+          <div className="swiper-button-prev-custom absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center hover:bg-gray-50 group cursor-pointer">
+            <ChevronRight className="w-6 h-6 text-gray-600 group-hover:text-blue-600 transition-colors" />
+          </div> */}
+        </div>
+
+        {/* Custom Pagination */}
+        <div className="swiper-pagination-custom flex justify-center gap-3 mt-12"></div>
+      </div>
+
+      <style jsx>{`
+        .swiper-pagination-bullet-custom {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: #d1d5db;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        
+        .swiper-pagination-bullet-active-custom {
+          background: linear-gradient(to right, #3b82f6, #8b5cf6);
+          transform: scale(1.25);
+        }
+        
+        .testimonials-swiper .swiper-slide {
+          height: auto;
+        }
+        
+        .testimonials-swiper .swiper-slide > div {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+        }
+      `}</style>
     </section>
   );
 };
-
 export default WhatPeopleSay;

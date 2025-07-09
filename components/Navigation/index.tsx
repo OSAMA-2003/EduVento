@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 
@@ -40,7 +40,7 @@ const Navigation = () => {
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         showNav ? 'translate-y-0' : '-translate-y-full'
-      } ${hasScrolled ? 'bg-blue-600 shadow-md' : 'bg-transparent'}`}
+      } ${hasScrolled ? 'nav-gradient shadow-md' : 'bg-transparent'}`}
     >
       <div className="container mx-auto px-4 md:px-14">
         <div className="flex items-center justify-between h-16 md:h-20 flex-row-reverse md:flex-row">
@@ -56,7 +56,7 @@ const Navigation = () => {
                 key={item.name}
                 href={item.href}
                 className={`font-medium transition-colors ${
-                  hasScrolled ? 'text-[#132cb2]' : 'text-white'
+                  hasScrolled ? 'text-white' : 'text-white'
                 } hover:text-blue-500`}
               >
                 {item.name}
@@ -73,50 +73,46 @@ const Navigation = () => {
           </button>
         </div>
 
-      {/* Mobile Navigation */}
-<motion.div
-  className={`md:hidden fixed top-0 left-0 right-0 h-screen z-40 bg-[#132cb2] text-white ${
-    isOpen ? 'block' : 'hidden'
-  }`}
-  initial={{ opacity: 0 }}
-  animate={{ opacity: isOpen ? 1 : 0 }}
-  transition={{ duration: 0.3 }}
->
-  {/* Header: Logo + Close */}
-  <div className="flex items-center justify-between px-4 pt-4">
+        {/* Mobile Navigation */}
+        <AnimatePresence>
+          {isOpen && (
+            <div
+              key="mobile-menu"
+            
+              className="md:hidden fixed top-0 left-0 right-0 h-screen z-40 nav-gradient text-white"
+            >
+              {/* Header: Logo + Close */}
+              <div className="flex items-center justify-between px-4 pt-5">
+                {/* Close Button */}
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="text-white hover:text-red-400 transition-colors"
+                >
+                  <X className="h-6 w-6" />
+                </button>
 
- {/* Close Button */}
-    <button
-      onClick={() => setIsOpen(false)}
-      className="text-white hover:text-red-400 transition-colors"
-    >
-      <X className="h-6 w-6" />
-    </button>
+                {/* Logo */}
+                <Link href="/" className="text-xl font-bold text-white">
+                  EduVento
+                </Link>
+              </div>
 
-
-    {/* Logo */}
-    <Link href="/" className="text-xl font-bold text-white">
-      EduVento
-    </Link>
-
-   
-  </div>
-
-  {/* Links Centered Vertically */}
-  <div className="py-6 px-4 space-y-6 flex flex-col items-center justify-center h-[calc(100%-4rem)]">
-    {navItems.map((item) => (
-      <Link
-        key={item.name}
-        href={item.href}
-        className="text-xl font-medium hover:text-blue-400 transition-colors"
-        onClick={() => setIsOpen(false)}
-      >
-        {item.name}
-      </Link>
-    ))}
-  </div>
-</motion.div>
-
+              {/* Links Centered Vertically */}
+              <div className="py-6 px-4 space-y-6 flex flex-col items-center justify-center h-[calc(100%-4rem)]">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="text-xl font-medium hover:text-blue-400 transition-colors"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
+        </AnimatePresence>
       </div>
     </motion.nav>
   );

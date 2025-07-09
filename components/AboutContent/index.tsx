@@ -59,7 +59,7 @@ const AboutContent = () => {
   return (
     <div className="pb-16  overflow-hidden "   ref={ref}>
       {/* Hero Section */}
-      <section className="py-10 md:py-20 bg-gradient-to-br from-[#132cb2] to-purple-800 text-white">
+      <section className="py-10 md:py-20 bg-gradient text-white">
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center  pt-10 max-w-4xl mx-auto"
@@ -110,7 +110,7 @@ const AboutContent = () => {
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl gradient-text font-bold text-gray-900 mb-6">
                 قصتنا
               </h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
@@ -149,7 +149,7 @@ const AboutContent = () => {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold gradient-text text-gray-900 mb-4">
               قيمنا ومبادئنا
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -169,7 +169,7 @@ const AboutContent = () => {
                 <div className="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center mb-6">
                   <value.icon className="h-8 w-8 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
+                <h3 className="text-xl font-bold gradient-text mb-4">
                   {value.title}
                 </h3>
                 <p className="text-gray-600 leading-relaxed">

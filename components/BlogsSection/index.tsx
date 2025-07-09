@@ -59,7 +59,7 @@ const BlogsSection = () => {
     <section
       ref={ref}
       dir="rtl"
-      className="relative py-24 px-4 md:px-20 overflow-hidden"
+      className="relative py-24 px-4 md:px-20 overflow-hidden "
       style={{
         backgroundImage: `url('https://imgs.search.brave.com/rsJifnFzjrtZJsKk54gOSjM3O53mKIZvBMLdMJsG5EU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9t/YW4tdXNpbmctZGln/aXRhbC10YWJsZXQt/cHNkLW1vY2t1cC1z/bWFydC10ZWNobm9s/b2d5XzUzODc2LTEx/MDgxNS5qcGc_c2Vt/dD1haXNfaHlicmlk/Jnc9NzQw')`,
         backgroundSize: 'cover',
@@ -135,7 +135,7 @@ const BlogsSection = () => {
                 
                 {/* Author and date badge */}
                 <div className="absolute top-4 left-4">
-                  <span className="bg-yellow-500 text-black text-sm font-medium px-3 py-1 rounded">
+                  <span className="bg-gradient text-white text-sm font-medium px-3 py-1 rounded">
                     {blog.author} - {blog.date}
                   </span>
                 </div>

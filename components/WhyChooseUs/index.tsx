@@ -20,7 +20,7 @@ const WhyChooseUs = () => {
       <div className="container mx-auto max-w-5xl space-y-12">
         {/* Hero Header */}
         <motion.div className="text-center" {...fadeIn(0)}>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#132cb2] mb-4">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold gradient-text mb-4">
             ليه تختار <span className="text-blue-600">Eduvento</span>؟
           </h2>
           <div className="w-20 h-1.5 bg-blue-400 mx-auto rounded-full"></div>
@@ -36,7 +36,7 @@ const WhyChooseUs = () => {
               <Target size={24} />
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-3">رحلة متكاملة وليست مجرد كورسات</h3>
+              <h3 className="text-2xl font-bold gradient-text mb-3">رحلة متكاملة وليست مجرد كورسات</h3>
               <p className="text-xl text-gray-700 leading-relaxed">
                 نبدأ معك من حيث أنت الآن ونوصلك إلى حيث تريد أن تكون. ليست مجرد محتوى تعليمي، بل خطة تطوير شخصية ومهنية شاملة.
               </p>
@@ -111,14 +111,14 @@ const WhyChooseUs = () => {
           ].map((feature, index) => (
             <div key={index} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-blue-50">
               <div className="text-blue-500 mb-3">{feature.icon}</div>
-              <h4 className="text-lg font-bold text-gray-800 mb-2">{feature.title}</h4>
+              <h4 className="text-lg font-bold gradient-text mb-2">{feature.title}</h4>
               <p className="text-gray-600">{feature.desc}</p>
             </div>
           ))}
         </motion.div>
 
         {/* Testimonial/CTA */}
-        <motion.div className="text-center bg-blue-600 text-white p-8 rounded-2xl" {...fadeIn(0.8)}>
+        <motion.div className="text-center bg-gradient text-white p-8 rounded-2xl" {...fadeIn(0.8)}>
           <h3 className="text-2xl font-bold mb-4">لست وحدك في هذه الرحلة</h3>
           <p className="text-lg mb-6 opacity-90">
             انضم إلى مئات الطلاب الذين حققوا أهدافهم المهنية بمساعدة خبرائنا

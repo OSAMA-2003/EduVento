@@ -40,12 +40,12 @@ const CoursesGrid = () => {
                 alt={course.title}
                 className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
               />
-              <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+              <div className="absolute top-4 right-4 bg-gradient text-white px-3 py-1 rounded-full text-sm font-semibold">
                 {course.price} ج 
               </div>
             </div>
             <div className="p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+              <h3 className="text-lg font-bold gradient-text mb-2 group-hover:text-blue-600 transition-colors">
                 {course.title}
               </h3>
               <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-2">
@@ -71,7 +71,7 @@ const CoursesGrid = () => {
                 </span>
                 <Link
                   href={`/courses/${course.id}`}
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded-lg text-sm font-semibold transition-colors"
+                  className="bg-gradient text-white px-3 py-1 rounded-lg text-sm font-semibold transition-colors"
                 >
                   التفاصيل
                 </Link>

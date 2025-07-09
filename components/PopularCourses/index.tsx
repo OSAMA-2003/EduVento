@@ -27,7 +27,7 @@ const PopularCourses = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">
             الدورات الأكثر شعبية
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -74,12 +74,12 @@ const PopularCourses = () => {
                         alt={course.title}
                         className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
                       />
-                      <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                      <div className="absolute top-4 right-4 bg-gradient text-white px-3 py-1 rounded-full text-sm font-semibold">
                         {course.price} ج
                       </div>
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-xl font-bold gradient-text mb-3 group-hover:text-blue-600 transition-colors">
                         {course.title}
                       </h3>
                       <p className="text-gray-600 mb-4 text-sm leading-relaxed">
@@ -105,7 +105,7 @@ const PopularCourses = () => {
                         </span>
                         <Link
                           href={`/courses/${course.id}`}
-                          className="bg-blue-600 hover:bg-[#132cb2] text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2"
+                          className="bg-gradient text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2"
                         >
                           التفاصيل
                           <ArrowLeft className="h-4 w-4" />
@@ -139,7 +139,7 @@ const PopularCourses = () => {
         >
           <Link
             href="/courses"
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-[#132cb2] text-white px-8 py-3 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+            className="inline-flex items-center gap-2 bg-gradient = text-white px-8 py-3 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
           >
             عرض جميع الدورات
             <ArrowLeft className="h-5 w-5" />

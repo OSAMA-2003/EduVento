@@ -91,7 +91,7 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <button className="bg-[#132cb2] hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <button className="bg-gradient text-white px-10 py-2 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
                 اعرف اكتر   
                 </button>
                 

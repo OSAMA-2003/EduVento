@@ -16,7 +16,7 @@ export default function CoursesPage() {
       <Navigation />
 
       {/* Hero Section with Gradient */}
-      <section className=" md:py-20 bg-gradient-to-br from-[#132cb2] to-purple-800 text-white" ref={ref}>
+      <section className="md:py-10  bg-gradient text-white" ref={ref}>
         <div className="container mx-auto py-20 px-4">
           <motion.div
             className="text-center max-w-4xl mx-auto"
