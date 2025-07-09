@@ -1,199 +1,156 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Calendar, ArrowLeft } from 'lucide-react';
+import { useInView } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
 
-interface Blog {
-  id: number;
-  image: string;
-  title: string;
-  excerpt: string;
-  date: string;
-  readTime: string;
-}
+import 'swiper/css';
+import 'swiper/css/navigation';
 
-interface BlogCardProps {
-  blog: Blog;
-}
+const blogs = [
+  {
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+    title: 'أهمية التعلم المستمر في عصر التكنولوجيا',
+    excerpt: 'في عالم يتطور باستمرار، يصبح التعلم المستمر ضرورة حتمية للبقاء.',
+    date: '20/01/2022',
+    author: 'علي'
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+    title: 'الذكاء الاصطناعي في بيئة العمل',
+    excerpt: 'كيف يُغير الذكاء الاصطناعي طريقة عمل الشركات.',
+    date: '22/03/2025',
+    author: 'سارة'
+  },
+  {
+    id: 3,
+    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+    title: 'لماذا يجب أن تتعلم البرمجة',
+    excerpt: 'البرمجة مهارة العصر الحديث، تعرّف على أهميتها.',
+    date: '20/03/2025',
+    author: 'محمد'
+  },
+  {
+    id: 4,
+    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+    title: 'تطوير المهارات الرقمية',
+    excerpt: 'أهمية تطوير المهارات الرقمية في سوق العمل المعاصر.',
+    date: '18/03/2025',
+    author: 'نور'
+  },
+  {
+    id: 5,
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+    title: 'الابتكار في التعليم',
+    excerpt: 'كيف يمكن للتقنيات الحديثة أن تثري تجربة التعلم.',
+    date: '15/03/2025',
+    author: 'أحمد'
+  }
+];
 
 const BlogsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const blogs: Blog[] = [
-    {
-      id: 1,
-      image: 'https://imgs.search.brave.com/awksT_Zoh8G9Qn5d-CbZP4gAPcl0EDxLP0J88fgAnB4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTg3/ODA1MTU2L3ZlY3Rv/ci9wcm9maWxlLXBp/Y3R1cmUtdmVjdG9y/LWlsbHVzdHJhdGlv/bi5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Z2t2TERDZ3NI/SC04SGVRZTdKc2po/bE9ZNnZSQkprX3NL/VzlseWFMZ21Mbz0',
-      title: 'أهمية التعلم المستمر في عصر التكنولوجيا',
-      excerpt: 'في عالم يتطور باستمرار، يصبح التعلم المستمر ضرورة حتمية للبقاء في المقدمة والتأقلم مع التطورات السريعة.',
-      date: '15 يناير 2024',
-      readTime: '5 دقائق',
-    },
-    {
-      id: 2,
-      image: 'https://imgs.search.brave.com/awksT_Zoh8G9Qn5d-CbZP4gAPcl0EDxLP0J88fgAnB4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTg3/ODA1MTU2L3ZlY3Rv/ci9wcm9maWxlLXBp/Y3R1cmUtdmVjdG9y/LWlsbHVzdHJhdGlv/bi5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Z2t2TERDZ3NI/SC04SGVRZTdKc2po/bE9ZNnZSQkprX3NL/VzlseWFMZ21Mbz0',
-      title: 'مستقبل البرمجة والذكاء الاصطناعي',
-      excerpt: 'كيف سيؤثر الذكاء الاصطناعي على مجال البرمجة وما هي المهارات المطلوبة للنجاح في المستقبل القريب.',
-      date: '12 يناير 2024',
-      readTime: '7 دقائق',
-    },
-    {
-      id: 3,
-      image: 'https://imgs.search.brave.com/awksT_Zoh8G9Qn5d-CbZP4gAPcl0EDxLP0J88fgAnB4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTg3/ODA1MTU2L3ZlY3Rv/ci9wcm9maWxlLXBp/Y3R1cmUtdmVjdG9y/LWlsbHVzdHJhdGlv/bi5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Z2t2TERDZ3NI/SC04SGVRZTdKc2po/bE9ZNnZSQkprX3NL/VzlseWFMZ21Mbz0',
-      title: 'نصائح لتحسين مهارات التصميم الجرافيكي',
-      excerpt: 'اكتشف أهم النصائح والتقنيات التي تساعدك على تطوير مهاراتك في التصميم الجرافيكي بشكل احترافي.',
-      date: '10 يناير 2024',
-      readTime: '4 دقائق',
-    },
-    {
-      id: 4,
-      image: 'https://imgs.search.brave.com/awksT_Zoh8G9Qn5d-CbZP4gAPcl0EDxLP0J88fgAnB4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTg3/ODA1MTU2L3ZlY3Rv/ci9wcm9maWxlLXBp/Y3R1cmUtdmVjdG9y/LWlsbHVzdHJhdGlv/bi5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Z2t2TERDZ3NI/SC04SGVRZTdKc2po/bE9ZNnZSQkprX3NL/VzlseWFMZ21Mbz0',
-      title: 'أساسيات تطوير المواقع الإلكترونية',
-      excerpt: 'دليل شامل للمبتدئين في تعلم أساسيات تطوير المواقع الإلكترونية والأدوات المطلوبة للبدء.',
-      date: '8 يناير 2024',
-      readTime: '6 دقائق',
-    },
-    {
-      id: 5,
-      image: 'https://imgs.search.brave.com/awksT_Zoh8G9Qn5d-CbZP4gAPcl0EDxLP0J88fgAnB4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTg3/ODA1MTU2L3ZlY3Rv/ci9wcm9maWxlLXBp/Y3R1cmUtdmVjdG9y/LWlsbHVzdHJhdGlv/bi5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Z2t2TERDZ3NI/SC04SGVRZTdKc2po/bE9ZNnZSQkprX3NL/VzlseWFMZ21Mbz0',
-      title: 'استراتيجيات التسويق الرقمي الحديثة',
-      excerpt: 'تعرف على أحدث استراتيجيات التسويق الرقمي وكيفية تطبيقها بفعالية لتحقيق أفضل النتائج.',
-      date: '5 يناير 2024',
-      readTime: '8 دقائق',
-    },
-    {
-      id: 6,
-      image: 'https://imgs.search.brave.com/awksT_Zoh8G9Qn5d-CbZP4gAPcl0EDxLP0J88fgAnB4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNTg3/ODA1MTU2L3ZlY3Rv/ci9wcm9maWxlLXBp/Y3R1cmUtdmVjdG9y/LWlsbHVzdHJhdGlv/bi5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9Z2t2TERDZ3NI/SC04SGVRZTdKc2po/bE9ZNnZSQkprX3NL/VzlseWFMZ21Mbz0',
-      title: 'مهارات القيادة في العصر الرقمي',
-      excerpt: 'كيف تطور مهارات القيادة في عالم رقمي متغير وما هي الصفات المطلوبة للقائد الناجح.',
-      date: '3 يناير 2024',
-      readTime: '5 دقائق',
-    }, 
-  ];
-
-  const BlogCard = ({ blog }: BlogCardProps) => (
-    <div className="bg-white mx-5 md:mx-2 rounded-3xl shadow-md group text-center w-52 md:w-72 pt-12 pb-8 px-4 relative hover:shadow-xl transition duration-300 hover:scale-105">
-      {/* صورة دائرية بارزة */}
-      <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-24 h-24 rounded-full border-4 border-white overflow-hidden shadow-md">
-        <img
-          src={blog.image}
-          alt={blog.title}
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      <div className="mt-12">
-        <h3 className="text-lg font-bold text-gray-900 mb-2">{blog.title}</h3>
-        <p className="text-sm text-gray-600 mb-4 line-clamp-3">{blog.excerpt}</p>
-
-        <div className="flex justify-center items-center gap-2 text-sm text-gray-500 mb-4">
-          <Calendar className="h-4 w-4" />
-          <span>{blog.date}</span>
-          <span>•</span>
-          <span>{blog.readTime}</span>
-        </div>
-
-        <button className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold transition-colors text-sm">
-          اقرأ المزيد
-          <ArrowLeft className="h-4 w-4" />
-        </button>
-      </div>
-    </div>
-  );
-
-  const Marquee = ({ children, reverse = false }: { children: React.ReactNode; reverse?: boolean }) => {
-    return (
-      <div className="flex overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]" dir="ltr">
-        <motion.div
-          className="flex gap-6 pr-6"
-          animate={{
-            x: reverse ? [0, -100 * blogs.length] : [-100 * blogs.length, 0],
-          }}
-          transition={{
-            x: {
-              repeat: Infinity,
-              repeatType: 'loop',
-              duration: 30,
-              ease: 'linear',
-            },
-          }}
-          style={{ width: 'max-content' }}
-        >
-          {children}
-          {children}
-        </motion.div>
-      </div>
-    );
-  };
-
   return (
-    <section className="py-20 px-5 md:px-20 bg-gradient-to-br from-gray-50 to-gray-100" ref={ref} dir="ltr">
-      <div className="container mx-auto px-4">
-        {/* عنوان القسم */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.6 }}
-        >
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            أحدث المقالات
-          </motion.h2>
-          <motion.p
-            className="text-xl text-gray-600 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          >
-            اقرأ أحدث المقالات والنصائح في مجال التعليم والتكنولوجيا
-          </motion.p>
-        </motion.div>
-
-        {/* صفين للمدونات بالتمرير التلقائي */}
-        <div className="relative">
-          <Marquee>
-            {blogs.map((blog) => (
-              <BlogCard key={blog.id} blog={blog} />
-            ))}
-          </Marquee>
-
-          <div className="mt-8">
-            <Marquee reverse>
-              {blogs.map((blog) => (
-                <BlogCard key={`reverse-${blog.id}`} blog={blog} />
-              ))}
-            </Marquee>
+    <section
+      ref={ref}
+      dir="rtl"
+      className="relative py-24 px-4 md:px-20 overflow-hidden"
+      style={{
+        backgroundImage: `url('https://imgs.search.brave.com/rsJifnFzjrtZJsKk54gOSjM3O53mKIZvBMLdMJsG5EU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9t/YW4tdXNpbmctZGln/aXRhbC10YWJsZXQt/cHNkLW1vY2t1cC1z/bWFydC10ZWNobm9s/b2d5XzUzODc2LTEx/MDgxNS5qcGc_c2Vt/dD1haXNfaHlicmlk/Jnc9NzQw')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/70"></div>
+      
+      <div className="container mx-auto relative z-10">
+        <div className="flex justify-between items-center mb-12">
+          <div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              أحدث المقالات
+            </h2>
+            <p className=" hidden md:block text-gray-300 text-lg">
+              أخبار التعليم من جميع أنحاء العالم
+            </p>
+          </div>
+          
+          {/* Navigation arrows */}
+          <div className="flex gap-2">
+           
+            <button className="next-btn w-12 h-12 border-2 border-white/30 text-white hover:border-white hover:bg-white/10 transition-all duration-300 flex items-center justify-center">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+             <button className="prev-btn w-12 h-12 border-2 border-white/30 text-white hover:border-white hover:bg-white/10 transition-all duration-300 flex items-center justify-center">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
           </div>
         </div>
 
-        {/* زر CTA */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          slidesPerView={1}
+          spaceBetween={30}
+          navigation={{
+            nextEl: '.next-btn',
+            prevEl: '.prev-btn',
+          }}
+          autoplay={{ 
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          loop={true}
+          breakpoints={{
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+          }}
+          className="news-swiper"
         >
-          <button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
-            عرض جميع المقالات
-          </button>
-        </motion.div>
+          {blogs.map((blog) => (
+            <SwiperSlide key={blog.id}>
+              <div className="relative overflow-hidden group cursor-pointer">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={blog.image}
+                    alt={blog.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                
+                {/* Author and date badge */}
+                <div className="absolute top-4 left-4">
+                  <span className="bg-yellow-500 text-black text-sm font-medium px-3 py-1 rounded">
+                    {blog.author} - {blog.date}
+                  </span>
+                </div>
+                
+                {/* Title overlay */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                  <h3 className="text-white text-xl font-bold leading-tight">
+                    {blog.title}
+                  </h3>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
-
-      <style jsx>{`
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-      `}</style>
     </section>
   );
 };

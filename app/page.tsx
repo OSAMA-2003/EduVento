@@ -4,6 +4,7 @@ import WhyChooseUs from '@/components/WhyChooseUs';
 import PopularCourses from '@/components/PopularCourses';
 import BlogsSection from '@/components/BlogsSection';
 import ContactSection from '@/components/ContactSection';
+import WhatPeopleSay from '@/components/WhatPeopleSay';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -13,6 +14,9 @@ export default function Home() {
       <HeroSection />
       <WhyChooseUs />
       <PopularCourses />
+
+      <WhatPeopleSay/>
+      
       <BlogsSection />
       <ContactSection />
       <Footer />
