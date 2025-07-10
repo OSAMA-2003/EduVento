@@ -3,57 +3,39 @@
 import { motion } from 'framer-motion';
 import { Calendar, Clock, User, ArrowLeft, Share2, BookOpen, Tag } from 'lucide-react';
 import Link from 'next/link';
-import { getBlogById, getLatestBlogs } from '@/lib/data';
+// It's a good practice to have a shared type for your data models.
+// Assuming you have a 'Blog' type exported from your data library.
+import type { Blog } from '@/lib/data';
+
+// If you're using ReactMarkdown for content rendering:
+// import ReactMarkdown from 'react-markdown';
 
 interface BlogDetailsProps {
-  blogId: string;
+  blog: Blog;
+  relatedBlogs: Blog[];
 }
-
-const BlogDetails = ({ blogId }: BlogDetailsProps) => {
-  const blog = getBlogById(parseInt(blogId));
-  const relatedBlogs = getLatestBlogs(3).filter(b => b.id !== parseInt(blogId));
-
-  if (!blog) {
-    return (
-      <div className="pt-24 pb-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">
-            المقال غير موجود
-          </h1>
-          <p className="text-gray-600 mb-8">
-            عذراً، لم نتمكن من العثور على المقال المطلوب.
-          </p>
-          <Link
-            href="/blogs"
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
-          >
-            العودة إلى المدونة
-            <ArrowLeft className="h-4 w-4" />
-          </Link>
-        </div>
-      </div>
-    );
-  }
+const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
+  // Data fetching and 404 logic are now handled by the parent server component.
+  // This component is now purely for presentation.
 
   return (
-    // <div className="pt-24 pb-16">
-      <div className="container ">
-        
+    <div className=""> {/* Consider if this padding is needed here or in the parent page */}
+      {/* Removed the empty 'container' div and uncommented outer div */}
+      <div className="container mx-auto">
 
-        <section className="pt-10  mb-10  bg-gradient text-white" >
-        <div className="container mx-auto py-14 px-4">
-          <div
-            className="text-center max-w-4xl mx-auto"
-            
-          >
-           <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
-              {blog.title}
-            </h1>
-            
+        <section className="pt-10 mb-10 bg-gradient text-white"> {/* Ensure bg-gradient is defined in your CSS */}
+          <div className="container mx-auto py-14 px-4">
+            <div
+              className="text-center max-w-4xl mx-auto"
+            >
+              <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">
+                {blog.title}
+              </h1>
+            </div>
           </div>
-        </div>
-      </section>
-<div className=" mx-auto px-5 mb-10">
+        </section>
+
+        <div className="mx-auto px-5 mb-10">
 
           {/* Breadcrumb */}
           <motion.nav
@@ -87,8 +69,7 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
                 {blog.category}
               </span>
             </div>
-            
-            
+
             {/* Article Meta */}
             <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 mb-6">
               <div className="flex items-center gap-2">
@@ -144,10 +125,16 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <div 
+            {/* IMPORTANT: If blog.content contains Markdown, uncomment ReactMarkdown below
+                and remove dangerouslySetInnerHTML. Install react-markdown first: npm install react-markdown */}
+            <div
               className="text-gray-700 leading-relaxed"
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
+            {/* Example with ReactMarkdown (uncomment if you switched to Markdown content) */}
+            {/* <ReactMarkdown className="text-gray-700 leading-relaxed">
+              {blog.content}
+            </ReactMarkdown> */}
           </motion.div>
 
           {/* Author Bio */}
@@ -186,7 +173,7 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
                 مقالات ذات صلة
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {relatedBlogs.map((relatedBlog, index) => (
+                {relatedBlogs.map((relatedBlog) => ( // Removed index if not used to avoid lint warnings
                   <div
                     key={relatedBlog.id}
                     className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
@@ -220,7 +207,7 @@ const BlogDetails = ({ blogId }: BlogDetailsProps) => {
           )}
         </div>
       </div>
-    // </div>
+    </div>
   );
 };
 
