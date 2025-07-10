@@ -140,7 +140,7 @@ const WhatPeopleSay = () => {
             className="testimonials-swiper  "
           >
             {testimonials.map((testimonial, index) => (
-              <SwiperSlide className='p-8 md:py-20 md:px-5' key={testimonial.id}>
+              <SwiperSlide className='p-5 md:py-20 md:px-5' key={testimonial.id}>
   {({ isActive }) => (
     <div
       className={`transition-all duration-500 transform flex flex-col justify-between items-start p-6 rounded-2xl shadow-xl h-[360px] w-full max-w-[350px] mx-auto
@@ -194,7 +194,7 @@ const WhatPeopleSay = () => {
         </div>
 
         {/* Custom Pagination */}
-        <div className="swiper-pagination-custom flex justify-center gap-3 mt-12"></div>
+<div className="swiper-pagination-custom flex justify-center items-center gap-3 mt-5 mb-[-30px] z-20 relative" />
       </div>
 
       <style jsx>{`
