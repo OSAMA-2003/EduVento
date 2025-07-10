@@ -4,56 +4,19 @@ import { useRef } from 'react';
 import { useInView } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
-
+import { ArrowLeft } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { getLatestBlogs } from '@/lib/data';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import Link from 'next/link';
 
-const blogs = [
-  {
-    id: 1,
-    image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    title: 'أهمية التعلم المستمر في عصر التكنولوجيا',
-    excerpt: 'في عالم يتطور باستمرار، يصبح التعلم المستمر ضرورة حتمية للبقاء.',
-    date: '20/01/2022',
-    author: 'علي'
-  },
-  {
-    id: 2,
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    title: 'الذكاء الاصطناعي في بيئة العمل',
-    excerpt: 'كيف يُغير الذكاء الاصطناعي طريقة عمل الشركات.',
-    date: '22/03/2025',
-    author: 'سارة'
-  },
-  {
-    id: 3,
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    title: 'لماذا يجب أن تتعلم البرمجة',
-    excerpt: 'البرمجة مهارة العصر الحديث، تعرّف على أهميتها.',
-    date: '20/03/2025',
-    author: 'محمد'
-  },
-  {
-    id: 4,
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    title: 'تطوير المهارات الرقمية',
-    excerpt: 'أهمية تطوير المهارات الرقمية في سوق العمل المعاصر.',
-    date: '18/03/2025',
-    author: 'نور'
-  },
-  {
-    id: 5,
-    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
-    title: 'الابتكار في التعليم',
-    excerpt: 'كيف يمكن للتقنيات الحديثة أن تثري تجربة التعلم.',
-    date: '15/03/2025',
-    author: 'أحمد'
-  }
-];
 
 const BlogsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  const blogs = getLatestBlogs(5)
 
   return (
     <section
@@ -124,7 +87,8 @@ const BlogsSection = () => {
         >
           {blogs.map((blog) => (
             <SwiperSlide key={blog.id}>
-              <div className="relative overflow-hidden group cursor-pointer">
+             <Link href={`/blogs/${blog.id}`} >
+               <div className="relative overflow-hidden group rounded-xl cursor-pointer">
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
                     src={blog.image}
@@ -136,7 +100,7 @@ const BlogsSection = () => {
                 {/* Author and date badge */}
                 <div className="absolute top-4 left-4">
                   <span className="bg-gradient text-white text-sm font-medium px-3 py-1 rounded">
-                    {blog.author} - {blog.date}
+                    {blog.author.name} - {blog.date}
                   </span>
                 </div>
                 
@@ -147,9 +111,29 @@ const BlogsSection = () => {
                   </h3>
                 </div>
               </div>
+             </Link>
             </SwiperSlide>
           ))}
         </Swiper>
+        <div>
+          
+
+          <motion.div
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <Link
+            href="/blogs"
+            className="inline-flex items-center gap-2 bg-gradient = text-white px-8 py-3 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+          >
+            عرض جميع المقالات
+            <ArrowLeft className="h-5 w-5" />
+          </Link>
+        </motion.div>
+          
+        </div>
       </div>
     </section>
   );

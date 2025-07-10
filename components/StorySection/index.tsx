@@ -69,7 +69,7 @@ const StorySection = () => {
   ];
 
   return (
-       <section className="py-20 px-2 md:px-20 bg-gradient-to-b from-white to-blue-50">
+       <section id='story' className="py-20 px-2 md:px-20 bg-gradient-to-b from-white to-blue-50">
       <div className="container mx-auto px-4 text-center">
         {/* Heading */}
         <div ref={headingRef}>

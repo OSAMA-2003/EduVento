@@ -7,6 +7,7 @@ import { Autoplay, EffectFade } from 'swiper/modules';
 import { ArrowLeft } from 'lucide-react';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
+import Link from 'next/link';
 
 const HeroSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -91,9 +92,11 @@ const HeroSection = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
+                <a href="#story">
                 <button className="bg-gradient text-white px-10 py-2 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg">
                 اعرف اكتر   
                 </button>
+                </a>
                 
               </motion.div>
             </motion.div>

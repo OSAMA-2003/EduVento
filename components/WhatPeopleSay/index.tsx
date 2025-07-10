@@ -84,8 +84,10 @@ const WhatPeopleSay = () => {
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Header */}
         <div className="text-center mb-5 md:mb-10">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient rounded-full mb-6">
+          <div className='flex items-center justify-center'>
+            <div className=" flex  items-center justify-center w-16 h-16 bg-gradient rounded-full mb-6">
             <Quote className="w-8 h-8 text-white" />
+          </div>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text block ">
             ماذا يقول عملاؤنا

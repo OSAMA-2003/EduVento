@@ -14,6 +14,7 @@ const Navigation = () => {
   const navItems = [
     { name: 'الرئيسية', href: '/' },
     { name: 'الكورسات', href: '/courses' },
+    { name: 'المقالات', href: '/blogs' },
     { name: 'من نحن', href: '/about' },
     { name: 'تواصل معنا', href: '/contact' },
   ];
@@ -75,7 +76,7 @@ const Navigation = () => {
         visible: { y: 0 },
         hidden: { y: '-100%' },
       }}
-      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        transition={{ type: 'tween', duration: 0.1, ease: 'easeOut' }}
     >
       <div className="container mx-auto px-4 md:px-14">
         <div className="flex items-center justify-between h-16 md:h-20 flex-row-reverse md:flex-row">

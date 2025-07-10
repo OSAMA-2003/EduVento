@@ -98,7 +98,8 @@ const ContactSection = () => {
               </p>
               <p className="text-gray-700">
                 اكتبلنا إنت فين دلوقتي، بتفكر في إيه، وإيه نفسك توصله...
-                وهنرجع لك برد مفيد وواضح يساعدك بشكل " مجاني تماما "
+                وهنرجع لك برد مفيد وواضح يساعدك بشكل 
+                <span className=' gradient-text font-bold' >" مجاني تماما "</span>
               </p>
               <p className="text-gray-700 mt-3 font-medium">
                 يمكن تكون الرسالة دي هي أول خطوة في أكبر تغيير في حياتك.

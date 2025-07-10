@@ -2,19 +2,19 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Clock, Users, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, ArrowLeft, ChevronLeft, ChevronRight, User } from 'lucide-react';
 import Link from 'next/link';
-import { getAllCourses } from '@/lib/courseData';
+import { getAllBlogs } from '@/lib/data';
 
-const CoursesGrid = () => {
+const BlogsGrid = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const coursesPerPage = 10;
+  const blogsPerPage = 6;
 
-  const allCourses = getAllCourses();
-  const totalPages = Math.ceil(allCourses.length / coursesPerPage);
-  const currentCourses = allCourses.slice(
-    (currentPage - 1) * coursesPerPage,
-    currentPage * coursesPerPage
+  const allBlogs = getAllBlogs();
+  const totalPages = Math.ceil(allBlogs.length / blogsPerPage);
+  const currentBlogs = allBlogs.slice(
+    (currentPage - 1) * blogsPerPage,
+    currentPage * blogsPerPage
   );
 
   const handlePageChange = (page: number) => {
@@ -25,10 +25,10 @@ const CoursesGrid = () => {
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {currentCourses.map((course, index) => (
-          <motion.div
-            key={course.id}
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
+        {currentBlogs.map((blog, index) => (
+          <motion.article
+            key={blog.id}
+            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl  "
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
@@ -36,48 +36,53 @@ const CoursesGrid = () => {
           >
             <div className="relative overflow-hidden">
               <img
-                src={course.image}
-                alt={course.title}
-                className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                src={blog.image}
+                alt={blog.title}
+                className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300 "
               />
-              <div className="absolute top-4 right-4 bg-gradient text-white px-3 py-1 rounded-full text-sm font-semibold">
-                {course.price} ج 
+              <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                {blog.category}
               </div>
             </div>
             <div className="p-6">
-              <h3 className="text-lg font-bold gradient-text mb-2 group-hover:text-blue-600 transition-colors">
-                {course.title}
+              <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
+                <div className="flex items-center gap-1">
+                  <Calendar className="h-4 w-4" />
+                  <span>{blog.date}</span>
+                </div>
+                <span>•</span>
+                <span>{blog.readTime}</span>
+                <span>•</span>
+                <div className="flex items-center gap-1">
+                  <User className="h-4 w-4" />
+                  <span>{blog.author.name}</span>
+                </div>
+              </div>
+              <h3 className="text-xl font-bold gradient-text transition-colors line-clamp-2">
+                {blog.title}
               </h3>
-              <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-2">
-                {course.description}
+              <p className="text-gray-600 mb-4 leading-relaxed line-clamp-3">
+                {blog.excerpt}
               </p>
-              <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
-                <div className="flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  <span>{course.duration}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Users className="h-3 w-3" />
-                  <span>{course.students}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Star className="h-3 w-3 text-yellow-400 fill-current" />
-                  <span>{course.rating}</span>
-                </div>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {blog.tags.slice(0, 2).map((tag, tagIndex) => (
+                  <span
+                    key={tagIndex}
+                    className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-gray-600">
-                  {course.instructor.name}
-                </span>
-                <Link
-                  href={`/courses/${course.id}`}
-                  className="bg-gradient text-white px-3 py-1 rounded-lg text-sm font-semibold transition-colors"
-                >
-                  التفاصيل
-                </Link>
-              </div>
+              <Link
+                href={`/blogs/${blog.id}`}
+                className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold transition-colors"
+              >
+                اقرأ المزيد
+                <ArrowLeft className="h-4 w-4" />
+              </Link>
             </div>
-          </motion.div>
+          </motion.article>
         ))}
       </div>
 
@@ -119,4 +124,4 @@ const CoursesGrid = () => {
   );
 };
 
-export default CoursesGrid;
+export default BlogsGrid;
