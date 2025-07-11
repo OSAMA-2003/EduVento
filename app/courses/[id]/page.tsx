@@ -1,7 +1,7 @@
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import CourseDetails from '@/components/CourseDetails';
-import { getAllCourses } from '@/lib/data';
+import { getAllCourses } from '@/lib/courseData';
 
 interface CoursePageProps {
   params: {

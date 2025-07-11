@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Calendar, ArrowLeft, ChevronLeft, ChevronRight, User } from 'lucide-react';
 import Link from 'next/link';
 import { getAllBlogs } from '@/lib/data';
+import { Blog } from '@/lib/types';
 
 const BlogsGrid = () => {
   const [currentPage, setCurrentPage] = useState(1);

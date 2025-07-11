@@ -7,16 +7,16 @@ import { Navigation, Autoplay } from 'swiper/modules';
 import { ArrowLeft } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { getLatestBlogs } from '@/lib/data';
+import { Blog } from '@/lib/types';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import Link from 'next/link';
-
 
 const BlogsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const blogs = getLatestBlogs(5)
+  const blogs = getLatestBlogs(5);
 
   return (
     <section
