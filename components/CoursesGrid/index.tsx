@@ -1,18 +1,36 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Clock, Users, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
-import { getAllCourses } from '@/lib/courseData';
+import { fetchAllCourses } from '@/lib/api';
+import { Course } from '@/lib/types';
 
 const CoursesGrid = () => {
+  const [courses, setCourses] = useState<Course[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const coursesPerPage = 10;
 
-  const allCourses = getAllCourses();
-  const totalPages = Math.ceil(allCourses.length / coursesPerPage);
-  const currentCourses = allCourses.slice(
+  useEffect(() => {
+    const getCourses = async () => {
+      try {
+        const data = await fetchAllCourses();
+        setCourses(data);
+        setLoading(false);
+      } catch (err: any) {
+        setError('حدث خطأ أثناء تحميل الكورسات');
+        setLoading(false);
+      }
+    };
+
+    getCourses();
+  }, []);
+
+  const totalPages = Math.ceil(courses.length / coursesPerPage);
+  const currentCourses = courses.slice(
     (currentPage - 1) * coursesPerPage,
     currentPage * coursesPerPage
   );
@@ -21,6 +39,14 @@ const CoursesGrid = () => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  if (loading) {
+    return <p className="text-center py-10">جاري تحميل الكورسات...</p>;
+  }
+
+  if (error) {
+    return <p className="text-center py-10 text-red-500">{error}</p>;
+  }
 
   return (
     <div>
@@ -32,7 +58,6 @@ const CoursesGrid = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: index * 0.1 }}
-            
           >
             <div className="relative overflow-hidden">
               <img
@@ -41,7 +66,7 @@ const CoursesGrid = () => {
                 className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
               />
               <div className="absolute top-4 right-4 bg-gradient text-white px-3 py-1 rounded-full text-sm font-semibold">
-                {course.price} ج 
+                {course.price} ج
               </div>
             </div>
             <div className="p-6">
@@ -49,7 +74,7 @@ const CoursesGrid = () => {
                 {course.title}
               </h3>
               <p className="text-gray-600 mb-4 text-sm leading-relaxed line-clamp-2">
-                {course.description}
+                {course.shortDescription || course.description}
               </p>
               <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
                 <div className="flex items-center gap-1">
@@ -58,7 +83,7 @@ const CoursesGrid = () => {
                 </div>
                 <div className="flex items-center gap-1">
                   <Users className="h-3 w-3" />
-                  <span>{course.students}</span>
+                  <span>{course.studentsEnrolled}</span>
                 </div>
                 <div className="flex items-center gap-1">
                   <Star className="h-3 w-3 text-yellow-400 fill-current" />
@@ -67,7 +92,7 @@ const CoursesGrid = () => {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-xs text-gray-600">
-                  {course.instructor.name}
+                  {course.instructor?.name || 'مدرب غير محدد'}
                 </span>
                 <Link
                   href={`/courses/${course.id}`}
@@ -91,7 +116,7 @@ const CoursesGrid = () => {
           >
             <ChevronRight className="h-4 w-4" />
           </button>
-          
+
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
@@ -105,7 +130,7 @@ const CoursesGrid = () => {
               {index + 1}
             </button>
           ))}
-          
+
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}

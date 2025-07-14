@@ -19,10 +19,7 @@
   }
 }
 
-html{
-  scroll-behavior: smooth !important;
-}
-
+  
 @layer base {
   :root {
     --background: 0 0% 100%;

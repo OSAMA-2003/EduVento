@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/HeroSection';
 import WhyChooseUs from '@/components/WhyChooseUs';
@@ -9,8 +12,19 @@ import Footer from '@/components/Footer';
 import StorySection from '@/components/StorySection';
 
 export default function Home() {
+
+
+   useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'smooth';
+
+    return () => {
+      document.documentElement.style.scrollBehavior = '';
+    };
+  }, []);
+
   return (
-    <main className="min-h-screen bg-white overflow-hidden ">
+    <main className="min-h-screen bg-white overflow-hidden"
+     >
       <Navigation />
       <HeroSection />
       <StorySection/>

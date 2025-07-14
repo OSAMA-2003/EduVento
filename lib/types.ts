@@ -1,10 +1,11 @@
 // lib/types.ts
+
 export interface Author {
   id: number;
   name: string;
-  image: string;
-  bio: string;
-  role?: string; // Added for course instructors
+  image?: string; // ✅ optional عشان بعضهم ممكن يبقى null
+  bio?: string;
+  role?: string; // For instructor or author role
 }
 
 export interface Category {
@@ -20,10 +21,11 @@ export interface Blog {
   content: string;
   image: string;
   category: string;
-  author: Author;
+  author: string;
   date: string;
   readTime: string;
   tags: string[];
+  slug: string;
 }
 
 export interface Course {
@@ -46,7 +48,7 @@ export interface Course {
   whatYouWillLearn: string[];
   certificate: boolean;
   language: string;
-  lastUpdated: string;
+  lastUpdated: string; // Prefer ISO format
 }
 
 export interface Lesson {
@@ -55,8 +57,8 @@ export interface Lesson {
   duration: string;
   videoUrl: string;
   description: string;
-  resources?: Resource[];
   isFree: boolean;
+  resources?: Resource[];
 }
 
 export interface Resource {
