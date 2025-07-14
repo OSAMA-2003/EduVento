@@ -18,9 +18,6 @@ export async function generateStaticParams() {
   }));
 }
 
-
-// New data
-
 export default async function BlogPage({ params }: BlogPageProps) {
   const blogIdNum = parseInt(params.id);
   const blog = getBlogById(blogIdNum);

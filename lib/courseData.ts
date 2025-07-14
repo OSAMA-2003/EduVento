@@ -22,6 +22,9 @@ export interface Course {
   certificate: boolean;
 }
 
+
+// New data
+
 export const coursesData: Course[] = [
   {
     id: 1,
