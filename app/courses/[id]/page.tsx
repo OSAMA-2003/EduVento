@@ -2,7 +2,7 @@
 
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import CourseDetails from '@/components/CourseDetails';
+import CourseDetails from '@/components/CourseDetails'; // ✅ Now points to correct component
 import { fetchAllCourses, fetchCourseById } from '@/lib/api';
 import { notFound } from 'next/navigation';
 
@@ -15,25 +15,21 @@ interface CoursePageProps {
 export async function generateStaticParams() {
   try {
     const courses = await fetchAllCourses();
-
     return courses.map((course) => ({
       id: course.id.toString(),
     }));
   } catch (error) {
-    // يفضل logging الخطأ هنا عشان تعرف لو فيه مشكلة في جلب الكورسات
     console.error('Error generating static params for courses:', error);
     return [];
   }
 }
 
 export default async function CoursePage({ params }: CoursePageProps) {
-  // التصحيح هنا: إضافة 10 كبارامتر ثانٍ لـ parseInt
   const courseId = parseInt(params.id, 10);
 
-  // تأكد من أن الـ ID رقم صالح قبل المتابعة
   if (isNaN(courseId)) {
     console.warn(`Invalid course ID received: ${params.id}`);
-    notFound(); // أو يمكنك توجيه المستخدم لصفحة خطأ أو صفحة رئيسية
+    notFound();
   }
 
   const course = await fetchCourseById(courseId);
@@ -42,10 +38,16 @@ export default async function CoursePage({ params }: CoursePageProps) {
     notFound();
   }
 
+  // ✅ Optionally fetch related courses
+  const allCourses = await fetchAllCourses();
+  const relatedCourses = allCourses
+    .filter(c => c.id !== course.id && c.category?.name === course.category?.name)
+    .slice(0, 3);
+
   return (
     <main className="min-h-screen bg-white">
       <Navigation />
-      <CourseDetails course={course} />
+      <CourseDetails course={course} relatedCourses={relatedCourses} />
       <Footer />
     </main>
   );

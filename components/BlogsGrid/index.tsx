@@ -1,44 +1,53 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, ArrowLeft, ChevronLeft, ChevronRight, User } from 'lucide-react';
+import { ChevronLeft, ChevronRight, BookOpen, Search, Filter } from 'lucide-react';
 import Link from 'next/link';
-import { fetchAllArticles, fetchRelatedArticles } from '@/lib/api';
+import { fetchAllArticles } from '@/lib/api';
 import { Blog } from '@/lib/types';
+import BlogCard from '../BlogCard';
 
 const BlogsGrid = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const blogsPerPage = 6;
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const blogsPerPage = 9;
 
   useEffect(() => {
     const loadBlogs = async () => {
       try {
         setLoading(true);
         const data = await fetchAllArticles();
-        
-        // Transform API data to match frontend expectations
-        const transformedBlogs = data.map(blog => ({
+
+        const transformedBlogs = data.map((blog) => ({
           id: blog.id.toString(),
-          title: blog.title || 'Untitled Article',
-          excerpt: blog.excerpt || (blog.content ? `${blog.content.substring(0, 100)}...` : 'No excerpt available'),
+          title: blog.title || 'مقال بدون عنوان',
+          excerpt:
+            blog.excerpt ||
+            (blog.content
+              ? `${blog.content.split(' ').slice(0, 20).join(' ')}...`
+              : 'لا يوجد مقتطف'),
           content: blog.content || '',
-          category: blog.category || 'Uncategorized',
-          date: blog.created_at || new Date().toISOString().split('T')[0],
-          readTime: blog.duration_bost || '5 min',
-          image: blog.image_url || 'https://via.placeholder.com/600x400?text=No+Image',
-          author: blog.author || 'Anonymous',
+          category: blog.category || 'غير مصنف',
+          date: blog.date
+            ? new Date(blog.date).toLocaleDateString('ar-EG')
+            : new Date().toLocaleDateString('ar-EG'),
+          readTime: blog.readTime || '5 دقائق',
+          image:
+            blog.image || 'https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=800&h=600&fit=crop',
+          author: blog.author || 'مجهول',
           tags: blog.tags || [],
-          slug: blog.slug || blog.id.toString()
+          slug: blog.slug || blog.id.toString(),
         }));
 
         setBlogs(transformedBlogs);
       } catch (err: any) {
         console.error('Failed to load blogs:', err);
-        setError(err.message || 'Failed to load articles');
+        setError(err.message || 'حدث خطأ أثناء تحميل المقالات');
       } finally {
         setLoading(false);
       }
@@ -47,11 +56,25 @@ const BlogsGrid = () => {
     loadBlogs();
   }, []);
 
-  const totalPages = Math.ceil(blogs.length / blogsPerPage);
-  const currentBlogs = blogs.slice(
-    (currentPage - 1) * blogsPerPage,
-    currentPage * blogsPerPage
-  );
+  // Filter blogs
+  const filteredBlogs = useMemo(() => {
+    return blogs.filter(blog => {
+      const matchesSearch = blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           blog.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = !selectedCategory || blog.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+  }, [blogs, searchTerm, selectedCategory]);
+
+  const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
+  const currentBlogs = useMemo(() => {
+    return filteredBlogs.slice(
+      (currentPage - 1) * blogsPerPage,
+      currentPage * blogsPerPage
+    );
+  }, [filteredBlogs, currentPage]);
+
+  const categories = [...new Set(blogs.map(blog => blog.category))];
 
   const handlePageChange = (page: number) => {
     if (page < 1 || page > totalPages) return;
@@ -59,20 +82,18 @@ const BlogsGrid = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Reset pagination when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, selectedCategory]);
+
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="animate-pulse flex space-x-4">
-          <div className="flex-1 space-y-6 py-1">
-            <div className="h-4 bg-gray-200 rounded w-3/4"></div>
-            <div className="space-y-3">
-              <div className="grid grid-cols-3 gap-4">
-                <div className="h-4 bg-gray-200 rounded col-span-2"></div>
-                <div className="h-4 bg-gray-200 rounded col-span-1"></div>
-              </div>
-              <div className="h-4 bg-gray-200 rounded"></div>
-            </div>
-          </div>
+      <div className="bg-gradient-smooth-blend py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-pattern opacity-10"></div>
+        <div className="flex flex-col justify-center items-center py-20 relative z-10">
+          <div className="spinner-primary w-12 h-12 mb-4"></div>
+          <span className="text-white text-lg font-semibold">جاري تحميل المقالات...</span>
         </div>
       </div>
     );
@@ -80,139 +101,239 @@ const BlogsGrid = () => {
 
   if (error) {
     return (
-      <div className="text-center py-10">
-        <p className="text-red-500 mb-4">حدث خطأ أثناء تحميل المقالات: {error}</p>
-        <button 
-          onClick={() => window.location.reload()}
-          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-        >
-          حاول مرة أخرى
-        </button>
+      <div className="bg-gradient-smooth-blend py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-pattern opacity-10"></div>
+        <div className="text-center py-20 relative z-10">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto">
+            <div className="w-16 h-16 bg-alert-red rounded-full flex items-center justify-center mx-auto mb-4">
+              <BookOpen className="h-8 w-8 text-white" />
+            </div>
+            <h3 className="text-xl font-bold text-primary-dark mb-2">خطأ في التحميل</h3>
+            <p className="text-alert-red mb-4">{error}</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="btn-primary"
+            >
+              إعادة المحاولة
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
 
   if (blogs.length === 0) {
     return (
-      <div className="text-center py-10">
-        <p className="text-gray-500">لا توجد مقالات متاحة حالياً</p>
-        <Link 
-          href="/"
-          className="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-        >
-          العودة للصفحة الرئيسية
-        </Link>
+      <div className="bg-gradient-smooth-blend py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-pattern opacity-10"></div>
+        <div className="text-center py-20 relative z-10">
+          <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto">
+            <BookOpen className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-primary-dark mb-2">لا توجد مقالات</h3>
+            <p className="text-gray-600 mb-4">لا توجد مقالات متاحة حالياً</p>
+            <Link href="/" className="btn-primary">
+              العودة للصفحة الرئيسية
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {currentBlogs.map((blog, index) => (
-          <motion.article
-            key={blog.id}
-            className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl border border-gray-100 flex flex-col h-full"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-            whileHover={{ y: -5 }}
-          >
-            <div className="relative h-48 overflow-hidden">
-              <img
-                src={blog.image}
-                alt={blog.title}
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = 'https://via.placeholder.com/600x400?text=No+Image';
-                }}
-              />
-              <div className="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                {blog.category}
+    <div className="bg-gradient-smooth-blend py-10 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-pattern opacity-5"></div>
+      <div className="absolute top-10 right-10 w-64 h-64 bg-primary-yellow/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-10 left-10 w-80 h-80 bg-secondary-green/10 rounded-full blur-3xl"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        
+        {/* ✅ Enhanced Header */}
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+            <span className="text-primary-yellow">جميع</span>{" "}
+            <span className="text-white">المقالات</span>
+          </h1>
+          <p className="text-xl text-gray-100 max-w-3xl mx-auto leading-relaxed">
+            استكشف مكتبة شاملة من المقالات التقنية والتعليمية
+          </p>
+        </motion.div>
+
+        {/* ✅ Enhanced Filters */}
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+            <div className="flex flex-col md:flex-row gap-4 items-center">
+              
+              {/* Search Bar */}
+              <div className="relative flex-1">
+                <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <input
+                  type="text"
+                  placeholder="ابحث في المقالات..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pr-12 pl-4 py-3 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-xl focus:border-logo-blue focus:ring-2 focus:ring-logo-blue/20 outline-none transition-all duration-300"
+                />
               </div>
-            </div>
-            <div className="p-6 flex flex-col flex-grow">
-              <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
-                <div className="flex items-center gap-1">
-                  <Calendar className="h-3 w-3" />
-                  <span>{blog.date}</span>
-                </div>
-                <span>•</span>
-                <span>{blog.readTime} قراءة</span>
-              </div>
-              
-              <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2">
-                <Link href={`/blogs/${blog.id}`} className="hover:text-blue-600 transition-colors">
-                  {blog.title}
-                </Link>
-              </h3>
-              
-              <p className="text-gray-600 mb-4 text-sm line-clamp-3 flex-grow">
-                {blog.excerpt}
-              </p>
-              
-              {blog.tags && blog.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {blog.tags.slice(0, 2).map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs"
-                    >
-                      {tag}
-                    </span>
+
+              {/* Category Filter */}
+              <div className="relative min-w-48">
+                <Filter className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <select
+                  value={selectedCategory}
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="w-full pr-12 pl-4 py-3 bg-white/90 backdrop-blur-sm border border-gray-300 rounded-xl focus:border-logo-blue focus:ring-2 focus:ring-logo-blue/20 outline-none transition-all duration-300 appearance-none cursor-pointer"
+                >
+                  <option value="">جميع الفئات</option>
+                  {categories.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
                   ))}
-                </div>
-              )}
-              
-              <Link
-                href={`/blogs/${blog.id}`}
-                className="mt-auto inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors"
-              >
-                اقرأ المزيد
-                <ArrowLeft className="h-4 w-4" />
-              </Link>
+                </select>
+              </div>
+
+              {/* Results Count */}
+              <div className="bg-primary-yellow text-primary-dark px-4 py-3 rounded-xl font-bold text-sm whitespace-nowrap">
+                {filteredBlogs.length} مقال
+              </div>
             </div>
-          </motion.article>
-        ))}
+          </div>
+        </motion.div>
+
+        {/* ✅ Blogs Grid */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          {filteredBlogs.length === 0 ? (
+            <div className="text-center py-20">
+              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-12 max-w-md mx-auto">
+                <BookOpen className="h-24 w-24 text-gray-400 mx-auto mb-6" />
+                <h3 className="text-2xl font-bold text-primary-dark mb-4">لم يتم العثور على مقالات</h3>
+                <p className="text-gray-600 mb-6">جرب تغيير معايير البحث أو الفئات</p>
+                <button
+                  onClick={() => {
+                    setSearchTerm('');
+                    setSelectedCategory('');
+                  }}
+                  className="btn-primary"
+                >
+                  إعادة تعيين المرشحات
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {currentBlogs.map((blog, index) => (
+                <BlogCard
+                  key={blog.id}
+                  blog={blog}
+                  index={index}
+                  variant={index === 0 ? 'featured' : 'default'}
+                />
+              ))}
+            </div>
+          )}
+        </motion.div>
+
+        {/* ✅ Enhanced Pagination */}
+        {totalPages > 1 && (
+          <motion.div
+            className="flex justify-center items-center mt-16 gap-2"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
+              <div className="flex items-center gap-2">
+                
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="w-12 h-12 rounded-xl bg-white/20 text-white hover:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center group"
+                  aria-label="الصفحة السابقة"
+                >
+                  <ChevronLeft className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                </button>
+
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <button
+                    key={page}
+                    onClick={() => handlePageChange(page)}
+                    className={`w-12 h-12 rounded-xl font-bold text-sm transition-all duration-300 ${
+                      currentPage === page
+                        ? 'bg-primary-yellow text-primary-dark shadow-lg scale-110'
+                        : 'bg-white/20 text-white hover:bg-white/30'
+                    }`}
+                    aria-current={currentPage === page ? 'page' : undefined}
+                  >
+                    {page}
+                  </button>
+                ))}
+
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="w-12 h-12 rounded-xl bg-white/20 text-white hover:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 flex items-center justify-center group"
+                  aria-label="الصفحة التالية"
+                >
+                  <ChevronRight className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+
+        {/* ✅ Statistics Section */}
+        <motion.div
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-primary-yellow mb-2">
+                  {blogs.length}
+                </div>
+                <div className="text-white/80 text-sm">إجمالي المقالات</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-secondary-green mb-2">
+                  {categories.length}
+                </div>
+                <div className="text-white/80 text-sm">فئة متنوعة</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-white mb-2">
+                  50K+
+                </div>
+                <div className="text-white/80 text-sm">قارئ شهرياً</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-logo-blue mb-2">
+                  20+
+                </div>
+                <div className="text-white/80 text-sm">كاتب خبير</div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
-
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex justify-center items-center mt-12 gap-2">
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            aria-label="Previous page"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </button>
-
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-            <button
-              key={page}
-              onClick={() => handlePageChange(page)}
-              className={`w-10 h-10 flex items-center justify-center rounded-lg font-medium transition-colors ${
-                currentPage === page
-                  ? 'bg-blue-600 text-white'
-                  : 'border border-gray-300 hover:bg-gray-50'
-              }`}
-              aria-current={currentPage === page ? 'page' : undefined}
-            >
-              {page}
-            </button>
-          ))}
-
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            aria-label="Next page"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </button>
-        </div>
-      )}
     </div>
   );
 };

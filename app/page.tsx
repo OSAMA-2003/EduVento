@@ -11,6 +11,7 @@ import WhatPeopleSay from '@/components/WhatPeopleSay';
 import Footer from '@/components/Footer';
 import StorySection from '@/components/StorySection';
 
+
 export default function Home() {
 
 
@@ -23,7 +24,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-white overflow-hidden"
+    <main className="min-h-screen overflow-hidden"
      >
       <Navigation />
       <HeroSection />

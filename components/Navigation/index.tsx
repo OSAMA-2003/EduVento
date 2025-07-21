@@ -93,7 +93,7 @@ const Navigation = () => {
                 href={item.href}
                 className={`font-medium transition-colors ${
                   hasScrolled ? 'text-white' : 'text-white' // Keep text white regardless of scroll for contrast
-                } hover:text-blue-400 text-lg`}
+                } hover:text-logo-blue text-lg`}
               >
                 {item.name}
               </Link>
@@ -116,7 +116,7 @@ const Navigation = () => {
           {isOpen && (
             <motion.div
               key="mobile-menu"
-              className="md:hidden fixed inset-0 h-screen z-40 bg-gradient text-white p-6 flex flex-col"
+              className="md:hidden fixed inset-0 h-screen z-40 bg-gradient-primary-enhanced text-white p-6 flex flex-col"
               initial="hidden"
               animate="visible"
               exit="exit"
@@ -151,7 +151,7 @@ const Navigation = () => {
                   <motion.div key={item.name} variants={itemVariants}>
                     <Link
                       href={item.href}
-                      className="text-3xl font-medium hover:text-blue-400 transition-colors py-2"
+                      className="text-3xl font-medium hover:text-logo-blue transition-colors py-2"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name}

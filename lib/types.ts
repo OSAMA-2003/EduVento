@@ -14,19 +14,24 @@ export interface Category {
   icon?: string;
 }
 
-export interface Blog {
+// types.ts
+export type Blog = {
   id: number;
   title: string;
-  excerpt: string;
+  excerpt?: string;
   content: string;
-  image: string;
-  category: string;
-  author: string;
-  date: string;
-  readTime: string;
-  tags: string[];
-  slug: string;
-}
+  image?: string;
+  category?: string;
+  tags?: string[];
+  date?: string;
+  readTime?: string;
+  author: string | {
+    // name: string;
+    // image?: string;
+    // bio?: string;
+  };
+  slug?: string;
+};
 
 export interface Course {
   id: number;
@@ -49,6 +54,7 @@ export interface Course {
   certificate: boolean;
   language: string;
   lastUpdated: string; // Prefer ISO format
+  isPopular?: boolean;
 }
 
 export interface Lesson {
@@ -75,6 +81,25 @@ export interface Review {
   content: string;
   date: string;
 }
+
+
+export interface CourseApiResponse {
+  id: number;
+  title: string;
+  description: string;
+  full_description: string;
+  image_url: string;
+  duration: string;
+  level: string;
+  Instructor_name: string;
+  Instructor_image_url: string;
+  students_numbers: string;
+  starts: string; // rating
+  created_at: string;
+}
+
+
+
 
 // Component Props Types
 export interface BlogCardProps {
