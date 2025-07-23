@@ -1,8 +1,14 @@
-import { fetchArticleById, fetchAllArticles, fetchRelatedArticles } from '@/lib/api';
 import { notFound } from 'next/navigation';
-import BlogDetails from '@/components/BlogDetails';
+import sanitizeHtml from 'sanitize-html';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import BlogDetails from '@/components/BlogDetails';
+
+import {
+  fetchArticleById,
+  fetchAllArticles,
+  fetchRelatedArticles,
+} from '@/lib/api';
 
 interface BlogPageProps {
   params: {
@@ -10,12 +16,10 @@ interface BlogPageProps {
   };
 }
 
+// ✅ Static path generation
 export async function generateStaticParams() {
   try {
-    console.log('[generateStaticParams] Fetching all articles...');
     const articles = await fetchAllArticles();
-    console.log('[generateStaticParams] Articles fetched:', articles.length);
-    
     return articles.map((article) => ({
       id: article.id.toString(),
     }));
@@ -25,64 +29,12 @@ export async function generateStaticParams() {
   }
 }
 
-export default async function BlogPage({ params }: BlogPageProps) {
-  console.log('[BlogPage] Rendering page for article ID:', params.id);
-
-  let article;
-  let relatedArticles = [];
-
-  try {
-    console.log('[BlogPage] Fetching article details...');
-    article = await fetchArticleById(Number(params.id));
-    console.log('[BlogPage] Article data:', article);
-
-    if (!article) {
-      console.error('[BlogPage] Article not found');
-      notFound();
-    }
-
-    console.log('[BlogPage] Fetching related articles...');
-    relatedArticles = await fetchRelatedArticles(
-      article.id,
-      article.category,
-      3
-    );
-    console.log('[BlogPage] Related articles:', relatedArticles);
-
-  } catch (error) {
-    console.error('[BlogPage] Error:', error);
-    notFound();
-  }
-
-  // Transform data with proper error handling
-  const blogData = {
-    ...article,
-    date: article.date 
-      ? new Date(article.date).toLocaleDateString('ar-EG')
-      : 'تاريخ غير متوفر',
-    author: typeof article.author === 'object'
-      ? article.author
-      : { name: article.author || 'مؤلف غير معروف' }
-  };
-
-  console.log('[BlogPage] Processed blog data:', blogData);
-
-  return (
-    <main className="min-h-screen bg-white">
-      <Navigation />
-      <BlogDetails blog={blogData} relatedBlogs={relatedArticles} />
-      <Footer />
-    </main>
-  );
-}
-
+// ✅ Metadata generation
 export async function generateMetadata({ params }: BlogPageProps) {
   try {
-    console.log('[generateMetadata] Fetching article for metadata...');
     const article = await fetchArticleById(Number(params.id));
 
     if (!article) {
-      console.warn('[generateMetadata] Article not found');
       return {
         title: 'مقال غير موجود',
         description: 'المقال المطلوب غير موجود.',
@@ -103,4 +55,54 @@ export async function generateMetadata({ params }: BlogPageProps) {
       description: 'حدث خطأ أثناء تحميل المقال.',
     };
   }
+}
+
+// ✅ Page component
+export default async function BlogPage({ params }: BlogPageProps) {
+  let article;
+  let relatedArticles = [];
+
+  try {
+    article = await fetchArticleById(Number(params.id));
+
+    if (!article) return notFound();
+
+    relatedArticles = await fetchRelatedArticles(
+      article.id,
+      article.category,
+      3
+    );
+  } catch (error) {
+    console.error('[BlogPage] Error:', error);
+    return notFound();
+  }
+
+  // ✅ Sanitize blog content
+  const sanitizedContent = sanitizeHtml(article.content || '', {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
+    allowedAttributes: {
+      ...sanitizeHtml.defaults.allowedAttributes,
+      img: ['src', 'alt', 'title', 'width', 'height'],
+    },
+  });
+
+  const blogData = {
+    ...article,
+    content: sanitizedContent, // ✅ Use only safe content
+    date: article?.date
+      ? new Date(article.date).toLocaleDateString('ar-EG')
+      : 'تاريخ غير متوفر',
+    author:
+      typeof article?.author === 'object'
+        ? article.author
+        : { name: article?.author || 'مؤلف غير معروف' },
+  };
+
+  return (
+    <main className="min-h-screen bg-white">
+      <Navigation />
+      <BlogDetails blog={blogData} relatedBlogs={relatedArticles} />
+      <Footer />
+    </main>
+  );
 }

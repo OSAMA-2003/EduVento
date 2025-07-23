@@ -414,7 +414,7 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
               
               {/* Course Info Card */}
               <motion.div
-                className="card-primary mb-8 sticky top-8"
+                className="card-primary mb-8 top-8"
                 initial={{ opacity: 0, x: 30 }}
                 animate={isSidebarInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6 }}
