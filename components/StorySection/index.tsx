@@ -326,7 +326,7 @@ const StorySection = () => {
             <Zap className="h-6 w-6" />
             <div>
               <p className="text-lg font-semibold text-center mt-8 mb-4">
-  لو إجابتك أغلبها "<span className="text-red-600 font-bold">لأ</span>"...<br />
+  لو إجابتك أغلبها <span className="text-red-600 font-bold">لأ</span>...<br />
   <span className="text-primary-dark font-bold">يبقى Eduvento معموله علشانك.</span>
 </p>
             </div>
