@@ -11,6 +11,7 @@ import { Blog } from '@/lib/types';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const BlogsSection = () => {
   const ref = useRef(null);
@@ -137,11 +138,16 @@ const BlogsSection = () => {
                 <Link href={`/blogs/${blog.id}`}>
                   <div className="relative overflow-hidden group rounded-xl cursor-pointer">
                     <div className="aspect-[4/3] overflow-hidden">
-                      <img
-                        src={blog.image}
-                        alt={blog.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
+                      
+                    <Image
+                      src={blog.image|| '/fallback.jpg'}
+                      alt={blog.title}
+                      fill
+                      loading='lazy'
+                          sizes="(max-width: 768px) 100vw, 50vw"
+    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+
                     </div>
 
                     <div className="absolute top-4 left-4">

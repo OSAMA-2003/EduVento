@@ -9,6 +9,7 @@ import { Quote, Star, ThumbsUp, Heart } from 'lucide-react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Image from 'next/image';
 
 const testimonials = [
   {
@@ -253,11 +254,12 @@ const WhatPeopleSay = () => {
                     <div className="flex items-center gap-4 mt-auto relative z-10">
                       <div className="relative">
                         <div className="w-14 h-14 rounded-2xl overflow-hidden border-3 shadow-xl border-white">
-                          <img
+                          <Image
                             src={getAvatarImage(testimonial.gender)}
                             alt={`${testimonial.name} avatar`}
                             className="w-full h-full object-cover"
                           />
+                          
                         </div>
                         {/* Success badge */}
                         <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-secondary-green rounded-full flex items-center justify-center border-2 border-white shadow-lg">

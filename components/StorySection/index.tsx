@@ -227,11 +227,11 @@ const StorySection = () => {
               <Zap className="h-12 w-12 text-primary-yellow" />
             </div>
             <p className="text-2xl md:text-3xl font-bold mb-4">
-              سوق الشغل دلوقتي مش بيدوّر على "المتفوقين"...
-            </p>
+  سوق الشغل دلوقتي مش بيدوّر على &quot;المتفوقين&quot;...
+</p>
             <p className="text-2xl md:text-3xl font-bold text-primary-yellow">
-              بيدوّر على "الجاهزين"!
-            </p>
+  بيدوّر على &quot;الجاهزين&quot;!
+</p>
           </div>
         </motion.div>
 
@@ -325,10 +325,10 @@ const StorySection = () => {
           >
             <Zap className="h-6 w-6" />
             <div>
-              <p className="text-lg font-semibold text-center">
-                لو إجابتك أغلبها "لأ"...<br />
-                <span className="text-primary-dark font-bold">يبقى Eduvento معموله علشانك.</span>
-              </p>
+              <p className="text-lg font-semibold text-center mt-8 mb-4">
+  لو إجابتك أغلبها "<span className="text-red-600 font-bold">لأ</span>"...<br />
+  <span className="text-primary-dark font-bold">يبقى Eduvento معموله علشانك.</span>
+</p>
             </div>
           </motion.div>
         </motion.div>
@@ -346,7 +346,7 @@ const StorySection = () => {
           </h3>
 
           <p className="text-xl text-gray-200 text-center mb-12 max-w-4xl mx-auto">
-            الكلية بتعلمك <span className="text-primary-yellow font-semibold">"الأساس"</span>، لكن الشغل محتاج:
+            الكلية بتعلمك <span className="text-primary-yellow font-semibold">&quot;الأساس&quot;</span>، لكن الشغل محتاج:
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -464,9 +464,10 @@ const StorySection = () => {
                     ))}
                   </div>
                   
-                  <p className="text-gray-300 italic mb-6 text-lg leading-relaxed group-hover:text-gray-400 transition-colors ">
-                    "{testimonial.quote}"
-                  </p>
+                 <p className="text-gray-300 italic mb-6 text-lg leading-relaxed group-hover:text-gray-400 transition-colors ">
+  &quot;{testimonial.quote}&quot;
+</p>
+
                   
                   <div className="border-t border-gray-200 pt-4">
                     <p className="text-gray-200 font-bold text-lg">{testimonial.name}</p>

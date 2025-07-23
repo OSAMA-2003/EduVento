@@ -21,6 +21,7 @@ import {
   Eye
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // ✅ Updated interface to match your API response
 interface CourseDetailsProps {
@@ -178,11 +179,12 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
                   <div className="flex items-center gap-4">
                     <div className="w-16 h-16 rounded-2xl overflow-hidden bg-white/20 flex items-center justify-center border-2 border-white/30 shadow-xl">
                       {course.Instructor_image_url && course.Instructor_image_url !== "test Instructor_image 1" ? (
-                        <img 
+                        <Image
                           src={course.Instructor_image_url} 
                           alt={course.Instructor_name}
                           className="w-full h-full object-cover"
                         />
+                        
                       ) : (
                         <Users className="h-8 w-8 text-white" />
                       )}
@@ -227,7 +229,7 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
               >
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
                   {course.image_url && course.image_url !== "test image_url 1" ? (
-                    <img
+                    <Image
                       src={course.image_url}
                       alt={course.title}
                       className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700"
@@ -465,7 +467,7 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
                 <div className="text-center">
                   <div className="w-20 h-20 rounded-2xl overflow-hidden bg-gray-200 mx-auto mb-4 border-4 border-white shadow-xl">
                     {course.Instructor_image_url && course.Instructor_image_url !== "test Instructor_image 1" ? (
-                      <img 
+                      <Image
                         src={course.Instructor_image_url} 
                         alt={course.Instructor_name}
                         className="w-full h-full object-cover"
@@ -566,7 +568,7 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
                   >
                     <div className="relative overflow-hidden">
                       {relatedCourse.image_url && relatedCourse.image_url !== "test image_url 1" ? (
-                        <img
+                        <Image
                           src={relatedCourse.image_url}
                           alt={relatedCourse.title}
                           className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"

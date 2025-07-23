@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Calendar, ArrowLeft, Clock, BookOpen, Eye, MessageCircle } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 // ✅ Blog interface matching your API response
@@ -68,16 +69,20 @@ const BlogCard = ({ blog, index = 0, variant = 'default' }: BlogCardProps) => {
 
       {/* Image Section */}
       <div className="relative h-48 overflow-hidden">
-        <img
-          src={blog.image}
-          alt={blog.title}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-          loading="lazy"
-          onError={(e) => {
-            e.currentTarget.onerror = null;
-            e.currentTarget.src = fallbackImage;
-          }}
-        />
+        <Image
+  src={blog.image || fallbackImage}
+  alt={blog.title}
+  fill
+  sizes="(max-width:768px) 100vw, 50vw"
+  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+  onError={(e) => {
+    e.currentTarget.src = fallbackImage;
+  }}
+  priority={index === 0}
+/>
+
+
+        
         
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>

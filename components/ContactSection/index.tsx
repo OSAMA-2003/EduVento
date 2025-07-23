@@ -220,7 +220,7 @@ const ContactSection = () => {
                     اكتبلنا إنت فين دلوقتي، بتفكر في إيه، وإيه نفسك توصله...
                     وهنرجع لك برد مفيد وواضح يساعدك بشكل 
                     <span className="font-bold text-primary-yellow px-2 py-1 rounded-lg mx-1">
-                      "مجاني تماماً"
+                          &quot;مجاني تماماً&quot;
                     </span>
                   </p>
                   <p className="font-semibold text-lg">

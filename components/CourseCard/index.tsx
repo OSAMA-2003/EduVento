@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Clock, Users, Star, BookOpen, TrendingUp, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 // ✅ Course interface matching your API response
@@ -72,12 +73,17 @@ const CourseCard = ({
       {/* Image Section */}
       <div className="relative overflow-hidden">
         {course.image_url && course.image_url !== "test image_url 1" ? (
-          <img
-            src={course.image_url}
-            alt={course.title}
-            className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-            loading="lazy"
+      
+
+          <Image 
+          src={course.image_url}
+          alt={course.title}
+          loading='lazy'
+          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+
           />
+
+
         ) : (
           <div className="w-full h-48 bg-gradient-radial-blend flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
             <BookOpen className="h-16 w-16 text-white/80 drop-shadow-lg" />
@@ -102,9 +108,10 @@ const CourseCard = ({
         {/* Instructor Image Overlay */}
         {course.Instructor_image_url && course.Instructor_image_url !== "test Instructor_image 1" && (
           <div className="absolute bottom-4 left-4 w-10 h-10 rounded-full overflow-hidden border-2 border-white shadow-lg">
-            <img
+            <Image
               src={course.Instructor_image_url}
               alt={course.Instructor_name}
+              loading='lazy'
               className="w-full h-full object-cover"
             />
           </div>
