@@ -91,8 +91,8 @@ const WhatPeopleSay = () => {
 
   const getAvatarImage = (gender: string) => {
     return gender === 'male' 
-      ? 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
-      : 'https://images.unsplash.com/photo-1494790108755-2616b6e25b1d?w=150&h=150&fit=crop&crop=face';
+      ? '/images/man.png'
+      : '/images/woman.png';
   };
 
   return (
@@ -253,16 +253,18 @@ const WhatPeopleSay = () => {
                     {/* Author Info */}
                     <div className="flex items-center gap-4 mt-auto relative z-10">
                       <div className="relative">
-                        <div className="w-14 h-14 rounded-2xl overflow-hidden border-3 shadow-xl border-white">
+                        <div className="w-14 h-14 rounded-2xl overflow-hidden border-3 shadow-xl ">
                           <Image
                             src={getAvatarImage(testimonial.gender)}
                             alt={`${testimonial.name} avatar`}
                             className="w-full h-full object-cover"
+                            width={100}
+                            height={100}
                           />
                           
                         </div>
                         {/* Success badge */}
-                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-secondary-green rounded-full flex items-center justify-center border-2 border-white shadow-lg">
+                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-secondary-green rounded-full flex items-center justify-center  shadow-lg">
                           <ThumbsUp className="w-3 h-3 text-white" />
                         </div>
                       </div>

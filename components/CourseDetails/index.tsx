@@ -183,6 +183,8 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
                           src={course.Instructor_image_url} 
                           alt={course.Instructor_name}
                           className="w-full h-full object-cover"
+                          width={50}
+                          height={50}
                         />
                         
                       ) : (
@@ -233,6 +235,8 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
                       src={course.image_url}
                       alt={course.title}
                       className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-700"
+                       width={250}
+                          height={150}
                     />
                   ) : (
                     <div className="w-full h-80 bg-gradient-radial-blend flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
@@ -471,6 +475,8 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
                         src={course.Instructor_image_url} 
                         alt={course.Instructor_name}
                         className="w-full h-full object-cover"
+                         width={50}
+                          height={50}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-logo-blue to-secondary-green">
@@ -572,6 +578,8 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
                           src={relatedCourse.image_url}
                           alt={relatedCourse.title}
                           className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                           width={250}
+                          height={150}
                         />
                       ) : (
                         <div className="w-full h-48 bg-gradient-radial-blend flex items-center justify-center group-hover:scale-110 transition-transform duration-500">

@@ -376,12 +376,14 @@ const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
                     {relatedBlog.image && (
                       <div className="relative aspect-video overflow-hidden">
                         <Image
-                            src={relatedBlog.image || '/fallback.jpg'}
+                            src={relatedBlog.image }
                             alt={`صورة مصغرة لـ ${relatedBlog.title}`}
                             fill
-                            sizes="(max-width: 768px) 100vw, 33vw"
+                            // sizes="(max-width: 768px) 100vw, 33vw"
                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                             loading="lazy"
+                            // width={500}
+                            // height={300}
                           />
                         
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>

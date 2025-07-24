@@ -60,7 +60,7 @@ const WhyChooseUs = () => {
           </motion.div>
           
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="text-gradient-accent">ليه تختار </span>
+            <span className="text-yellow-50 md:text-gradient-accent">ليه تختار </span>
             <span className="text-primary-yellow">Eduvento</span>
             <span className="text-primary-yellow">؟</span>
           </h2>

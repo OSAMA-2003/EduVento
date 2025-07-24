@@ -166,7 +166,7 @@ const StorySection = () => {
             animate={isHeadingInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            <span className="text-gradient-accent">الحكاية اللي</span>{" "}
+            <span className="text-yellow-50 md:text-gradient-accent">الحكاية اللي</span>{" "}
             <span className="text-primary-yellow">محدش قالك عليها</span>
           </motion.h2>
 

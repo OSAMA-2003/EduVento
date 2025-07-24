@@ -310,7 +310,7 @@ const AboutContent = () => {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-primary-dark mb-4">
-              <span className="text-gradient-primary">رسالتنا</span> ورؤيتنا
+              <span className="md:text-gradient-primary">رسالتنا</span> ورؤيتنا
             </h2>
             <div className="w-24 h-1 bg-gradient-secondary mx-auto rounded-full"></div>
           </motion.div>

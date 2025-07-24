@@ -80,7 +80,8 @@ const CourseCard = ({
           alt={course.title}
           loading='lazy'
           className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-
+          width={500}
+          height={250}
           />
 
 
@@ -113,6 +114,8 @@ const CourseCard = ({
               alt={course.Instructor_name}
               loading='lazy'
               className="w-full h-full object-cover"
+              width={500}
+          height={250}
             />
           </div>
         )}
