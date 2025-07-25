@@ -190,24 +190,7 @@ const HeroSection = () => {
         ))}
       </div>
 
-      {/* ✅ Scroll down indicator */}
-      <motion.div
-        className="absolute bottom-8 right-8 z-20 hidden lg:block"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-      >
-        <div className="flex flex-col items-center text-white/70 hover:text-white transition-colors duration-300 cursor-pointer group">
-          <span className="text-sm mb-2 font-medium">تابع القراءة</span>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white/30 group-hover:border-primary-yellow rounded-full flex justify-center transition-colors duration-300"
-          >
-            <div className="w-1 h-3 bg-white/50 group-hover:bg-primary-yellow rounded-full mt-2 transition-colors duration-300"></div>
-          </motion.div>
-        </div>
-      </motion.div>
+      
 
       {/* ✅ Side social links */}
       <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-20 hidden lg:flex flex-col gap-4">

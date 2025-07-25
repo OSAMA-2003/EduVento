@@ -2,12 +2,16 @@
   "name": "arabic-courses-website",
   "version": "0.1.0",
   "private": true,
+  
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint",
+  "export": "next export"
+}
+
+,
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@next/swc-wasm-nodejs": "15.0.3",
@@ -57,10 +61,10 @@
     "next": "15.0.3",
     "next-themes": "^0.3.0",
     "postcss": "8.4.30",
-    "react": "18.2.0",
+    "react": "^18.2.0",
     "react-countup": "^6.5.3",
     "react-day-picker": "^8.10.1",
-    "react-dom": "18.2.0",
+    "react-dom": "^18.2.0",
     "react-fast-marquee": "^1.6.5",
     "react-feather": "^2.0.10",
     "react-hook-form": "^7.53.0",

@@ -350,6 +350,7 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     display: inline-block;
+    padding-bottom: 5px;
   }
   
   .text-gradient-secondary {
@@ -358,6 +359,7 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     display: inline-block;
+    padding-bottom: 5px;
   }
   
   .text-gradient-accent {
@@ -366,6 +368,7 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     display: inline-block;
+    padding-bottom: 20px;
   }
   
   /* 🎨 Button Styles */
