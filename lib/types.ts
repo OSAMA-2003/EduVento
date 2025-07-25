@@ -33,28 +33,31 @@ export type Blog = {
   slug?: string;
 };
 
+// lib/types.ts
+
 export interface Course {
   id: number;
   title: string;
   description: string;
-  shortDescription: string;
-  image: string;
-  price: number;
-  discountedPrice?: number;
+  full_description: string;        // ✅ Add this
+  image_url: string;              // ✅ Add this  
   duration: string;
-  level: 'مبتدئ' | 'متوسط' | 'متقدم';
-  category: Category;
-  instructor: Author;
-  lessons: Lesson[];
-  studentsEnrolled: number;
-  rating: number;
-  reviews: Review[];
-  requirements: string[];
-  whatYouWillLearn: string[];
-  certificate: boolean;
-  language: string;
-  lastUpdated: string; // Prefer ISO format
-  isPopular?: boolean;
+  level: string;
+  Instructor_name: string;        // ✅ Add this
+  Instructor_image_url: string;   // ✅ Add this
+  students_numbers: string;       // ✅ Add this
+  starts: string;                 // ✅ Add this (rating)
+  created_at: string;
+  
+  // Optional fields
+  price?: number;
+  discountedPrice?: number;
+  lessons?: any[];
+  whatYouWillLearn?: string[];
+  requirements?: string[];
+  certificate?: boolean;
+  language?: string;
+  category?: any;
 }
 
 export interface Lesson {
