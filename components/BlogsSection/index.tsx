@@ -153,7 +153,7 @@ const BlogsSection = () => {
 
                     <div className="absolute top-4 left-4">
                       <span className="bg-gradient-primary text-white text-sm font-medium px-3 py-1 rounded">
-                         {blog.created_at}
+                         {blog.date}
                       </span>
                     </div>
 
