@@ -9,7 +9,6 @@ import {
   ArrowLeft,
   Share2,
   BookOpen,
-  Tag,
   Eye,
   MessageCircle,
   Heart,
@@ -138,13 +137,12 @@ const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
             {/* Meta information */}
             <motion.div
               className="flex flex-wrap justify-center gap-6 mb-8"
-              initial={{ opacity: 0, y: 30 }}
               animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
                 <User className="h-4 w-4 text-primary-yellow" />
-                <span className="font-semibold text-white text-sm">{authorName}</span>
+                <span className="font-semibold text-white text-sm">{authorName as React.ReactNode}</span>
               </div>
 
               <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
@@ -255,7 +253,7 @@ const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
                   </div>
                   <div>
                     <h2 className="text-2xl font-bold mb-3">
-                      حول الكاتب: {authorName}
+                      حول الكاتب: {authorName as React.ReactNode}
                     </h2>
                     <p className="leading-relaxed opacity-90">
                       كاتب متخصص في مجال التكنولوجيا والتعليم، يسعى إلى تقديم محتوى قيم ومفيد للقراء.

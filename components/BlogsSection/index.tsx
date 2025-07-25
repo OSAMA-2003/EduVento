@@ -27,7 +27,7 @@ const BlogsSection = () => {
         const latestBlogs = data
           .slice(0, 5)
           .map((blog) => ({
-            id: blog.id.toString(),
+            id: blog.id,
             title: blog.title || 'مقال بدون عنوان',
             excerpt:
               blog.excerpt ||
@@ -36,13 +36,14 @@ const BlogsSection = () => {
                 : 'لا يوجد مقتطف'),
             content: blog.content || '',
             category: blog.category || 'غير مصنف',
-            date: blog.date
-              ? new Date(blog.date).toLocaleDateString('ar-EG')
+            date: blog.created_at
+              ? new Date(blog.created_at).toLocaleDateString('ar-EG')
               : new Date().toLocaleDateString('ar-EG'),
             readTime: blog.readTime || '5 دقائق',
             image:
               blog.image ||
-              'https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=800&h=600&fit=crop',
+              '/images/blog-placeholder.webp',
+            auther:blog.auther,
             tags: blog.tags || [],
             slug: blog.slug || blog.id.toString(),
           }));
@@ -152,7 +153,7 @@ const BlogsSection = () => {
 
                     <div className="absolute top-4 left-4">
                       <span className="bg-gradient-primary text-white text-sm font-medium px-3 py-1 rounded">
-                         {blog.date}
+                         {blog.created_at}
                       </span>
                     </div>
 

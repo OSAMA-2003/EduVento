@@ -15,23 +15,23 @@ export interface Category {
 }
 
 // types.ts
-export type Blog = {
-  id: number;
+export interface Blog {
+  id: number | string;
   title: string;
-  excerpt?: string;
+  excerpt: string;
   content: string;
-  image?: string;
-  category?: string;
-  tags?: string[];
-  date?: string;
-  readTime?: string;
-  author: string | {
-    // name: string;
-    // image?: string;
-    // bio?: string;
-  };
-  slug?: string;
-};
+  category: string;
+  date: string;           
+  readTime: string;       
+  image: string;
+  auther: string;         
+  tags: string[];
+  slug: string;
+  
+  // Optional fields that might be in your API response
+  created_at?: string;    // ✅ Original API field
+  author?: string;        // ✅ Alternative spelling
+}
 
 // lib/types.ts
 

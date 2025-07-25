@@ -13,7 +13,7 @@ const BlogsGrid = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState(''); // Keep searchTerm as string
   const [selectedCategory, setSelectedCategory] = useState('');
   const blogsPerPage = 9;
 
@@ -24,7 +24,7 @@ const BlogsGrid = () => {
         const data = await fetchAllArticles();
 
         const transformedBlogs = data.map((blog) => ({
-          id: blog.id.toString(),
+          id: blog.id,
           title: blog.title || 'مقال بدون عنوان',
           excerpt:
             blog.excerpt ||
@@ -32,14 +32,11 @@ const BlogsGrid = () => {
               ? `${blog.content.split(' ').slice(0, 20).join(' ')}...`
               : 'لا يوجد مقتطف'),
           content: blog.content || '',
-          category: blog.category || 'غير مصنف',
-          date: blog.date
-            ? new Date(blog.date).toLocaleDateString('ar-EG')
-            : new Date().toLocaleDateString('ar-EG'),
-          readTime: blog.readTime || '5 دقائق',
-          image:
-            blog.image || 'https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=800&h=600&fit=crop',
-          author: blog.author || 'مجهول',
+          category: blog.category || 'غير مصنف', // Ensure category is string
+          date: blog.created_at ? new Date(blog.created_at).toLocaleDateString('ar-EG') : new Date().toLocaleDateString('ar-EG'),
+          readTime: blog.readTime || '5',
+          image: blog.image || '/images/blog-placeholder.webp', // Assuming image is string
+          auther: blog.auther || 'مجهول', // Corrected property name to 'auther'
           tags: blog.tags || [],
           slug: blog.slug || blog.id.toString(),
         }));
@@ -59,8 +56,8 @@ const BlogsGrid = () => {
   // Filter blogs
   const filteredBlogs = useMemo(() => {
     return blogs.filter(blog => {
-      const matchesSearch = blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           blog.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesSearch = blog.title.toLowerCase().includes(searchTerm.toLowerCase()) || // Search by title
+                           blog.title.toLowerCase().includes(searchTerm.toLowerCase()); // Search by excerpt
       const matchesCategory = !selectedCategory || blog.category === selectedCategory;
       return matchesSearch && matchesCategory;
     });
@@ -74,7 +71,7 @@ const BlogsGrid = () => {
     );
   }, [filteredBlogs, currentPage]);
 
-  const categories = [...new Set(blogs.map(blog => blog.category))];
+  const categories = Array.from(new Set(blogs.map(blog => blog.category))).filter(Boolean); // Filter out any undefined/null categories
 
   const handlePageChange = (page: number) => {
     if (page < 1 || page > totalPages) return;
@@ -240,8 +237,9 @@ const BlogsGrid = () => {
               {currentBlogs.map((blog, index) => (
                 <BlogCard
                   key={blog.id}
-                  blog={blog}
                   index={index}
+                  blog={blog}
+                  
                   variant={index === 0 ? 'featured' : 'default'}
                 />
               ))}

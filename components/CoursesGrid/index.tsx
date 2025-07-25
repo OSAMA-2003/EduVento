@@ -42,7 +42,7 @@ const CoursesGrid = () => {
         console.group('🎨 Frontend Processing - CoursesGrid');
         console.log('📊 Total courses received:', data.length);
         console.log('📋 First course data:', data[0]);
-        console.log('🏷️  Available levels:', [...new Set(data.map(course => course.level))]);
+        console.log('🏷️  Available levels:', Array.from(new Set(data.map(course => course.level))));
         console.groupEnd();
         
         setCourses(data);
@@ -89,7 +89,7 @@ const CoursesGrid = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const availableLevels = [...new Set(courses.map(course => course.level))];
+   const availableLevels = Array.from(new Set(courses.map(course => course.level)));
 
   if (loading) {
     return (

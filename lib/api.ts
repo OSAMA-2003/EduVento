@@ -1,6 +1,8 @@
 import { supabase } from './supabase';
 import { Blog, Course } from './types';
 
+
+
 // ✅ Unified error handler
 const handleSupabaseError = (error: any, context: string) => {
   if (error) {
