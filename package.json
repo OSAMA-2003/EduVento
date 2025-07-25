@@ -2,16 +2,13 @@
   "name": "arabic-courses-website",
   "version": "0.1.0",
   "private": true,
-  
   "scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "lint": "next lint",
-  "export": "next export"
-}
-
-,
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next export"
+  },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
     "@next/swc-wasm-nodejs": "15.0.3",
@@ -82,6 +79,7 @@
   },
   "devDependencies": {
     "@types/dompurify": "^3.2.0",
+    "@types/sanitize-html": "^2.16.0",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "eslint": "^9.0.0"
   }
