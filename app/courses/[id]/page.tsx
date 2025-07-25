@@ -6,10 +6,11 @@ import CourseDetails from '@/components/CourseDetails'; // ✅ Now points to cor
 import { fetchAllCourses, fetchCourseById } from '@/lib/api';
 import { notFound } from 'next/navigation';
 
+// ✅ Updated interface for Next.js 15
 interface CoursePageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -24,11 +25,13 @@ export async function generateStaticParams() {
   }
 }
 
+// ✅ Updated function to handle Promise params
 export default async function CoursePage({ params }: CoursePageProps) {
-  const courseId = parseInt(params.id, 10);
+  const { id } = await params; // ✅ Await the params Promise
+  const courseId = parseInt(id, 10);
 
   if (isNaN(courseId)) {
-    console.warn(`Invalid course ID received: ${params.id}`);
+    console.warn(`Invalid course ID received: ${id}`);
     notFound();
   }
 
