@@ -44,7 +44,7 @@ export async function generateMetadata(
       title: article.title,
       description: article.excerpt,
       openGraph: {
-        images: [article.image],
+        images: article.image,
       },
     };
   } catch (error) {
@@ -73,7 +73,7 @@ export default async function BlogPage({
 
     relatedArticles = await fetchRelatedArticles(
       article.id,
-      article.category,
+      article.category|| 'default',
       3
     );
   } catch (error) {
