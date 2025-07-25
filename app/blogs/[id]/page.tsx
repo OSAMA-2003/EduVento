@@ -72,7 +72,7 @@ export default async function BlogPage({
     if (!article) return notFound();
 
     relatedArticles = await fetchRelatedArticles(
-      article.id,
+      Number(article.id),
       article.category|| 'default',
       3
     );
@@ -95,11 +95,11 @@ export default async function BlogPage({
     content: sanitizedContent,
     date: article?.date
       ? new Date(article.date).toLocaleDateString('ar-EG')
-      : 'تاريخ غير متوفر',
+      : new Date().toLocaleDateString('ar-EG'),
     author:
-      typeof article?.author === 'object'
-        ? article.author
-        : { name: article?.author || 'مؤلف غير معروف' },
+      typeof article?.auther === 'object'
+        ? article.auther
+        : article?.auther || 'مؤلف غير معروف',
   };
 
   return (
