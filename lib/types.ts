@@ -16,7 +16,7 @@ export interface Category {
 
 // types.ts
 export interface Blog {
-  id: number | string;
+  id: string;
   title: string;
   excerpt: string;
   content: string;

@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 // ✅ Blog interface matching your API response
 interface BlogApiResponse {
-  id: string;
+  id:string;
   title: string;
   excerpt: string;
   content: string;
@@ -15,7 +15,7 @@ interface BlogApiResponse {
   date: string;
   readTime: string;
   image: string;
-  author: any;
+  auther: any;
   tags: string[];
   slug: string;
 }

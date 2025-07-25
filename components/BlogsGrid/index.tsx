@@ -24,7 +24,7 @@ const BlogsGrid = () => {
         const data = await fetchAllArticles();
 
         const transformedBlogs = data.map((blog) => ({
-          id: blog.id,
+          id:blog.id,
           title: blog.title || 'مقال بدون عنوان',
           excerpt:
             blog.excerpt ||
@@ -237,8 +237,9 @@ const BlogsGrid = () => {
               {currentBlogs.map((blog, index) => (
                 <BlogCard
                   key={blog.id}
-                  index={index}
                   blog={blog}
+                  index={index}
+                  
                   
                   variant={index === 0 ? 'featured' : 'default'}
                 />
