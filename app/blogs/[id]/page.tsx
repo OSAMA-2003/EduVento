@@ -25,12 +25,13 @@ export async function generateStaticParams() {
   }
 }
 
-// ✅ Metadata generation
+// ✅ Metadata generation - Updated for Next.js 15
 export async function generateMetadata(
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<Metadata> {
   try {
-    const article = await fetchArticleById(Number(params.id));
+    const { id } = await params; // ✅ Await the params Promise
+    const article = await fetchArticleById(Number(id));
 
     if (!article) {
       return {
@@ -55,17 +56,18 @@ export async function generateMetadata(
   }
 }
 
-// ✅ Page component
+// ✅ Page component - Updated for Next.js 15
 export default async function BlogPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>; // ✅ params is now a Promise
 }) {
   let article;
   let relatedArticles = [];
 
   try {
-    article = await fetchArticleById(Number(params.id));
+    const { id } = await params; // ✅ Await the params Promise
+    article = await fetchArticleById(Number(id));
 
     if (!article) return notFound();
 
