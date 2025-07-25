@@ -10,11 +10,7 @@ import {
   fetchRelatedArticles,
 } from '@/lib/api';
 
-interface BlogPageProps {
-  params: {
-    id: string;
-  };
-}
+import type { Metadata } from 'next';
 
 // ✅ Static path generation
 export async function generateStaticParams() {
@@ -30,7 +26,9 @@ export async function generateStaticParams() {
 }
 
 // ✅ Metadata generation
-export async function generateMetadata({ params }: BlogPageProps) {
+export async function generateMetadata(
+  { params }: { params: { id: string } }
+): Promise<Metadata> {
   try {
     const article = await fetchArticleById(Number(params.id));
 
@@ -58,7 +56,11 @@ export async function generateMetadata({ params }: BlogPageProps) {
 }
 
 // ✅ Page component
-export default async function BlogPage({ params }: BlogPageProps) {
+export default async function BlogPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   let article;
   let relatedArticles = [];
 
@@ -88,7 +90,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
 
   const blogData = {
     ...article,
-    content: sanitizedContent, // ✅ Use only safe content
+    content: sanitizedContent,
     date: article?.date
       ? new Date(article.date).toLocaleDateString('ar-EG')
       : 'تاريخ غير متوفر',
