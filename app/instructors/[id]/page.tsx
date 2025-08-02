@@ -1,13 +1,16 @@
+// app/instructors/[id]/page.tsx
 import { fetchAllInstructors, fetchInstructorById } from '@/lib/api';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+
+// ✅ Next.js 15-style async params
 interface InstructorPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -20,7 +23,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: InstructorPageProps): Promise<Metadata> {
-  const instructor = await fetchInstructorById(Number(params.id));
+  const { id } = await params;
+  const instructor = await fetchInstructorById(Number(id));
   if (!instructor) {
     return {
       title: 'مدرب غير موجود',
@@ -34,21 +38,17 @@ export async function generateMetadata({ params }: InstructorPageProps): Promise
 }
 
 export default async function InstructorDetailsPage({ params }: InstructorPageProps) {
-  const instructor = await fetchInstructorById(Number(params.id));
+  const { id } = await params;
+  const instructor = await fetchInstructorById(Number(id));
   if (!instructor) notFound();
 
   return (
     <>
       <Navigation />
 
-      
-
       {/* Hero Section */}
       <section className="relative bg-gradient-primary-enhanced  overflow-hidden py-20 md:py-28 text-white flex flex-col items-center justify-center px-4">
-        <h1
-          className="text-4xl md:text-6xl font-extrabold max-w-3xl text-center leading-tight"
-          
-        >
+        <h1 className="text-4xl md:text-6xl font-extrabold max-w-3xl text-center leading-tight">
           {instructor.Instructor_name}
         </h1>
         <p className="mt-6 max-w-xl text-center text-lg text-indigo-200 whitespace-pre-line">
@@ -88,7 +88,7 @@ export default async function InstructorDetailsPage({ params }: InstructorPagePr
         </div>
       </main>
 
-      <Footer/>
+      <Footer />
     </>
   );
 }
