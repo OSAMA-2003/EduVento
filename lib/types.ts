@@ -1,4 +1,34 @@
+
+
+
 // lib/types.ts
+export interface Instructor {
+  id: number;
+  Instructor_name: string;
+  about_Instructor?: string;
+  Instructor_image_url?: string;
+  years_experience?: string;
+  specialization?:string;
+
+}
+
+export interface Testimonial {
+  id: number;
+  name: string;
+  message: string;
+  image?: string;
+  rating?: number;
+  
+}
+
+export interface Partner {
+  id: number;
+  name: string;
+  logo?: string;
+  url?: string;
+ 
+}
+
 
 export interface Author {
   id: number;

@@ -14,19 +14,19 @@ const HeroSection = () => {
 
   const slides = [
     {
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+      image: '/images/h1.jpg',
       title: "لو لسه بتدوّر على أول خطوة… إحنا هنقولك تبدأ منين",
       subtitle: "ابدأ رحلتك التعليمية معانا واكتشف عالم جديد من المعرفة والمهارات",
       stats: { courses: "50+", students: "1000+", rating: "4.9" }
     },
     {
-      image: 'https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+      image: '/images/h2.jpg',
       title: "الكل بيتكلم عن الكورسات... بس مين بيحكيلك عن الواقع؟",
       subtitle: "تعلم من خبراء متخصصين وطبق اللي اتعلمته في مشاريع حقيقية",
       stats: { courses: "30+", students: "800+", rating: "4.8" }
     },
     {
-      image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop',
+      image: '/images/h3.jpg',
       title: "الجامعة مش كفاية… وإحنا هنا علشان نكمّل الصورة!",
       subtitle: "كورسات عملية تأهلك لسوق العمل وتخليك مستعد للمستقبل",
       stats: { courses: "40+", students: "1200+", rating: "4.9" }

@@ -1,9 +1,7 @@
 import { supabase } from './supabase';
-import { Blog, Course } from './types';
+import { Blog, Course, Instructor, Testimonial, Partner } from './types';
 
-
-
-// ✅ Unified error handler
+// === Handler for all errors (موحد) ===
 const handleSupabaseError = (error: any, context: string) => {
   if (error) {
     console.error(`Supabase Error [${context}]:`, error);
@@ -11,62 +9,52 @@ const handleSupabaseError = (error: any, context: string) => {
   }
 };
 
-// ✅ Fetch all courses
+// ========== الكورسات ==========
 export async function fetchAllCourses(): Promise<Course[]> {
   const { data, error } = await supabase
     .from('Courses')
     .select('*')
     .order('created_at', { ascending: false });
-
   handleSupabaseError(error, 'fetchAllCourses');
   return data || [];
 }
 
-// ✅ Fetch single course by ID
 export async function fetchCourseById(id: number): Promise<Course | null> {
   const { data, error } = await supabase
     .from('Courses')
     .select('*')
     .eq('id', id)
     .single();
-
   handleSupabaseError(error, 'fetchCourseById');
   return data;
 }
 
-
-
-// ✅ Fetch all articles (blogs)
+// ========== المقالات ==========
 export async function fetchAllArticles(): Promise<Blog[]> {
   const { data, error } = await supabase
     .from('articles')
     .select('*')
     .order('created_at', { ascending: false });
-
   handleSupabaseError(error, 'fetchAllArticles');
   return data || [];
 }
 
-// ✅ Fetch single article by ID (still useful)
 export async function fetchArticleById(id: number): Promise<Blog | null> {
   const { data, error } = await supabase
     .from('articles')
     .select('*')
     .eq('id', id)
     .single();
-
   handleSupabaseError(error, 'fetchArticleById');
   return data;
 }
 
-// ✅ Fetch single article by Slug
 export async function fetchArticleBySlug(slug: string): Promise<Blog | null> {
   const { data, error } = await supabase
     .from('articles')
     .select('*')
-    .eq('slug', decodeURIComponent(slug)) // Important for encoded URLs
+    .eq('slug', decodeURIComponent(slug))
     .single();
-
   if (error) {
     console.error('Error fetching article by slug:', error);
     return null;
@@ -74,8 +62,6 @@ export async function fetchArticleBySlug(slug: string): Promise<Blog | null> {
   return data;
 }
 
-
-// ✅ Fetch related articles (by category)
 export async function fetchRelatedArticles(
   currentArticleId: number,
   category: string,
@@ -84,14 +70,55 @@ export async function fetchRelatedArticles(
   const { data, error } = await supabase
     .from('articles')
     .select('*')
-    .neq('id', currentArticleId) // Exclude current article
+    .neq('id', currentArticleId)
     .eq('category', category)
     .limit(limit)
     .order('created_at', { ascending: false });
-
   handleSupabaseError(error, 'fetchRelatedArticles');
   return data || [];
 }
+
+// ========== المدربون ==========
+export async function fetchAllInstructors(): Promise<Instructor[]> {
+  const { data, error } = await supabase
+    .from('Instructors')
+    .select('*')
+    .order('id', { ascending: true });
+  handleSupabaseError(error, 'fetchAllInstructors');
+  return data || [];
+}
+
+export async function fetchInstructorById(id: number): Promise<Instructor | null> {
+  const { data, error } = await supabase
+    .from('Instructors')
+    .select('*')
+    .eq('id', id)
+    .single();
+  handleSupabaseError(error, 'fetchInstructorById');
+  return data;
+}
+
+// ========== آراء الطلاب ==========
+export async function fetchAllTestimonials(): Promise<Testimonial[]> {
+  const { data, error } = await supabase
+    .from('Testimonials')
+    .select('*')
+    .order('id', { ascending: true });
+  handleSupabaseError(error, 'fetchAllTestimonials');
+  return data || [];
+}
+
+// ========== شركاؤنا ==========
+export async function fetchAllPartners(): Promise<Partner[]> {
+  const { data, error } = await supabase
+    .from('partners')
+    .select('*')
+    .order('id', { ascending: true });
+  handleSupabaseError(error, 'fetchAllPartners');
+  return data || [];
+}
+
+// === هل لديك دوال أخرى؟ أضفها هنا بشكل مماثل للأنواع الجديدة ===
 
 // Deprecated - Use fetchAllArticles instead
 export const fetchBlogsFromSupabase = fetchAllArticles;
