@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-hidden"
      >
-      <Navigation />
+      
       <HeroSection />
       <StorySection/>
       <WhyChooseUs />
@@ -34,7 +34,7 @@ export default function Home() {
       <WhatPeopleSay/>
       <BlogsSection />
       <ContactSection />
-      <Footer />
+      
     </main>
   );
 }

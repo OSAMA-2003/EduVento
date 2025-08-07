@@ -11,7 +11,7 @@ export default function About() {
 
   return (
     <main className="min-h-screen">
-      <Navigation />
+      
       {/* Hero */}
         <HeroComponent
           headingTop="من"
@@ -32,7 +32,7 @@ export default function About() {
         <AboutContent />
       </div>
 
-      <Footer />
+      
     </main>
   );
 }

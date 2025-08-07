@@ -104,9 +104,7 @@ export default async function BlogPage({
 
   return (
     <main className="min-h-screen bg-white">
-      <Navigation />
       <BlogDetails blog={blogData} relatedBlogs={relatedArticles} />
-      <Footer />
     </main>
   );
 }

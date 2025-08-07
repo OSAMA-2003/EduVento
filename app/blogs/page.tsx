@@ -10,7 +10,6 @@ export default function BlogsPage() {
 
   return (
     <main className="min-h-screen">
-      <Navigation />
 
       {/* Hero */}
                       <HeroComponent
@@ -40,7 +39,6 @@ export default function BlogsPage() {
       </section>
 
   
-      <Footer />
     </main>
   );
 }

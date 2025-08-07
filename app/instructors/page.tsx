@@ -15,9 +15,7 @@ export default async function InstructorsPage() {
 
   return (
     <>
-      {/* Navigation */}
-      <Navigation />
-
+   
       {/* Hero Section */}
       <section className="relative z-10 bg-gradient-primary-enhanced text-white py-24 md:py-32 flex flex-col items-center justify-center overflow-hidden">
        
@@ -100,8 +98,7 @@ export default async function InstructorsPage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <Footer />
+      
     </>
   );
 }

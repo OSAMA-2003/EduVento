@@ -42,7 +42,6 @@ export default async function InstructorDetailsPage({ params }: InstructorPagePr
 
   return (
     <>
-      <Navigation />
 
       {/* Hero Section */}
       <section className="relative bg-gradient-primary-enhanced overflow-hidden py-20 md:py-28 text-white flex flex-col items-center justify-center px-4">
@@ -69,7 +68,6 @@ export default async function InstructorDetailsPage({ params }: InstructorPagePr
 
       
 
-      <Footer />
     </>
   );
 }

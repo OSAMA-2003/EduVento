@@ -11,7 +11,6 @@ export default function CoursesPage() {
 
   return (
     <main className="min-h-screen">
-      <Navigation />
 
 
 
@@ -37,7 +36,6 @@ export default function CoursesPage() {
         <CoursesGrid />
       </section>
 
-      <Footer />
     </main>
   );
 }

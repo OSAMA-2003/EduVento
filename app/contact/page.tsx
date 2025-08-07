@@ -9,7 +9,6 @@ export default function Contact() {
 
   return (
     <main className="min-h-screen">
-      <Navigation />
 
      
 
@@ -34,7 +33,6 @@ export default function Contact() {
         <ContactContent/>
       </div>
 
-      <Footer />
     </main>
   );
 }

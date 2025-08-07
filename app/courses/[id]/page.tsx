@@ -49,9 +49,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
 
   return (
     <main className="min-h-screen bg-white">
-      <Navigation />
       <CourseDetails course={course} relatedCourses={relatedCourses} />
-      <Footer />
     </main>
   );
 }

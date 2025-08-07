@@ -42,7 +42,7 @@ export default async function PartnerDetailsPage({ params }: PartnerPageProps) {
 
   return (
     <>
-      <Navigation />
+    
 
       {/* Header / Hero Section */}
       <section className=" min-h-screen bg-gradient-primary-enhanced py-20 md:py-28 text-white relative overflow-hidden">
@@ -97,7 +97,7 @@ export default async function PartnerDetailsPage({ params }: PartnerPageProps) {
         </div>
       </section> */}
 
-      <Footer />
+     
     </>
   );
 }
