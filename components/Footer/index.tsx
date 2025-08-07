@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  BookOpen,
   Facebook,
   Twitter,
   Instagram,
@@ -11,10 +10,10 @@ import {
   MapPin,
   ArrowRight,
   Heart,
-  Star,
   Users,
   Award,
-  ChevronRight
+  ChevronRight,
+  Handshake
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -28,7 +27,6 @@ const Footer = () => {
     { href: '/about', label: 'من نحن' },
     { href: '/blogs', label: 'المقالات' },
     { href: '/contact', label: 'تواصل معنا' },
-    { href: '/partners', label: 'شركاؤنا ' },
   ];
 
   const courseCategories = [
@@ -39,6 +37,21 @@ const Footer = () => {
     'الذكاء الاصطناعي',
   ];
 
+  const successPartners = [
+    { href: '/sponsors', label: 'الرعاة الاستراتيجيين' },
+    { href: '/partners', label: 'شركاؤنا في التعليم' },
+    { href: '/instructors', label: 'المدربين المعتمدين' },
+    { href: '/ambassadors', label: 'سفراء Eduvento' },
+  ];
+
+  const collaborationOpportunities = [
+    { href: '/join?type=trainer', label: 'انضم كـ مدرب معتمد' },
+    { href: '/join?type=marketer', label: 'انضم كـ مسوّق شريك' },
+    { href: '/join?type=sponsor', label: 'كن سفير Eduvento في جامعتك' },
+    { href: '/join?type=sponsor', label: 'رعاية فعالياتنا وبرامجنا' },
+    { href: '/join?type=sponsor', label: 'شراكات استراتيجية طويلة المدى' },
+  ];
+
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },
     { icon: Twitter, href: '#', label: 'Twitter' },
@@ -47,38 +60,25 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="  nav-gradient relative overflow-hidden">
-      {/* Enhanced Background Elements */}
+    <footer className="nav-gradient relative overflow-hidden">
       <div className="absolute inset-0">
-        {/* Main gradient with mesh overlay */}
-        <div className="absolute inset-0  bg-gradient-primary-enhanced opacity-50"></div>
-
-      
-        {/* Pattern overlay */}
+        <div className="absolute inset-0 bg-gradient-primary-enhanced opacity-50"></div>
         <div className="absolute inset-0 bg-pattern opacity-5"></div>
-
-         </div>
+      </div>
 
       <div className="container mx-auto px-4 py-16 relative z-10">
-
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
+          
           {/* Company Info */}
-          <div className="space-y-6">
-            {/* Enhanced Logo */}
+          <div className="space-y-6 lg:col-span-2">
             <div className="flex items-center gap-3">
               <Link href="/" className="text-2xl font-bold text-white md:text-left">
-                          <Image src={'/images/logo.png'} alt={'logo'} width={120} height={120} />
-                        </Link>
-                        
+                <Image src={'/images/logo.png'} alt={'logo'} width={120} height={120} />
+              </Link>
             </div>
-
             <p className="text-gray-200 leading-relaxed">
               أكاديمية رائدة في التعليم الرقمي تقدم دورات تدريبية معتمدة في مختلف المجالات التقنية والمهنية لتطوير مهاراتك وتحقيق أهدافك المهنية.
             </p>
-
-            {/* Enhanced Social Links */}
             <div>
               <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
                 <Heart className="h-4 w-4 text-primary-yellow" />
@@ -102,18 +102,13 @@ const Footer = () => {
           {/* Quick Links */}
           <div>
             <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-              <ChevronRight className="h-5 w-5 text-secondary-green" />
+              <ChevronRight className="h-5 w-5  text-primary-yellow" />
               روابط سريعة
             </h3>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
-                <li
-                  key={index}
-                >
-                  <Link
-                    href={link.href}
-                    className="text-gray-300 hover:text-primary-yellow transition-colors duration-300 flex items-center gap-2 group"
-                  >
+                <li key={index}>
+                  <Link href={link.href} className="text-gray-300 hover:text-primary-yellow transition-colors duration-300 flex items-center gap-2 group">
                     <ArrowRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     {link.label}
                   </Link>
@@ -122,36 +117,51 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Course Categories */}
+          {/* Success Partners */}
           <div>
             <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
               <Award className="h-5 w-5 text-logo-blue" />
-              تصنيفات الدورات
+              شركاء النجاح
             </h3>
             <ul className="space-y-3">
-              {courseCategories.map((category, index) => (
-                <li
-                  key={index}
-                >
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:text-secondary-green transition-colors duration-300 flex items-center gap-2 group"
-                  >
-                    <Star className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    {category}
-                  </a>
+              {successPartners.map((item, index) => (
+                <li key={index}>
+                  <Link href={item.href} className="text-gray-300 hover:text-logo-blue transition-colors duration-300 flex items-center gap-2 group">
+                    <ArrowRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Enhanced Contact Info & Newsletter */}
+          {/* Collaboration Opportunities */}
+          <div>
+            <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+              
+              
+              <Handshake className="h-5 w-5 text-secondary-green" />
+              
+              فرص التعاون
+            </h3>
+            <ul className="space-y-3">
+              {collaborationOpportunities.map((item, index) => (
+                <li key={index}>
+                  <Link href={item.href} className="text-gray-300 hover:text-secondary-green transition-colors duration-300 flex items-center gap-2 group">
+                    <ArrowRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Info */}
           <div>
             <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
               <Mail className="h-5 w-5 text-primary-yellow" />
               تواصل معنا
             </h3>
-
             <div className="space-y-4 mb-6">
               <div className="flex items-center gap-3 p-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-colors duration-300 group">
                 <div className="w-8 h-8 bg-primary-yellow/20 rounded-lg flex items-center justify-center">
@@ -161,7 +171,6 @@ const Footer = () => {
                   eduvento@academy.com
                 </span>
               </div>
-
               <div className="flex items-center gap-3 p-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-colors duration-300 group">
                 <div className="w-8 h-8 bg-secondary-green/20 rounded-lg flex items-center justify-center">
                   <Phone className="h-4 w-4 text-secondary-green" />
@@ -170,7 +179,6 @@ const Footer = () => {
                   +20 12 345 6789
                 </span>
               </div>
-
               <div className="flex items-center gap-3 p-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-colors duration-300 group">
                 <div className="w-8 h-8 bg-logo-blue/20 rounded-lg flex items-center justify-center">
                   <MapPin className="h-4 w-4 text-logo-blue" />
@@ -183,11 +191,9 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Enhanced Bottom Section */}
+        {/* Bottom Section */}
         <div className="border-t border-white/20 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-
-            {/* Copyright */}
             <div className="flex flex-col md:flex-row items-center gap-4">
               <p className="text-gray-300 text-sm flex items-center gap-2">
                 <Heart className="h-4 w-4 text-primary-yellow" />
@@ -198,27 +204,16 @@ const Footer = () => {
                 <span>صُنع بحب في مصر</span>
               </div>
             </div>
-
-            {/* Legal Links */}
             <div className="flex flex-wrap gap-6 text-sm">
-              <Link
-                href="/privacy"
-                className="text-gray-300 hover:text-primary-yellow transition-colors duration-300 flex items-center gap-1 group"
-              >
+              <Link href="/privacy" className="text-gray-300 hover:text-primary-yellow transition-colors duration-300 flex items-center gap-1 group">
                 <ChevronRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 سياسة الخصوصية
               </Link>
-              <Link
-                href="/terms"
-                className="text-gray-300 hover:text-secondary-green transition-colors duration-300 flex items-center gap-1 group"
-              >
+              <Link href="/terms" className="text-gray-300 hover:text-secondary-green transition-colors duration-300 flex items-center gap-1 group">
                 <ChevronRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 شروط الاستخدام
               </Link>
-              <Link
-                href="/support"
-                className="text-gray-300 hover:text-logo-blue transition-colors duration-300 flex items-center gap-1 group"
-              >
+              <Link href="/support" className="text-gray-300 hover:text-logo-blue transition-colors duration-300 flex items-center gap-1 group">
                 <ChevronRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 الدعم الفني
               </Link>
