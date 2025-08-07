@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, EffectFade } from 'swiper/modules';
-import { ArrowLeft, Play, BookOpen, Star } from 'lucide-react';
+import { ArrowLeft, Play,Facebook,  Twitter,  Instagram,  Linkedin, } from 'lucide-react';
+
+
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import Link from 'next/link';
@@ -192,13 +194,13 @@ const HeroSection = () => {
 
       
 
-      {/* ✅ Side social links */}
+      {/* ✅ Side social links
       <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-20 hidden lg:flex flex-col gap-4">
-        {['Facebook', 'Twitter', 'Instagram', 'LinkedIn'].map((social, index) => (
+        {['E', 'D', 'U', 'V','E','N','T','O'].map((social, index) => (
           <motion.a
             key={social}
             href="#"
-            className="w-12 h-12 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white/70 hover:text-white hover:bg-primary-yellow/20 hover:border-primary-yellow/30 transition-all duration-300 group"
+            className="w-12 h-12  bg-white/10 hover:bg-black hover:text-white backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center text-white/70  hover:border-primary-yellow group"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
@@ -207,7 +209,7 @@ const HeroSection = () => {
             <span className="text-xs font-medium">{social.charAt(0)}</span>
           </motion.a>
         ))}
-      </div>
+      </div> */}
 
       {/* ✅ Floating elements for visual interest */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">

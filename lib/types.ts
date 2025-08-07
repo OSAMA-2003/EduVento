@@ -23,19 +23,38 @@ export interface Testimonial {
 
 export interface Partner {
   id: number;
-  name: string;
-  logo?: string;
-  url?: string;
- 
+  partner_name:string;
+  description:string;
+  logo_url:string;
+  website_url:string; 
+  country:string; 
 }
+
+export interface Ambassadors {
+  id: number;
+  college:string;
+  name:string;
+  image_url:string;
+  // website_url:string; 
+  // country:string; 
+}
+
+export interface Sponsors {
+  id: number;
+  Sponsor_name:string;
+  description:string;
+  logo_url:string;
+  // website_url:string; 
+}
+
 
 
 export interface Author {
   id: number;
   name: string;
-  image?: string; // ✅ optional عشان بعضهم ممكن يبقى null
+  image?: string;
   bio?: string;
-  role?: string; // For instructor or author role
+  role?: string; 
 }
 
 export interface Category {
@@ -58,9 +77,8 @@ export interface Blog {
   tags: string[];
   slug: string;
   
-  // Optional fields that might be in your API response
-  created_at?: string;    // ✅ Original API field
-  author?: string;        // ✅ Alternative spelling
+  created_at?: string;    
+  author?: string;       
 }
 
 // lib/types.ts
@@ -79,7 +97,7 @@ export interface Course {
   starts: string;                 // ✅ Add this (rating)
   created_at: string;
   
-  // Optional fields
+
   price?: number;
   discountedPrice?: number;
   lessons?: any[];

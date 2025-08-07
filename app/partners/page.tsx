@@ -1,4 +1,4 @@
-import { fetchAllInstructors } from '@/lib/api';
+import { fetchAllPartners } from '@/lib/api';
 import Link from 'next/link';
 import Image from 'next/image';
 import Navigation from '@/components/Navigation';
@@ -6,12 +6,13 @@ import Footer from '@/components/Footer';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'مدربينا',
-  description: 'تعرف على فريق المدربين المحترفين في Eduvento',
+  title: 'شركاؤنا ',
+  description: 'تعرف على فريق شركاؤنا في التعليم المحترفين في Eduvento',
 };
 
-export default async function InstructorsPage() {
-  const instructors = await fetchAllInstructors();
+export default async function PartnersPage() {
+  const partners = await fetchAllPartners();
+  console.log(partners)
 
   return (
     <>
@@ -25,21 +26,19 @@ export default async function InstructorsPage() {
           className="relative z-10 text-5xl md:text-6xl font-extrabold drop-shadow-lg max-w-4xl text-center"
           
         >
-          فريق المدربين
+          شركاؤنا في التعليم
         </h1>
-        <p
-          className="relative z-10 mt-8 max-w-2xl text-center text-lg md:text-xl text-white/90 font-medium"
-          
-        >
-          تعرف على فريق المدربين المحترفين والمسارات التدريبية التي يقودونها في Eduvento
-        </p>
+     <p className="relative z-10 mt-8 max-w-2xl text-center text-lg md:text-xl text-white/90 font-medium">
+اكتشف المؤسسات التعليمية والخبراء الذين نشاركهم رحلتنا لصناعة مستقبل التعليم في Eduvento
+</p>
+
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-20 bg-gradient-to-t from-white/10 to-transparent pointer-events-none " />
       </section>
 
       {/* Main content */}
       <main className="min-h-screen bg-gray-50 py-20 px-4">
         <div className="container mx-auto max-w-7xl">
-          {instructors.length === 0 ? (
+          {partners.length === 0 ? (
             <div className="text-center py-24 overflow-hidden">
               <div className="bg-white/90 rounded-2xl p-8 mx-auto max-w-md shadow ">
                 <Image
@@ -55,17 +54,17 @@ export default async function InstructorsPage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-9">
-              {instructors.map((instructor) => (
+              {partners.map((partner) => (
                 <Link
-                  href={`/instructors/${instructor.id}`}
-                  key={instructor.id}
+                  href={`/partners/${partner.id}`}
+                  key={partner.id}
                   className="group relative block rounded-2xl overflow-hidden bg-white border border-white/20 shadow-lg hover:shadow-2xl hover:border-primary-yellow/40 transition-all duration-300 "
                 >
                   <div className="relative w-full aspect-square overflow-hidden">
-                    {instructor.Instructor_image_url ? (
+                    {partner.partner_name ? (
                       <Image
-                        src={instructor.Instructor_image_url}
-                        alt={`صورة ${instructor.Instructor_name}`}
+                        src={partner.logo_url}
+                        alt={`صورة ${partner.partner_name}`}
                         fill
                         className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 640px) 100vw, 25vw"
@@ -80,18 +79,10 @@ export default async function InstructorsPage() {
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg font-bold text-primary-dark group-hover:text-logo-blue mb-1 text-center truncate">
-                      {instructor.Instructor_name}
+                      {partner.partner_name}
                     </h3>
-                    {instructor.specialization && (
-                      <p className="text-center font-semibold text-secondary-green text-sm mb-2 truncate">
-                        {instructor.specialization}
-                      </p>
-                    )}
-                    {instructor.about_Instructor && (
-                      <p className="text-center text-gray-600 text-sm line-clamp-3">
-                        {instructor.about_Instructor}
-                      </p>
-                    )}
+                   
+                   
                   </div>
                 </Link>
               ))}

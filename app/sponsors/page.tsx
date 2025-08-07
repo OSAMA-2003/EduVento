@@ -1,17 +1,18 @@
-import { fetchAllInstructors } from '@/lib/api';
-import Link from 'next/link';
-import Image from 'next/image';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import { Metadata } from 'next';
+import { fetchAllSponsors } from "@/lib/api";
+import Link from "next/link";
+import Image from "next/image";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'مدربينا',
-  description: 'تعرف على فريق المدربين المحترفين في Eduvento',
+  title: "الرعاة الاستراتيجيين",
+  description: "تعرف على الرعاة الاستراتيجيين  في Eduvento",
 };
 
-export default async function InstructorsPage() {
-  const instructors = await fetchAllInstructors();
+export default async function SponsorsPage() {
+  const sponsors = await fetchAllSponsors();
+  console.log(sponsors);
 
   return (
     <>
@@ -20,26 +21,22 @@ export default async function InstructorsPage() {
 
       {/* Hero Section */}
       <section className="relative z-10 bg-gradient-primary-enhanced text-white py-24 md:py-32 flex flex-col items-center justify-center overflow-hidden">
-       
-        <h1
-          className="relative z-10 text-5xl md:text-6xl font-extrabold drop-shadow-lg max-w-4xl text-center"
-          
-        >
-          فريق المدربين
+        
+        <h1 className="relative z-10 text-5xl md:text-6xl font-extrabold drop-shadow-lg max-w-4xl text-center">
+          الرعاة الاستراتيجيين
         </h1>
-        <p
-          className="relative z-10 mt-8 max-w-2xl text-center text-lg md:text-xl text-white/90 font-medium"
-          
-        >
-          تعرف على فريق المدربين المحترفين والمسارات التدريبية التي يقودونها في Eduvento
+        <p className="relative z-10 mt-8 max-w-2xl text-center text-lg md:text-xl text-white/90 font-medium">
+          نفتخر بشركائنا من الرعاة الذين يدعمون رؤيتنا لتوفير تجربة تعليمية
+          متطورة وتمكين المتعلمين في كل مكان.
         </p>
+
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full h-20 bg-gradient-to-t from-white/10 to-transparent pointer-events-none " />
       </section>
 
       {/* Main content */}
       <main className="min-h-screen bg-gray-50 py-20 px-4">
         <div className="container mx-auto max-w-7xl">
-          {instructors.length === 0 ? (
+          {sponsors.length === 0 ? (
             <div className="text-center py-24 overflow-hidden">
               <div className="bg-white/90 rounded-2xl p-8 mx-auto max-w-md shadow ">
                 <Image
@@ -49,23 +46,27 @@ export default async function InstructorsPage() {
                   height={56}
                   className="mx-auto mb-4 opacity-60"
                 />
-                <h2 className="text-2xl font-bold text-primary-dark mb-2">لا يوجد مدربون حالياً</h2>
-                <p className="text-gray-500 mb-2">سيتم إضافة المزيد قريباً — تابعنا!</p>
+                <h2 className="text-2xl font-bold text-primary-dark mb-2">
+                  لا يوجد مدربون حالياً
+                </h2>
+                <p className="text-gray-500 mb-2">
+                  سيتم إضافة المزيد قريباً — تابعنا!
+                </p>
               </div>
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-9">
-              {instructors.map((instructor) => (
+              {sponsors.map((sponsor) => (
                 <Link
-                  href={`/instructors/${instructor.id}`}
-                  key={instructor.id}
+                  href={`/partners/${sponsor.id}`}
+                  key={sponsor.id}
                   className="group relative block rounded-2xl overflow-hidden bg-white border border-white/20 shadow-lg hover:shadow-2xl hover:border-primary-yellow/40 transition-all duration-300 "
                 >
                   <div className="relative w-full aspect-square overflow-hidden">
-                    {instructor.Instructor_image_url ? (
+                    {sponsor.Sponsor_name ? (
                       <Image
-                        src={instructor.Instructor_image_url}
-                        alt={`صورة ${instructor.Instructor_name}`}
+                        src={sponsor.logo_url}
+                        alt={`صورة ${sponsor.Sponsor_name}`}
                         fill
                         className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                         sizes="(max-width: 640px) 100vw, 25vw"
@@ -80,18 +81,8 @@ export default async function InstructorsPage() {
                   </div>
                   <div className="p-6">
                     <h3 className="text-lg font-bold text-primary-dark group-hover:text-logo-blue mb-1 text-center truncate">
-                      {instructor.Instructor_name}
+                      {sponsor.Sponsor_name}
                     </h3>
-                    {instructor.specialization && (
-                      <p className="text-center font-semibold text-secondary-green text-sm mb-2 truncate">
-                        {instructor.specialization}
-                      </p>
-                    )}
-                    {instructor.about_Instructor && (
-                      <p className="text-center text-gray-600 text-sm line-clamp-3">
-                        {instructor.about_Instructor}
-                      </p>
-                    )}
                   </div>
                 </Link>
               ))}

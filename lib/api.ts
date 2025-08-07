@@ -1,5 +1,5 @@
 import { supabase } from './supabase';
-import { Blog, Course, Instructor, Testimonial, Partner } from './types';
+import { Blog, Course, Instructor, Testimonial, Partner ,Ambassadors,Sponsors} from './types';
 
 // === Handler for all errors (موحد) ===
 const handleSupabaseError = (error: any, context: string) => {
@@ -98,15 +98,6 @@ export async function fetchInstructorById(id: number): Promise<Instructor | null
   return data;
 }
 
-// ========== آراء الطلاب ==========
-export async function fetchAllTestimonials(): Promise<Testimonial[]> {
-  const { data, error } = await supabase
-    .from('Testimonials')
-    .select('*')
-    .order('id', { ascending: true });
-  handleSupabaseError(error, 'fetchAllTestimonials');
-  return data || [];
-}
 
 // ========== شركاؤنا ==========
 export async function fetchAllPartners(): Promise<Partner[]> {
@@ -118,7 +109,54 @@ export async function fetchAllPartners(): Promise<Partner[]> {
   return data || [];
 }
 
-// === هل لديك دوال أخرى؟ أضفها هنا بشكل مماثل للأنواع الجديدة ===
+export async function fetchPartnerById(id: number): Promise<Partner | null> {
+  const { data, error } = await supabase
+    .from('partners')
+    .select('*')
+    .eq('id', id)
+    .single();
+  handleSupabaseError(error, 'fetchPartnerById');
+  return data;
+}
+
+// ========== آراء الطلاب ==========
+export async function fetchAllTestimonials(): Promise<Testimonial[]> {
+  const { data, error } = await supabase
+    .from('Testimonials')
+    .select('*')
+    .order('id', { ascending: true });
+  handleSupabaseError(error, 'fetchAllTestimonials');
+  return data || [];
+}
+
+
+// سفراء Eduvento 
+
+export async function fetchAllAmbassadors():Promise<Ambassadors[]> {
+
+  const{data , error} = await supabase
+  .from("Ambassadors")
+  .select("*")
+  .order("id",{ascending:true});
+  handleSupabaseError(error,"fetchAllAmbassadors");
+  return data || []
+  
+}
+// Sponsors
+
+export async function fetchAllSponsors():Promise<Sponsors[]> {
+
+  const{data , error} = await supabase
+  .from("Sponsors")
+  .select("*")
+  .order("id",{ascending:true});
+  handleSupabaseError(error,"fetchAllSponsors");
+  return data || []
+  
+}
+
+
+
 
 // Deprecated - Use fetchAllArticles instead
 export const fetchBlogsFromSupabase = fetchAllArticles;
