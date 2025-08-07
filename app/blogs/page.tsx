@@ -15,7 +15,7 @@ export default function BlogsPage() {
       {/* Hero */}
                       <HeroComponent
                         headingTop="مكتبة"
-                        headingHighlight="معنا"
+                        headingHighlight="المقالات"
                         subtitle={`اقرأ أحدث المقالات والنصائح في مجال التعليم والتكنولوجيا من خبراء المجال 
               واكتشف آخر الاتجاهات في عالم البرمجة والتصميم`}
                         stats={[

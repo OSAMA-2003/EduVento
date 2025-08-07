@@ -42,16 +42,7 @@ const Navigation = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [isOpen]);
 
-  useEffect(() => {
-  if (isOpen) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = '';
-  }
-  return () => {
-    document.body.style.overflow = '';
-  };
-}, [isOpen]);
+
 
   const menuVariants = {
     hidden: { opacity: 0, y: '-100%' },
