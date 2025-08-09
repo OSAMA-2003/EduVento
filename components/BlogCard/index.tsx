@@ -57,6 +57,8 @@ const BlogCard = ({ blog, index = 0, variant = 'default' }: BlogCardProps) => {
   const fallbackImage = 'https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=800&h=600&fit=crop';
 
   return (
+    <Link
+            href={`/blogs/${blog.id}`}>
     <motion.article
       className={`${cardVariants[variant]} overflow-hidden transition-all duration-500 group cursor-pointer relative border border-white/10 flex flex-col h-full`}
       initial={{ opacity: 0, y: 50 }}
@@ -90,13 +92,6 @@ const BlogCard = ({ blog, index = 0, variant = 'default' }: BlogCardProps) => {
         {/* Category Badge */}
         <div className={`absolute top-4 right-4 ${getCategoryColor(blog.category)} text-white px-3 py-1 rounded-full text-xs font-bold shadow-xl backdrop-blur-sm`}>
           {blog.category}
-        </div>
-
-        {/* Hover overlay */}
-        <div className="absolute inset-0 bg-logo-blue/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-          <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 transform scale-75 group-hover:scale-100 transition-transform duration-300">
-            <BookOpen className="h-6 w-6 text-logo-blue" />
-          </div>
         </div>
       </div>
 
@@ -190,6 +185,7 @@ const BlogCard = ({ blog, index = 0, variant = 'default' }: BlogCardProps) => {
       {/* Decorative element */}
       <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-logo-blue via-secondary-green to-primary-yellow transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
     </motion.article>
+    </Link>
   );
 };
 

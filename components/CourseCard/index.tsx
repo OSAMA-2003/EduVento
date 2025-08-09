@@ -60,6 +60,8 @@ const CourseCard = ({
   };
 
   return (
+    <Link
+            href={`/courses/${course.id}`}>
     <motion.div
       className={`${cardVariants[variant]} overflow-hidden transition-all duration-500 group cursor-pointer relative border border-white/10`}
       initial={{ opacity: 0, y: 50 }}
@@ -133,13 +135,13 @@ const CourseCard = ({
         </h3>
         
         {/* Description */}
-        <p className={`mb-4 text-sm leading-relaxed line-clamp-2 transition-colors duration-300 ${
+        {/* <p className={`mb-4 text-sm leading-relaxed line-clamp-2 transition-colors duration-300 ${
           variant === 'featured' 
             ? 'text-gray-100 group-hover:text-white' 
             : 'text-gray-600 group-hover:text-gray-800'
         }`}>
           {course.description}
-        </p>
+        </p> */}
         
         {/* Stats Section */}
         <div className={`flex items-center justify-between text-sm mb-6 rounded-lg p-3 transition-colors duration-300 ${
@@ -210,6 +212,7 @@ const CourseCard = ({
       {/* Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-logo-blue via-secondary-green to-primary-yellow opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
     </motion.div>
+    </Link>
   );
 };
 
