@@ -117,13 +117,13 @@ const BlogCard = ({ blog, index = 0, variant = 'default' }: BlogCardProps) => {
             ? 'text-white group-hover:text-primary-yellow'
             : 'text-primary-dark group-hover:text-logo-blue'
         }`}>
-          <Link
-            href={`/blogs/${blog.slug || blog.id}`}
+          <p
             className="hover:underline"
           >
             {blog.title}
-          </Link>
+          </p>
         </h3>
+
 
         {/* Excerpt */}
         <p className={`text-sm leading-relaxed mb-4 line-clamp-3 flex-grow transition-colors duration-300 ${
