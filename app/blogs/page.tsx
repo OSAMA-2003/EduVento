@@ -1,7 +1,5 @@
 'use client';
 
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import BlogsGrid from '@/components/BlogsGrid';
 import { BookOpen, Users,TrendingUp } from 'lucide-react';
 import HeroComponent from '@/components/HeroComponent';

@@ -1,7 +1,5 @@
 import { notFound } from 'next/navigation';
 import sanitizeHtml from 'sanitize-html';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import BlogDetails from '@/components/BlogDetails';
 
 import {
