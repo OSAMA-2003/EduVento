@@ -12,14 +12,7 @@ export interface Instructor {
 
 }
 
-export interface Testimonial {
-  id: number;
-  name: string;
-  message: string;
-  image?: string;
-  rating?: number;
-  
-}
+
 
 export interface Partner {
   id: number;
@@ -44,8 +37,21 @@ export interface Sponsors {
   Sponsor_name:string;
   description:string;
   logo_url:string;
+
   // website_url:string; 
 }
+
+
+export interface Testimonial {
+  id: number;
+  name:string ;
+  diploma_name:string;
+  opinion:string;
+  photo_url:string;
+
+  // website_url:string; 
+}
+
 
 
 

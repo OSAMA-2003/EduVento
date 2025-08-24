@@ -53,7 +53,7 @@ const AboutContent = () => {
     },
     { 
       number: '95%', 
-      label: 'معدل الرضا',
+      label: 'معدل رضا',
       icon: <Star className="h-6 w-6" />,
       color: 'alert-red',
       duration: 2200
@@ -64,40 +64,40 @@ const AboutContent = () => {
     {
       icon: Target,
       title: 'الهدف',
-      description: 'نهدف إلى تمكين الأفراد من اكتساب المهارات التقنية والمهنية اللازمة لسوق العمل الحديث وتحقيق النجاح المهني',
+      description: 'هدفنا إننا نمكّن الناس عشان يكتسبوا المهارات اللي محتاجها سوق العمل الحديث، ويحققوا النجاح اللي بيحلموا بيه.',
       color: 'from-logo-blue to-secondary-green'
     },
     {
       icon: Heart,
       title: 'الشغف',
-      description: 'نؤمن بقوة التعليم في تغيير الحياة ونسعى لتقديم تجربة تعليمية ملهمة ومؤثرة تلامس قلوب طلابنا',
+      description: 'بناؤمن بقوة التعليم في تغيير الحياة، وبنسعى عشان نقدم تجربة تعليمية ملهمة ومؤثرة تلمس قلوب طلبتنا.',
       color: 'from-primary-yellow to-alert-red'
     },
     {
       icon: Globe,
       title: 'الرؤية',
-      description: 'أن نكون المنصة الرائدة في التعليم الرقمي في المنطقة العربية ونساهم في بناء جيل واعد من المبدعين',
+      description: 'رؤيتنا إننا نكون المنصة الرائدة في التعليم الرقمي في المنطقة العربية، ونساهم في بناء جيل واعد من المبدعين.',
       color: 'from-secondary-green to-logo-blue'
     },
   ];
 
   const achievements = [
-    { title: 'أول منصة عربية متخصصة', description: 'في التعليم التقني التطبيقي' },
-    { title: 'شراكات استراتيجية', description: 'مع كبرى الشركات التقنية' },
-    { title: 'منهجية تعليمية مبتكرة', description: 'تركز على التطبيق العملي' },
-    { title: 'مجتمع تعليمي نشط', description: 'يضم آلاف الطلاب والخبراء' }
+    { title: 'أول منصة عربية متخصصة', description: 'في التعليم التقني العملي' },
+    { title: 'شراكات استراتيجية', description: 'مع أكبر شركات التكنولوجيا' },
+    { title: 'طريقة تعليم مبتكرة', description: 'بتركّز على الشغل العملي' },
+    { title: 'مجتمع تعليمي قوي', description: 'فيه آلاف الطلبة والخبراء' }
   ];
 
   return (
     <div className="overflow-hidden">
       
       {/* ✅ Stats Section - Only change the number display */}
-      <section className="py-20  bg-gradient-mesh relative overflow-hidden" ref={statsRef}>
+      {/* <section className="py-20 bg-gradient-mesh relative overflow-hidden" ref={statsRef}>
         <div className="absolute inset-0 bg-pattern opacity-5"></div>
         <div className="absolute top-10 right-10 w-64 h-64 bg-primary-yellow/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-10 left-10 w-80 h-80 bg-secondary-green/10 rounded-full blur-3xl"></div>
         
-        <div className="container  mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -124,7 +124,6 @@ const AboutContent = () => {
                     {stat.icon}
                   </div>
                   
-                  {/* ✅ Replace static number with AnimatedNumber */}
                   <div className={`text-3xl md:text-4xl font-bold text-${stat.color} mb-2 group-hover:scale-110 transition-transform duration-300`}>
                     <AnimatedNumber 
                       value={stat.number} 
@@ -141,7 +140,7 @@ const AboutContent = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ✅ All other sections remain exactly the same */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white relative" ref={storyRef}>
@@ -154,27 +153,27 @@ const AboutContent = () => {
               transition={{ duration: 0.8 }}
             >
               <div className="inline-block bg-primary-yellow/20 text-primary-yellow px-4 py-2 rounded-full font-semibold text-sm mb-6">
-                قصة النجاح
+                حكايتنا
               </div>
               
               <h2 className="text-4xl md:text-5xl font-bold text-primary-dark mb-8 leading-tight">
-                <span className=" gradient-text-secondary">رحلتنا</span> نحو التميز
+                <span className=" gradient-text-secondary">رحلتنا</span> للتميز
               </h2>
               
               <div className="space-y-6 text-gray-700 leading-relaxed text-lg">
                 <p className="relative pl-6">
                   <span className="absolute left-0 top-2 w-2 h-2 bg-secondary-green rounded-full"></span>
-                  بدأت أكاديمية Eduvento في عام 2020 برؤية واضحة: جعل التعليم التقني عالي الجودة متاحاً للجميع في المنطقة العربية. انطلقنا من إيماننا العميق بأن التعليم هو المفتاح الأساسي للتقدم والنمو الشخصي والمهني.
+                  أكاديمية Eduvento بدأت سنة 2025 برؤية واضحة: إن التعليم التقني عالي الجودة لازم يكون متاح لكل الناس في المنطقة العربية. بدأنا واحنا عندنا إيمان عميق إن التعليم هو المفتاح الأساسي للتقدم والتطور في حياة كل واحد سواء على المستوى الشخصي أو المهني.
                 </p>
                 
                 <p className="relative pl-6">
                   <span className="absolute left-0 top-2 w-2 h-2 bg-logo-blue rounded-full"></span>
-                  خلال السنوات القليلة الماضية، نجحنا في تدريب آلاف الطلاب وساعدناهم على تطوير مهاراتهم والحصول على فرص عمل أفضل. نحن فخورون بكوننا جزءاً من رحلة نجاح طلابنا وشهود على تحولاتهم المهنية المذهلة.
+                  على مدار السنين اللي فاتت، قدرنا ندرب آلاف الطلبة وساعدناهم يطوروا مهاراتهم ويلاقوا فرص شغل أحسن. إحنا فخورين جداً بإننا جزء من رحلة نجاح طلبتنا وشاهدين على التغييرات الرهيبة اللي حصلت في حياتهم المهنية.
                 </p>
                 
                 <p className="relative pl-6">
                   <span className="absolute left-0 top-2 w-2 h-2 bg-primary-yellow rounded-full"></span>
-                  اليوم، نواصل التطوير والابتكار لنقدم أفضل تجربة تعليمية ممكنة، مع التركيز على الجودة والتفاعل والدعم المستمر لطلابنا. هدفنا أن نكون رفيق الرحلة في كل خطوة من خطوات نموهم المهني.
+                  النهاردة، مكملين في التطوير والابتكار عشان نقدم أحسن تجربة تعليمية ممكنة، مع التركيز على الجودة والتفاعل والدعم المستمر للطلبة بتوعنا. هدفنا إننا نكون معاهم خطوة بخطوة في كل مراحل تطورهم المهني.
                 </p>
               </div>
 
@@ -218,13 +217,6 @@ const AboutContent = () => {
                     height={600}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
- 
-
-                
-                
-                {/* Decorative elements */}
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-primary-yellow/30 rounded-full blur-2xl"></div>
-                <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-secondary-green/30 rounded-full blur-2xl"></div>
               </div>
             </motion.div>
           </div>
@@ -252,13 +244,13 @@ const AboutContent = () => {
             </div>
             
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-2xl">
-              <span className="text-primary-yellow">مبادئنا</span> التي نؤمن بها
+              <span className="text-primary-yellow">المبادئ</span> اللي بنؤمن بيها
             </h2>
             
             <div className="w-32 h-2 bg-gradient-to-r from-primary-yellow via-secondary-green to-logo-blue mx-auto rounded-full shadow-lg mb-6"></div>
             
             <p className="text-xl text-gray-100 max-w-3xl mx-auto drop-shadow-lg">
-              نؤمن بمجموعة من القيم الأساسية التي توجه عملنا وتحدد هويتنا في رحلة التعليم والتطوير
+              إحنا بنؤمن بمجموعة من القيم الأساسية اللي بتوجّه شغلنا وبتحدد هويتنا في رحلة التعليم والتطوير
             </p>
           </motion.div>
 
@@ -337,9 +329,7 @@ const AboutContent = () => {
                 </h3>
                 
                 <p className="text-gray-300 leading-relaxed text-lg group-hover:text-gray-800 transition-colors duration-300">
-                  نسعى لتمكين الأفراد في المنطقة العربية من خلال تقديم تعليم تقني عالي الجودة، 
-                  مبني على أحدث المعايير العالمية، ومصمم ليواكب متطلبات سوق العمل المعاصر. 
-                  نؤمن بأن التعليم الجيد هو حق للجميع وليس امتياز للقلة.
+                  بنسعى إننا نمكّن الأفراد في المنطقة العربية عن طريق إننا نقدم لهم تعليم تقني عالي الجودة، مبني على أحدث المعايير العالمية، ومتصمم عشان يواكب متطلبات سوق الشغل دلوقتي. إحنا بنؤمن إن التعليم الكويس حق لكل الناس مش بس لفئة معينة.
                 </p>
                 
                 <div className="mt-6 flex items-center gap-4 text-sm text-secondary-green font-semibold">
@@ -369,9 +359,7 @@ const AboutContent = () => {
                 </h3>
                 
                 <p className="text-gray-300 leading-relaxed text-lg group-hover:text-gray-800 transition-colors duration-300">
-                  أن نصبح المنصة الرائدة والأكثر ثقة في التعليم الرقمي بالمنطقة العربية، 
-                  ونساهم في بناء جيل من المحترفين المهرة القادرين على المنافسة عالمياً 
-                  والإبداع في مجالاتهم، مع الحفاظ على هويتنا العربية وقيمنا الأصيلة.
+                  رؤيتنا إننا نكون المنصة الرائدة والأكثر ثقة في التعليم الرقمي في المنطقة العربية، ونساهم في بناء جيل من المحترفين الشاطرين اللي يقدروا ينافسوا عالمياً ويبدعوا في مجالاتهم، وفي نفس الوقت نحافظ على هويتنا العربية وقيمنا الأصيلة.
                 </p>
                 
                 <div className="mt-6 flex items-center gap-4 text-sm text-primary-yellow font-semibold">

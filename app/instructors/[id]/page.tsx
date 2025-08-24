@@ -1,8 +1,6 @@
 import { fetchAllInstructors, fetchInstructorById } from '@/lib/api';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import InstructorProfile from '@/components/InstructorProfile/indext';
 
 interface InstructorPageProps {

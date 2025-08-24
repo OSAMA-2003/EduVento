@@ -13,6 +13,7 @@ import {
   Award,
   ArrowRight
 } from 'lucide-react';
+import Link from 'next/link';
 
 const StorySection = () => {
   const statsRef = useRef(null);
@@ -125,22 +126,22 @@ const StorySection = () => {
   ];
 
   // Enhanced testimonials
-  const testimonials = [
-    { 
-      name: "محمود أحمد", 
-      role: "خريج تجارة", 
-      quote: "مكنتش عارف أبدأ منين، Eduvento ساعدتني أشتغل على نفسي وأدخل أول شغل ليا.",
-      image: "👨‍💼",
-      rating: 5
-    },
-    { 
-      name: "ندى محمد", 
-      role: "خريجة إعلام", 
-      quote: "اتعلمت هنا أكتر من سنين الكلية… كله عملي، كله واضح، كله مفيد.",
-      image: "👩‍💻",
-      rating: 5
-    }
-  ];
+  // const testimonials = [
+  //   { 
+  //     name: "محمود أحمد", 
+  //     role: "خريج تجارة", 
+  //     quote: "مكنتش عارف أبدأ منين، Eduvento ساعدتني أشتغل على نفسي وأدخل أول شغل ليا.",
+  //     image: "👨‍💼",
+  //     rating: 5
+  //   },
+  //   { 
+  //     name: "ندى محمد", 
+  //     role: "خريجة إعلام", 
+  //     quote: "اتعلمت هنا أكتر من سنين الكلية… كله عملي، كله واضح، كله مفيد.",
+  //     image: "👩‍💻",
+  //     rating: 5
+  //   }
+  // ];
 
   // Skills that college doesn't teach
   const collegeGaps = [
@@ -429,7 +430,7 @@ const StorySection = () => {
         </div>
 
         {/* ✅ Enhanced Testimonials */}
-        <motion.div
+        {/* <motion.div
           className="text-center"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -477,7 +478,7 @@ const StorySection = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* ✅ Call to Action */}
         <motion.div
@@ -494,9 +495,13 @@ const StorySection = () => {
             <p className="text-primary-dark/80 mb-6 text-lg">
               انضم لآلاف الطلاب اللي غيروا مستقبلهم معانا
             </p>
+           
             <button className="btn-primary">
+              <Link href='/courses' >
               ابدأ دلوقتي
+              </Link>
             </button>
+           
           </div>
         </motion.div>
       </div>

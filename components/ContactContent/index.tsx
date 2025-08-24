@@ -63,7 +63,7 @@ const ContactContent = () => {
     {
       icon: Phone,
       title: 'الهاتف',
-      details: ['+20 12 345 6789', '+20 11 456 7890'],
+      details: ['17818 293 10 20+'],
       description: 'متاح من السبت إلى الخميس',
       color: 'from-logo-blue to-secondary-green',
       bgColor: 'bg-logo-blue/10'
@@ -71,7 +71,7 @@ const ContactContent = () => {
     {
       icon: Mail,
       title: 'البريد الإلكتروني',
-      details: ['eduvento@academy.com', 'support@eduvento.com'],
+      details: ['eduvento@academy.com'],
       // description: 'نرد خلال 24 ساعة',
       color: 'from-secondary-green to-primary-yellow',
       bgColor: 'bg-secondary-green/10'
@@ -87,9 +87,8 @@ const ContactContent = () => {
   ];
 
   const workingHours = [
-    { day: 'السبت - الأربعاء', hours: '9:00 ص - 6:00 م', available: true },
-    { day: 'الخميس', hours: '9:00 ص - 3:00 م', available: true },
-    { day: 'الجمعة', hours: 'مغلق', available: false },
+    { day: 'الاحد - الخميس', hours: '9:00 ص - 6:00 م', available: true },
+   
   ];
 
   const faqs = [
@@ -163,9 +162,9 @@ const ContactContent = () => {
                     ))}
                   </div>
                   
-                  <p className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300">
+                  {/* <p className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300">
                     {info.description}
-                  </p>
+                  </p> */}
 
                   {/* Decorative elements */}
                   <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-white/10 to-transparent rounded-full -translate-y-8 translate-x-8 group-hover:scale-150 transition-transform duration-700"></div>
@@ -395,7 +394,7 @@ const ContactContent = () => {
       </section>
 
       {/* ✅ Enhanced FAQ Section */}
-      <section className="py-20 bg-gradient-secondary-enhanced relative overflow-hidden" ref={faqRef}>
+      {/* <section className="py-20 bg-gradient-secondary-enhanced relative overflow-hidden" ref={faqRef}>
         <div className="absolute inset-0 bg-gradient-mesh opacity-90"></div>
         <div className="absolute inset-0 bg-pattern opacity-5"></div>
         
@@ -406,9 +405,7 @@ const ContactContent = () => {
             animate={isFaqInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-block bg-primary-yellow backdrop-blur-sm text-primary-dark px-6 py-2 rounded-full font-semibold text-sm uppercase tracking-wide shadow-lg mb-6">
-              الأسئلة الشائعة
-            </div>
+            
             
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-2xl">
               <span className="text-primary-yellow">أسئلة</span> وأجوبة
@@ -444,7 +441,6 @@ const ContactContent = () => {
             ))}
           </div>
 
-          {/* Contact Stats */}
           <motion.div
             className="mt-16 text-center"
             initial={{ opacity: 0, y: 30 }}
@@ -473,7 +469,7 @@ const ContactContent = () => {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

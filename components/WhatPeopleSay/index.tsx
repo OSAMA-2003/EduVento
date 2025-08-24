@@ -1,78 +1,47 @@
 'use client';
 
+
 import { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import { Quote, Star, ThumbsUp, Heart } from 'lucide-react';
+import { Quote, Heart } from 'lucide-react';
+import { fetchAllTestimonials } from "@/lib/api";
+
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import Image from 'next/image';
 
-const testimonials = [
-  {
-    id: 1,
-    name: "سمير أحمد",
-    role: 'مطور واجهات أمامية',
-    company: 'شركة التكنولوجيا المتقدمة',
-    gender: 'male',
-    rating: 5,
-    quote: '"منصة Eduvento غيرت مساري المهني بالكامل. تعلمت مهارات عملية حقيقية ساعدتني في الحصول على وظيفة أحلامي. المحتوى ممتاز والدعم رائع."',
-  },
-  {
-    id: 2,
-    name: 'سارة محمد',
-    role: 'مطورة تطبيقات',
-    company: 'فريلانسر',
-    gender: 'female',
-    rating: 5,
-    quote: '"الكورسات هنا مختلفة تماماً عن أي منصة أخرى. كل شيء عملي ومباشر، والمدربين خبراء حقيقيين في مجالاتهم. أنصح بها بشدة."',
-  },
-  {
-    id: 3,
-    name: 'عمر خالد',
-    role: 'مهندس برمجيات',
-    company: 'شركة ناشئة',
-    gender: 'male',
-    rating: 5,
-    quote: '"بعد سنين من التعلم النظري، أخيراً وجدت منصة تركز على التطبيق العملي. حصلت على ترقية في الشغل بفضل المهارات اللي تعلمتها هنا."',
-  },
-  {
-    id: 4,
-    name: 'نور فاطمة',
-    role: 'مصممة UX/UI',
-    company: 'وكالة إبداعية',
-    gender: 'female',
-    rating: 5,
-    quote: '"التجربة التعليمية هنا استثنائية. المنصة سهلة الاستخدام والمحتوى منظم بشكل ممتاز. تعلمت أكثر مما تعلمته في الجامعة."',
-  },
-  {
-    id: 5,
-    name: 'أحمد علي',
-    role: 'مختص تسويق رقمي',
-    company: 'شركة تسويق',
-    gender: 'male',
-    rating: 5,
-    quote: '"الكورسات التسويقية هنا على مستوى عالمي. تعلمت استراتيجيات حديثة وطبقتها مباشرة في شغلي. النتائج كانت مذهلة."',
-  },
-  {
-    id: 6,
-    name: 'ليلى حسن',
-    role: 'مطورة مواقع',
-    company: 'فريلانسر',
-    gender: 'female',
-    rating: 5,
-    quote: '"منصة Eduvento ساعدتني أبدأ مسيرة الفريلانسينج. المشاريع العملية والتوجيه المستمر خلاني أثق في قدراتي وأحقق دخل ممتاز."',
-  },
-];
 
-const WhatPeopleSay = () => {
+export default function WhatPeopleSay() {
   const [slidesPerView, setSlidesPerView] = useState(3);
+  interface Testimonial {
+    id: number;
+    name: string;
+    opinion: string;
+    diploma_name: string;
+    // Add other properties if they exist in your testimonial object
+  }
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
+  // ✅ Fetch testimonials once
+  useEffect(() => {
+    const getTestimonials = async () => {
+      try {
+        const data = await fetchAllTestimonials();
+        setTestimonials(data);
+      } catch (err) {
+        console.error("Error fetching testimonials:", err);
+      }
+    };
+
+    getTestimonials();
+  }, []);
+
+  // ✅ Handle responsive slides
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -89,14 +58,12 @@ const WhatPeopleSay = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const getAvatarImage = (gender: string) => {
-    return gender === 'male' 
-      ? '/images/man.png'
-      : '/images/woman.png';
-  };
 
-  return (
-    <section className="py-20 bg-gradient-primary-enhanced relative overflow-hidden" ref={ref} dir="rtl">
+ 
+ return (
+    <>
+    
+       <section ref={ref} className="py-20 bg-gradient-primary-enhanced relative overflow-hidden"  dir="rtl">
       {/* ✅ Enhanced Background Elements */}
       <div className="absolute inset-0">
         {/* Main gradient with mesh overlay */}
@@ -202,7 +169,8 @@ const WhatPeopleSay = () => {
             }}
             className="testimonials-swiper pb-16"
           >
-            {testimonials.map((testimonial, index) => (
+            {testimonials.map((testimonial) => (
+
               <SwiperSlide className="py-8 px-2" key={testimonial.id}>
                 {({ isActive }) => (
                   <motion.div
@@ -214,7 +182,6 @@ const WhatPeopleSay = () => {
                     `}
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.6 }}
                     whileHover={{ y: -5 }}
                   >
                     {/* Background decoration */}
@@ -231,42 +198,19 @@ const WhatPeopleSay = () => {
                       <Quote className="w-6 h-6" />
                     </div>
 
-                    {/* Rating Stars */}
-                    <div className="flex gap-1 mb-4">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star 
-                          key={i} 
-                          className={`w-5 h-5 fill-current ${
-                            isActive ? 'text-primary-yellow' : 'text-yellow/20'
-                          }`} 
-                        />
-                      ))}
-                    </div>
-
                     {/* Quote */}
                     <p className={`text-base md:text-lg leading-relaxed mb-6 flex-grow font-medium relative z-10 ${
                       isActive ? 'text-gray-300' : 'text-gray-700'
                     }`}>
-                      {testimonial.quote}
+                      {testimonial.opinion}
+                     
                     </p>
 
                     {/* Author Info */}
                     <div className="flex items-center gap-4 mt-auto relative z-10">
                       <div className="relative">
-                        <div className="w-14 h-14 rounded-2xl overflow-hidden border-3 shadow-xl ">
-                          <Image
-                            src={getAvatarImage(testimonial.gender)}
-                            alt={`${testimonial.name} avatar`}
-                            className="w-full h-full object-cover"
-                            width={100}
-                            height={100}
-                          />
-                          
-                        </div>
-                        {/* Success badge */}
-                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-secondary-green rounded-full flex items-center justify-center  shadow-lg">
-                          <ThumbsUp className="w-3 h-3 text-white" />
-                        </div>
+                        
+                       
                       </div>
                       
                       <div className="flex-1">
@@ -278,12 +222,12 @@ const WhatPeopleSay = () => {
                         <p className={`text-sm font-medium ${
                           isActive ? 'text-primary-dark/80' : 'text-logo-blue'
                         }`}>
-                          {testimonial.role}
+                          {testimonial.diploma_name}
                         </p>
                         <p className={`text-xs ${
                           isActive ? 'text-primary-dark/60' : 'text-gray-500'
                         }`}>
-                          {testimonial.company}
+                          {testimonial.opinion}
                         </p>
                       </div>
                     </div>
@@ -305,7 +249,7 @@ const WhatPeopleSay = () => {
         </motion.div>
 
         {/* ✅ Success Stats */}
-        <motion.div
+        {/* <motion.div
           className="mt-16 text-center"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -331,7 +275,7 @@ const WhatPeopleSay = () => {
               </div>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
 
       {/* ✅ Enhanced Custom Styles */}
@@ -376,7 +320,17 @@ const WhatPeopleSay = () => {
         }
       `}</style>
     </section>
+    </>
   );
-};
+}
 
-export default WhatPeopleSay;
+
+
+
+
+
+
+
+
+
+ 

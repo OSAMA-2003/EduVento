@@ -212,7 +212,7 @@ const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
         </motion.nav>
         {/* 📰 Article Content */}
         <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 xl:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1  gap-12">
             <div className="xl:col-span-3" ref={contentRef}>
               <motion.div
                 className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl border border-white/20 overflow-hidden"
@@ -223,13 +223,13 @@ const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
                 <div className="h-2 bg-gradient-to-r from-logo-blue via-secondary-green to-primary-yellow"></div>
                 <div className="p-8 md:p-12">
                   <motion.article
-                    className="prose prose-lg max-w-none text-gray-800 leading-relaxed"
+                    className="prose prose-lg max-w-none text-gray-800 "
                     initial={{ opacity: 0, y: 30 }}
                     animate={isContentInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.8, delay: 0.4 }}
                   >
                     <div
-                      className="text-gray-700 leading-relaxed text-justify text-lg"
+                      className="text-gray-700 !leading-[40px]   text-justify text-lg md:text-xl "
                       dangerouslySetInnerHTML={{ __html: safeContent }}
                     />
                   </motion.article>
@@ -264,9 +264,9 @@ const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
             </div>
 
             {/* ✅ Enhanced Sidebar */}
-            <div className="xl:col-span-1">
+            <div className="xl:col-span-1 flex justify-center items-center ">
               
-              {/* Article Stats */}
+              {/* Article Stats
               <motion.div
                 className="card-primary mb-8  top-8"
                 initial={{ opacity: 0, x: 30 }}
@@ -298,11 +298,11 @@ const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
                     </div>
                   ))}
                 </div>
-              </motion.div>
+              </motion.div> */}
 
               {/* Quick Actions */}
               <motion.div
-                className="card-primary "
+                className="card-primary flex justify-center items-center  flex-col min-w-[400px] md:min-w-[500px]  "
                 initial={{ opacity: 0, x: 30 }}
                 animate={isContentInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}

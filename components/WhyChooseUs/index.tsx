@@ -17,6 +17,7 @@ import {
   X,
   ArrowRight
 } from 'lucide-react';
+import Link from 'next/link';
 
 const WhyChooseUs = () => {
   const ref = useRef(null);
@@ -48,16 +49,7 @@ const WhyChooseUs = () => {
         
         {/* ✅ Enhanced Hero Header */}
         <motion.div className="text-center" {...fadeIn(0)}>
-          <motion.div
-            className="inline-block mb-4"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="bg-primary-yellow/20 text-primary-yellow px-6 py-2 rounded-full font-semibold text-sm uppercase tracking-wide">
-              لماذا نحن مختلفون؟
-            </div>
-          </motion.div>
+         
           
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="text-yellow-50 md:text-gradient-accent">ليه تختار </span>
@@ -76,7 +68,7 @@ const WhyChooseUs = () => {
             className="text-xl text-gray-300  mt-6 max-w-3xl mx-auto leading-relaxed"
             {...fadeIn(0.3)}
           >
-            اكتشف الفرق الحقيقي في تجربة تعليمية مصممة خصيصاً لتحقيق أهدافك المهنية
+            اكتشف الفرق الحقيقي في تجربة تعليمية متصممة خصوصًا عشان توصل لأهدافك في الشغل
           </motion.p>
         </motion.div>
 
@@ -102,11 +94,11 @@ const WhyChooseUs = () => {
               
               <div className="flex-1">
                 <h3 className="text-2xl md:text-3xl font-bold text-heading mb-4 group-hover:text-logo-blue transition-colors duration-300">
-                  رحلة متكاملة وليست مجرد كورسات
+                  رحلة كاملة مش مجرد كورسات
                 </h3>
                 <p className="text-xl text-gray-300 leading-relaxed group-hover:text-gray-400 transition-colors duration-300">
-                  نبدأ معك من حيث أنت الآن ونوصلك إلى حيث تريد أن تكون. ليست مجرد محتوى تعليمي، 
-                  بل <span className="text-secondary-green font-semibold">خطة تطوير شخصية ومهنية شاملة</span>.
+                  هنبدأ معاك من اللي إنت فيه دلوقتي ونوصلك للمكان اللي عايز تكون فيه. مش مجرد محتوى تعليمي، 
+                  لا ده <span className="text-secondary-green font-semibold">خطة تطوير شخصية ومهنية كاملة</span>.
                 </p>
               </div>
             </div>
@@ -125,7 +117,7 @@ const WhyChooseUs = () => {
               {/* Success badge */}
               <div className="absolute -top-4 right-6">
                 <div className="bg-secondary-green text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                  ⭐ الأفضل
+                  ⭐ الأحسن
                 </div>
               </div>
               
@@ -134,13 +126,13 @@ const WhyChooseUs = () => {
                   <div className="w-10 h-10 bg-secondary-green rounded-full flex items-center justify-center">
                     <CheckCircle className="h-6 w-6 text-white" />
                   </div>
-                  ما يميز Eduvento:
+                  اللي يميز Eduvento:
                 </h3>
                 
                 <ul className="space-y-4">
                   {[
                     { 
-                      text: "تقييم مبدئي لمستواك واحتياجاتك", 
+                      text: "تقييم في الأول لمستواك واحتياجاتك", 
                       icon: <Target className="h-5 w-5" /> 
                     },
                     { 
@@ -148,7 +140,7 @@ const WhyChooseUs = () => {
                       icon: <BookOpen className="h-5 w-5" /> 
                     },
                     { 
-                      text: "متابعة حتى تحقيق النتائج", 
+                      text: "متابعة لحد ما توصل للنتيجة", 
                       icon: <TrendingUp className="h-5 w-5" /> 
                     },
                     { 
@@ -183,7 +175,7 @@ const WhyChooseUs = () => {
               {/* Warning badge */}
               <div className="absolute -top-4 right-6">
                 <div className="bg-alert-red text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                  ⚠️ تجنب هذا
+                  ⚠️ متروحش هناك
                 </div>
               </div>
               
@@ -192,25 +184,25 @@ const WhyChooseUs = () => {
                   <div className="w-10 h-10 bg-alert-red rounded-full flex items-center justify-center">
                     <X className="h-6 w-6 text-white" />
                   </div>
-                  ما يقدمه الآخرون:
+                  اللي بيقدموه الباقيين:
                 </h3>
                 
                 <ul className="space-y-4">
                   {[
                     { 
-                      text: "محتوى نظري بدون تطبيق عملي", 
+                      text: "كلام نظري من غير تطبيق عملي", 
                       icon: <X className="h-5 w-5" /> 
                     },
                     { 
-                      text: "تدريب بدون متابعة أو تقييم", 
+                      text: "تدريب من غير متابعة أو تقييم", 
                       icon: <X className="h-5 w-5" /> 
                     },
                     { 
-                      text: "إنتهى الكورس وإنتهت العلاقة", 
+                      text: "خلص الكورس وخلصت العلاقة", 
                       icon: <X className="h-5 w-5" /> 
                     },
                     { 
-                      text: "قوالب جاهزة للجميع", 
+                      text: "قوالب جاهزة للكل", 
                       icon: <X className="h-5 w-5" /> 
                     }
                   ].map((item, index) => (
@@ -242,7 +234,7 @@ const WhyChooseUs = () => {
             transition={{ duration: 0.6 }}
           >
             <h3 className="text-3xl md:text-4xl font-bold text-heading mb-4">
-              مميزات تضعنا في المقدمة
+              مميزات تخلينا في المقدمة
             </h3>
             <div className="w-20 h-1 bg-gradient-secondary mx-auto rounded-full"></div>
           </motion.div>
@@ -252,42 +244,42 @@ const WhyChooseUs = () => {
               {
                 icon: <BookOpen className="h-8 w-8" />,
                 title: "محتوى عملي",
-                desc: "مصمم لتحقيق نتائج فعلية في سوق العمل مع مشاريع حقيقية",
+                desc: "متصمم عشان تحقق نتايج حقيقية في سوق الشغل مع مشاريع على أرض الواقع",
                 color: "primary",
                 delay: 0
               },
               {
                 icon: <Users className="h-8 w-8" />,
-                title: "مجتمع داعم",
-                desc: "ليست رحلة فردية بل مع مجموعة متعاونة من الزملاء والخبراء",
+                title: "مجتمع بيساندك",
+                desc: "مش رحلة لوحدك لا مع جروب متعاون من الزملا والخبرا",
                 color: "secondary",
                 delay: 0.1
               },
               {
                 icon: <Briefcase className="h-8 w-8" />,
                 title: "توجيه مهني",
-                desc: "إعداد CV، تحضير للمقابلات، ربطك بفرص عمل حقيقية",
+                desc: "تجهيز CV، تحضير للمقابلات، وصلك بفرص شغل حقيقية",
                 color: "accent",
                 delay: 0.2
               },
               {
                 icon: <Award className="h-8 w-8" />,
                 title: "شهادات معتمدة",
-                desc: "شهادات مُعترف بها في السوق تضيف قيمة حقيقية لملفك المهني",
+                desc: "شهادات معترف بيها في السوق تضيف قيمة حقيقية لملفك المهني",
                 color: "success",
                 delay: 0.3
               },
               {
                 icon: <Zap className="h-8 w-8" />,
                 title: "تعلم تفاعلي",
-                desc: "ورش عمل تفاعلية ومشاريع عملية تضمن تطبيق ما تعلمته",
+                desc: "ورش عمل تفاعلية ومشاريع عملية تضمن إنك تطبق اللي اتعلمته",
                 color: "primary",
                 delay: 0.4
               },
               {
                 icon: <TrendingUp className="h-8 w-8" />,
-                title: "متابعة النمو",
-                desc: "تتبع تقدمك وتطورك مع تقارير دورية وتوصيات شخصية",
+                title: "متابعة التقدم",
+                desc: "تتبع تقدمك وتطورك مع تقارير كل فترة ونصايح شخصية",
                 color: "secondary",
                 delay: 0.5
               }
@@ -365,27 +357,33 @@ const WhyChooseUs = () => {
               </motion.div>
               
               <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                لست وحدك في هذه الرحلة
+                مش لوحدك في الرحلة دي
               </h3>
               
               <p className="text-xl mb-8 opacity-90 max-w-3xl mx-auto leading-relaxed">
-                انضم إلى <span className="text-primary-yellow font-bold">مئات الطلاب</span> الذين حققوا أهدافهم المهنية 
-                بمساعدة خبرائنا والتحقوا بوظائف أحلامهم
+                انضم لـ <span className="text-primary-yellow font-bold">مئات الطلاب</span> اللي حققوا أهدافهم المهنية 
+                بمساعدة خبرانا ولحقوا يشتغلوا في وظايف أحلامهم
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Link href='/courses' >
                 <motion.button 
                   className="btn-primary group"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span>ابدأ رحلتك الآن</span>
+                  <span>ابدأ رحلتك دلوقتي</span>
                   <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </motion.button>
-                
+                </Link>
+
+              <Link href='/about'>
                 <button className="text-white/90 hover:text-white font-semibold py-3 px-6 rounded-xl border-2 border-white/30 hover:border-white/50 transition-all duration-300">
-                  تعرف على المزيد
+                  اعرف أكتر
                 </button>
+              </Link>
+
+              
               </div>
               
               {/* Stats */}

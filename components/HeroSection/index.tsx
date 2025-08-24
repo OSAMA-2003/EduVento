@@ -66,7 +66,7 @@ const HeroSection = () => {
       </Swiper>
 
       {/* Content Overlay */}
-      <div className="absolute inset-0   bg-black/50 flex items-center justify-center z-10">
+      <div className="absolute inset-0   bg-black/80 flex items-center justify-center z-10">
         <div className="container mx-auto px-4 text-center text-white">
           <AnimatePresence mode="wait">
             <motion.div
@@ -79,12 +79,12 @@ const HeroSection = () => {
             >
               {/* ✅ Enhanced title with gradient text */}
               <motion.h1
-                className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+                className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, delay: 0.2 }}
               >
-                <span className="block text-white drop-shadow-2xl">
+                <span className="block text-white leading-[80px] md:leading-[120px] drop-shadow-2xl">
                   {slides[activeSlide].title}
                 </span>
               </motion.h1>
@@ -147,7 +147,7 @@ const HeroSection = () => {
               </motion.div>
 
               {/* ✅ Additional brand element */}
-              <motion.div
+              {/* <motion.div
                 className="mt-12 flex justify-center"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -157,7 +157,7 @@ const HeroSection = () => {
                   <div className="w-3 h-3 bg-secondary-green rounded-full animate-pulse"></div>
                   <span className="text-sm text-gray-200">متاح الآن - ابدأ مجاناً</span>
                 </div>
-              </motion.div>
+              </motion.div> */}
             </motion.div>
           </AnimatePresence>
         </div>

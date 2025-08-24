@@ -38,13 +38,13 @@ export default function HeroComponent({
 
       <div className="container mx-auto py-24 md:py-32 px-4 relative z-10">
         <motion.div
-          className="text-center max-w-5xl mx-auto"
+          className="text-center max-w-5xl mx-auto "
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-normal ">
-            <span className="text-white drop-shadow-2xl ">{headingTop}</span>
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:leading-[120px]">
+            <span className="text-white drop-shadow-2xl leading-[80px] md:leading-[120px]">{headingTop}</span>
             <br />
             <span className="text-primary-yellow drop-shadow-2xl  ">{headingHighlight}</span>
           </h1>

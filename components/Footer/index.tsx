@@ -10,6 +10,7 @@ import {
   MapPin,
   ArrowRight,
   Heart,
+  Star,
   Users,
   Award,
   ChevronRight,
@@ -60,9 +61,9 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="nav-gradient relative overflow-hidden">
+    <footer className="bg-gradient-primary-enhanced relative overflow-hidden">
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-primary-enhanced opacity-50"></div>
+        <div className="absolute inset-0 nav-gradient"></div>
         <div className="absolute inset-0 bg-pattern opacity-5"></div>
       </div>
 

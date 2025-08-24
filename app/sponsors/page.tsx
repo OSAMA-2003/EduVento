@@ -1,8 +1,6 @@
 import { fetchAllSponsors } from "@/lib/api";
 import Link from "next/link";
 import Image from "next/image";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,7 +14,6 @@ export default async function SponsorsPage() {
 
   return (
     <>
-      {/* Navigation */}
       
 
       {/* Hero Section */}

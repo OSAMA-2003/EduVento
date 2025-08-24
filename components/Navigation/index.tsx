@@ -163,7 +163,7 @@ const Navigation = () => {
               exit="exit"
               variants={menuVariants}
             >
-              <motion.div className="flex flex-col space-y-2">
+              <motion.div className="flex flex-col space-y-1">
                 {navItems.map((item) => (
                   <motion.div key={item.name} variants={itemVariants}>
                     <Link href={item.href} onClick={() => setIsOpen(false)} className="text-xl block py-2 ">

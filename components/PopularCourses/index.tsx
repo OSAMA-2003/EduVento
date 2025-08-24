@@ -108,16 +108,7 @@ const PopularCourses = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.6 }}
         >
-          <motion.div
-            className="inline-block mb-4"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="bg-primary-yellow backdrop-blur-sm text-primary-dark px-6 py-2 rounded-full font-semibold text-sm uppercase tracking-wide shadow-lg">
-              الأكثر شعبية
-            </div>
-          </motion.div>
+          
 
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-lg">
             <span className="text-primary-yellow">الدورات</span>{" "}
@@ -132,8 +123,7 @@ const PopularCourses = () => {
           />
           
           <p className="text-xl text-gray-100 max-w-3xl mx-auto leading-relaxed drop-shadow-sm">
-            اكتشف أفضل الدورات التدريبية التي يختارها آلاف الطلاب لتطوير مهاراتهم والوصول لأهدافهم المهنية
-          </p>
+اعرف أكتر الكورسات المطلوبة اللي بتساعد آلاف الناس يطوروا من مهاراتهم ويحققوا أحلامهم في الشغل            </p>
         </motion.div>
 
         {/* ✅ Loading State */}
@@ -177,6 +167,7 @@ const PopularCourses = () => {
                   delay: 4000,
                   disableOnInteraction: false,
                 }}
+                loop={true}
                 dir="rtl"
                 breakpoints={{
                   640: {
