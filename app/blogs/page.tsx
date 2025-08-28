@@ -15,11 +15,7 @@ export default function BlogsPage() {
                         headingHighlight="المقالات"
                         subtitle={`اقرأ أحدث المقالات والنصائح في مجال التعليم والتكنولوجيا من خبراء المجال 
               واكتشف آخر الاتجاهات في عالم البرمجة والتصميم`}
-                        stats={[
-                          { icon: <BookOpen className="h-5 w-5 text-secondary-green" />, label: '200+ مقال  ' },
-                          { icon: <Users className="h-5 w-5 text-primary-yellow" />, label: ' 50K+ قارئ' },
-                          { icon: <TrendingUp className="h-5 w-5 text-logo-blue" />, label: 'محدث يومياً ' },
-                        ]}
+                       
                         ctaText="استكشف المقالات"
                         scrollToClass="blogs-grid-section"
                       />

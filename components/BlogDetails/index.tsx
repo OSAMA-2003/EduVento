@@ -302,7 +302,7 @@ const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
 
               {/* Quick Actions */}
               <motion.div
-                className="card-primary flex justify-center items-center  flex-col min-w-[400px] md:min-w-[500px]  "
+                className="card-primary flex justify-center items-center  flex-col min-w-[250px] md:min-w-[500px]  "
                 initial={{ opacity: 0, x: 30 }}
                 animate={isContentInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}

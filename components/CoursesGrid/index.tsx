@@ -147,7 +147,7 @@ const CoursesGrid = () => {
               
               {/* Search Bar */}
               <div className="relative flex-1">
-                <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <Search className="absolute right-4 top-1/2 transform z-10 -translate-y-1/2 text-gray-800 h-5 w-5" />
                 <input
                   type="text"
                   placeholder="ابحث عن كورس أو مدرب..."
@@ -159,7 +159,7 @@ const CoursesGrid = () => {
 
               {/* Level Filter */}
               <div className="relative min-w-48">
-                <Filter className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+                <Filter className="absolute right-4 top-1/2 transform z-10 -translate-y-1/2 text-gray-800 h-5 w-5" />
                 <select
                   value={selectedLevel}
                   onChange={(e) => setSelectedLevel(e.target.value)}

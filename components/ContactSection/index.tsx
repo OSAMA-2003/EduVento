@@ -202,26 +202,7 @@ const ContactSection = () => {
               </div>
             </div>
 
-            {/* Stats Card */}
-            <div
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
-             
-            >
-              <div className="grid grid-cols-3 gap-4 text-center">
-                <div>
-                  <div className="text-2xl font-bold text-primary-yellow mb-1">24</div>
-                  <div className="text-white/80 text-xs">ساعة رد</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-secondary-green mb-1">98%</div>
-                  <div className="text-white/80 text-xs">معدل الرضا</div>
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-white mb-1">1K+</div>
-                  <div className="text-white/80 text-xs">استفسار تم الرد عليه</div>
-                </div>
-              </div>
-            </div>
+            
           </div>
 
           {/* ✅ Enhanced Contact Form */}

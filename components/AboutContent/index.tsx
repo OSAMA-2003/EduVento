@@ -13,7 +13,8 @@ import {
   Zap,
   CheckCircle,
   Star,
-  Lightbulb
+  Lightbulb,
+  Briefcase
 } from 'lucide-react';
 import AnimatedNumber from '../AnimateNumber'; // ✅ Add this import
 import Image from 'next/image';
@@ -141,6 +142,107 @@ const AboutContent = () => {
           </div>
         </div>
       </section> */}
+
+
+
+{/* ✅ Enhanced Features Grid */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-white relative" ref={storyRef}>
+          <div 
+            className="text-center mb-12"
+            
+          >
+            <h3 className="text-3xl md:text-4xl font-bold text-heading mb-4">
+              مميزات تخلينا في المقدمة
+            </h3>
+            <div className="w-20 h-1 bg-gradient-secondary mx-auto rounded-full"></div>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 px-8 md:px-20">
+            {[
+              {
+                icon: <BookOpen className="h-8 w-8" />,
+                title: "محتوى عملي",
+                desc: "متصمم عشان تحقق نتايج حقيقية في سوق الشغل مع مشاريع على أرض الواقع",
+                color: "primary",
+                delay: 0
+              },
+              {
+                icon: <Users className="h-8 w-8" />,
+                title: "مجتمع بيساندك",
+                desc: "مش رحلة لوحدك لا مع جروب متعاون من الزملا والخبرا",
+                color: "secondary",
+                delay: 0.1
+              },
+              {
+                icon: <Briefcase className="h-8 w-8" />,
+                title: "توجيه مهني",
+                desc: "تجهيز CV، تحضير للمقابلات، وصلك بفرص شغل حقيقية",
+                color: "accent",
+                delay: 0.2
+              },
+              {
+                icon: <Award className="h-8 w-8" />,
+                title: "شهادات معتمدة",
+                desc: "شهادات معترف بيها في السوق تضيف قيمة حقيقية لملفك المهني",
+                color: "success",
+                delay: 0.3
+              },
+              {
+                icon: <Zap className="h-8 w-8" />,
+                title: "تعلم تفاعلي",
+                desc: "ورش عمل تفاعلية ومشاريع عملية تضمن إنك تطبق اللي اتعلمته",
+                color: "primary",
+                delay: 0.4
+              },
+              {
+                icon: <TrendingUp className="h-8 w-8" />,
+                title: "متابعة التقدم",
+                desc: "تتبع تقدمك وتطورك مع تقارير كل فترة ونصايح شخصية",
+                color: "secondary",
+                delay: 0.5
+              }
+            ].map((feature, index) => (
+              <div 
+                key={index} 
+                className="card-primary hover:shadow-2xl transition-all duration-500 group cursor-pointer relative overflow-hidden"
+                
+              >
+                {/* Background gradient on hover */}
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-500 ${
+                  feature.color === 'primary' ? 'bg-gradient-primary' :
+                  feature.color === 'secondary' ? 'bg-secondary-green' :
+                  feature.color === 'accent' ? 'bg-primary-yellow' :
+                  'bg-logo-blue'
+                }`}></div>
+                
+                <div className="relative z-10">
+                  <motion.div 
+                    className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-4 shadow-lg ${
+                      feature.color === 'primary' ? 'bg-gradient-primary' :
+                      feature.color === 'secondary' ? 'bg-secondary-green' :
+                      feature.color === 'accent' ? 'bg-primary-yellow' :
+                      feature.color === 'success' ? 'bg-logo-blue' :
+                      'bg-gradient-primary'
+                    } group-hover:scale-110 transition-transform duration-300`}
+                    whileHover={{ rotate: 5 }}
+                  >
+                    {feature.icon}
+                  </motion.div>
+                  
+                  <h4 className="text-xl font-bold text-heading mb-3 group-hover:text-logo-blue transition-colors duration-300">
+                    {feature.title}
+                  </h4>
+                  
+                  <p className="text-gray-300  leading-relaxed group-hover:text-gray-400 transition-colors duration-300">
+                    {feature.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>  
+
+
 
       {/* ✅ All other sections remain exactly the same */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-white relative" ref={storyRef}>

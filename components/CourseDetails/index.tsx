@@ -11,7 +11,6 @@ import {
   Play,
   CheckCircle,
   Globe,
-  Calendar,
   ArrowLeft,
   Download,
   Share2,
@@ -23,7 +22,6 @@ import {
 import Link from 'next/link';
 import Image from 'next/image';
 
-// ✅ Updated interface to match your API response
 interface CourseDetailsProps {
   course: {
     id: number;
@@ -37,16 +35,15 @@ interface CourseDetailsProps {
     Instructor_image_url: string;
     students_numbers: string;
     starts: string; // rating
-    created_at: string;
     // Optional fields that might not exist in your API
-    price?: number;
-    discountedPrice?: number;
-    lessons?: any[];
-    whatYouWillLearn?: string[];
-    requirements?: string[];
-    certificate?: boolean;
+    // price?: number;
+    // discountedPrice?: number;
+    // lessons?: any[];
+    // whatYouWillLearn?: string[];
+    // requirements?: string[];
+    // certificate?: boolean;
     language?: string;
-    category?: any;
+    // category?: any;
   };
   relatedCourses?: any[];
 }
@@ -80,6 +77,7 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
   const learningPoints = parseFullDescription(course.full_description);
 
   // Get level color
+
   const getLevelColor = (level: string) => {
     switch (level.toLowerCase()) {
       case 'beginner':
@@ -206,10 +204,16 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
                   animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.8, duration: 0.6 }}
                 >
-                  <button className="group btn-primary flex items-center justify-center gap-3 px-8 py-4 text-lg">
-                    <Play className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
-                    <span>ابدأ التعلم الآن</span>
-                  </button>
+                  <a
+                    href="https://wa.me/201201345760"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <button className="group btn-primary flex items-center justify-center gap-3 px-8 py-4 text-lg">
+                      <Play className="h-5 w-5 group-hover:scale-110 transition-transform duration-300" />
+                      <span>اشترك دلوقتي</span>
+                    </button>
+                  </a>
                   
                   <div className="flex gap-3">
                     <button className="bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white p-4 rounded-xl hover:bg-white/20 transition-all duration-300">
@@ -257,12 +261,12 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
                 </div>
                 
                 {/* Enhanced Price Card */}
-                <motion.div
+                {/* <motion.div
                   className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-2xl mt-8 border border-white/20 relative overflow-hidden"
                   whileHover={{ y: -5, scale: 1.02 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {/* Background decoration */}
+                  
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary-yellow/10 to-transparent rounded-full -translate-y-16 translate-x-16"></div>
                   
                   <div className="text-center relative z-10">
@@ -303,7 +307,8 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
                       <div className="absolute inset-0 bg-white/20 translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
                     </button>
                   </div>
-                </motion.div>
+                </motion.div> */}
+
               </motion.div>
             </div>
           </div>
@@ -438,7 +443,6 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
                     { label: 'المدة', value: course.duration, icon: <Clock className="h-4 w-4" /> },
                     { label: 'عدد الطلاب', value: course.students_numbers, icon: <Users className="h-4 w-4" /> },
                     { label: 'التقييم', value: course.starts, icon: <Star className="h-4 w-4" /> },
-                    { label: 'تاريخ الإنشاء', value: new Date(course.created_at).toLocaleDateString('ar-EG'), icon: <Calendar className="h-4 w-4" /> },
                     { label: 'اللغة', value: course.language || 'العربية', icon: <Globe className="h-4 w-4" /> },
                   ].map((item, index) => (
                     <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300 group">
@@ -488,7 +492,7 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
                   <h4 className="font-bold text-xl text-logo-blue mb-2">{course.Instructor_name}</h4>
                   <p className="text-gray-300 mb-4">مدرب معتمد</p>
                   
-                  <div className="grid grid-cols-3 gap-4 text-center">
+                  {/* <div className="grid grid-cols-3 gap-4 text-center">
                     <div>
                       <div className="text-lg font-bold text-secondary-green">4.9</div>
                       <div className="text-xs text-gray-400">تقييم</div>
@@ -501,7 +505,7 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
                       <div className="text-lg font-bold text-logo-blue">1K+</div>
                       <div className="text-xs text-gray-400">طالب</div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </motion.div>
 

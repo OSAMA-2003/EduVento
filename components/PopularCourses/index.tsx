@@ -241,30 +241,7 @@ const PopularCourses = () => {
               </Link>
             </div>
 
-            {/* ✅ Dynamic Stats from Actual Data */}
-            {courses.length > 0 && (
-              <div className="flex justify-center gap-8 mt-8 pt-6 border-t border-white/20">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary-yellow">{courses.length}+</div>
-                  <div className="text-white/80 text-sm">دورة شعبية</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-secondary-green">
-                    {courses.reduce((acc, course) => acc + parseInt(course.students_numbers || '0'), 0).toLocaleString()}+
-                  </div>
-                  <div className="text-white/80 text-sm">طالب مسجل</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-white">
-                    {courses.length > 0 ? 
-                      (courses.reduce((acc, course) => acc + parseFloat(course.starts || '0'), 0) / courses.length).toFixed(1)
-                      : '4.9'
-                    }
-                  </div>
-                  <div className="text-white/80 text-sm">تقييم عام</div>
-                </div>
-              </div>
-            )}
+           
           </div>
         </motion.div>
 

@@ -1,6 +1,4 @@
 'use client';
-import Footer from '@/components/Footer';
-import Navigation from '@/components/Navigation';
 import { Mail, Phone, MessageCircle } from 'lucide-react';
 import ContactContent from '@/components/ContactContent';
 import HeroComponent from '@/components/HeroComponent';

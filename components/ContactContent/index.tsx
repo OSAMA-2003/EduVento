@@ -63,7 +63,7 @@ const ContactContent = () => {
     {
       icon: Phone,
       title: 'الهاتف',
-      details: ['17818 293 10 20+'],
+      details: ['01201345760'],
       description: 'متاح من السبت إلى الخميس',
       color: 'from-logo-blue to-secondary-green',
       bgColor: 'bg-logo-blue/10'
@@ -156,7 +156,7 @@ const ContactContent = () => {
                   
                   <div className="space-y-2 mb-4">
                     {info.details.map((detail, idx) => (
-                      <p key={idx} className="text-gray-700 font-medium group-hover:text-gray-900 transition-colors duration-300">
+                      <p key={idx} className="text-gray-700  direction-reverse font-medium group-hover:text-gray-900 transition-colors duration-300">
                         {detail}
                       </p>
                     ))}

@@ -35,10 +35,10 @@ export default async function PartnersPage() {
       </section>
 
       {/* Main content */}
-      <main className="min-h-screen bg-gray-50 py-20 px-4">
+      <main className="min-h-screen bg-gray-50 py-20 px-10">
         <div className="container mx-auto max-w-7xl">
           {partners.length === 0 ? (
-            <div className="text-center py-24 overflow-hidden">
+            <div className="text-center py-24 overflow-hidden ">
               <div className="bg-white/90 rounded-2xl p-8 mx-auto max-w-md shadow ">
                 <Image
                   src="/icons/user-group.svg"

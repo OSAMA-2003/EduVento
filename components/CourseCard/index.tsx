@@ -18,7 +18,6 @@ interface CourseApiResponse {
   Instructor_image_url: string;
   students_numbers: string;
   starts: string; // rating
-  created_at: string;
 }
 
 interface CourseCardProps {
@@ -199,14 +198,7 @@ const CourseCard = ({
           </Link>
         </div>
 
-        {/* Creation Date */}
-        <div className={`mt-4 pt-4 border-t text-xs ${
-          variant === 'featured' 
-            ? 'border-white/20 text-gray-200' 
-            : 'border-gray-200 text-gray-500'
-        }`}>
-          تم الإنشاء: {new Date(course.created_at).toLocaleDateString('ar-EG')}
-        </div>
+        
       </div>
 
       {/* Decorative Elements */}

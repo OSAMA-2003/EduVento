@@ -47,7 +47,7 @@ export interface Testimonial {
   name:string ;
   diploma_name:string;
   opinion:string;
-  photo_url:string;
+  image_url:string;
 
   // website_url:string; 
 }

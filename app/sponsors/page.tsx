@@ -52,7 +52,7 @@ export default async function SponsorsPage() {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-9">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-9 px-10 md:p-0 ">
               {sponsors.map((sponsor) => (
                 <Link
                   href={`/partners/${sponsor.id}`}

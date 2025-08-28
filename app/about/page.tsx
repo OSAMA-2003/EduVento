@@ -17,11 +17,7 @@ export default function About() {
           headingTop="من"
           headingHighlight="نحن"
           subtitle="أكاديمية رائدة في التعليم الرقمي تهدف إلى تمكين الأفراد من اكتساب المهارات اللازمة لمواكبة التطور التقني والمهني في العصر الحديث"
-          stats={[
-            { icon: <Users className="h-5 w-5 text-secondary-green" />, label: '10K+ طالب' },
-            { icon: <BookOpen className="h-5 w-5 text-primary-yellow" />, label: '150+ دورة' },
-            { icon: <Award className="h-5 w-5 text-logo-blue" />, label: '95% رضا' },
-          ]}
+         
           ctaText="اكتشف قصتنا"
           scrollToClass="about-content"
         />

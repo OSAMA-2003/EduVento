@@ -32,7 +32,7 @@ export default async function AmbassadorsPage() {
       </section>
 
       {/* Main content */}
-      <main className="min-h-screen bg-gray-50 py-20 px-4">
+      <main className="min-h-screen bg-gray-50 py-20 px-10">
         <div className="container mx-auto max-w-7xl">
           {ambassadors.length === 0 ? (
             <div className="text-center py-24 overflow-hidden">

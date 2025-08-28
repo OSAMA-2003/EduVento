@@ -14,7 +14,8 @@ import {
   Users,
   Award,
   ChevronRight,
-  Handshake
+  Handshake,
+  PhoneCall
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -54,10 +55,11 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Facebook, href: 'https://www.facebook.com/EduventoLearning', label: 'Facebook' },
+    
+    { icon: Instagram, href: 'https://www.instagram.com/eduventolearning', label: 'Instagram' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/edv-ler/', label: 'LinkedIn' },
+    { icon: PhoneCall, href: 'https://wa.me/201029317818', label: 'Facebook' },
   ];
 
   return (
@@ -66,6 +68,8 @@ const Footer = () => {
         <div className="absolute inset-0 nav-gradient"></div>
         <div className="absolute inset-0 bg-pattern opacity-5"></div>
       </div>
+
+    
 
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
@@ -76,9 +80,10 @@ const Footer = () => {
               <Link href="/" className="text-2xl font-bold text-white md:text-left">
                 <Image src={'/images/logo.png'} alt={'logo'} width={120} height={120} />
               </Link>
+             
             </div>
             <p className="text-gray-200 leading-relaxed">
-              أكاديمية رائدة في التعليم الرقمي تقدم دورات تدريبية معتمدة في مختلف المجالات التقنية والمهنية لتطوير مهاراتك وتحقيق أهدافك المهنية.
+              شركة رائدة في التعليم الرقمي تقدم دورات تدريبية معتمدة في مختلف المجالات التقنية والمهنية لتطوير مهاراتك وتحقيق أهدافك المهنية.
             </p>
             <div>
               <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
@@ -177,7 +182,7 @@ const Footer = () => {
                   <Phone className="h-4 w-4 text-secondary-green" />
                 </div>
                 <span className="text-gray-300 group-hover:text-white transition-colors duration-300 text-sm">
-                  +20 12 345 6789
+                  01201345760
                 </span>
               </div>
               <div className="flex items-center gap-3 p-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-colors duration-300 group">

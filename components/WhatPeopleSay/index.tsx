@@ -12,6 +12,7 @@ import { fetchAllTestimonials } from "@/lib/api";
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Image from 'next/image';
 
 
 export default function WhatPeopleSay() {
@@ -21,11 +22,14 @@ export default function WhatPeopleSay() {
     name: string;
     opinion: string;
     diploma_name: string;
+    image_url:string;
     // Add other properties if they exist in your testimonial object
   }
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  
 
   // ✅ Fetch testimonials once
   useEffect(() => {
@@ -39,7 +43,10 @@ export default function WhatPeopleSay() {
     };
 
     getTestimonials();
+    
   }, []);
+
+
 
   // ✅ Handle responsive slides
   useEffect(() => {
@@ -109,8 +116,8 @@ export default function WhatPeopleSay() {
           
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white drop-shadow-2xl">
-            <span className="text-primary-yellow">ماذا يقول</span>{" "}
-            <span className="text-white">عملاؤنا</span>
+            <span className="text-primary-yellow">متدربينا بيقولو </span>{" "}
+            <span className="text-white">عننا ايه</span>
           </h2>
           
           <motion.div
@@ -212,7 +219,17 @@ export default function WhatPeopleSay() {
                         
                        
                       </div>
-                      
+
+                      <Image
+                            src={testimonial.image_url}
+                            alt={`صورة ${testimonial.name}`}
+                            className='rounded-full'
+                            width={50}
+                            height={50}
+                                    
+                          />
+
+                          
                       <div className="flex-1">
                         <h4 className={`font-bold text-lg leading-tight ${
                           isActive ? 'text-gray-400' : 'text-gray-900'
@@ -224,11 +241,7 @@ export default function WhatPeopleSay() {
                         }`}>
                           {testimonial.diploma_name}
                         </p>
-                        <p className={`text-xs ${
-                          isActive ? 'text-primary-dark/60' : 'text-gray-500'
-                        }`}>
-                          {testimonial.opinion}
-                        </p>
+                        
                       </div>
                     </div>
 

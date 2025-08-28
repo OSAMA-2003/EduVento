@@ -493,7 +493,7 @@ const StorySection = () => {
               جاهز تبدأ رحلتك؟
             </h3>
             <p className="text-primary-dark/80 mb-6 text-lg">
-              انضم لآلاف الطلاب اللي غيروا مستقبلهم معانا
+              انضم مئات الطلاب اللي غيروا مستقبلهم معانا
             </p>
            
             <button className="btn-primary">
