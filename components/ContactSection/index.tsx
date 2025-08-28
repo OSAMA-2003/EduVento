@@ -123,7 +123,7 @@ const ContactSection = () => {
                   {
                     icon: <Phone className="h-6 w-6" />,
                     title: 'الهاتف',
-                    value: '+20 12 345 6789',
+                    value: '01201345760',
                     color: 'from-logo-blue to-secondary-green',
                     bgColor: 'bg-logo-blue/10'
                   },
