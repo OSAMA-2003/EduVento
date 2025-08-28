@@ -55,8 +55,7 @@ export default async function AmbassadorsPage() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-9">
               {ambassadors.map((ambassador) => (
-                <Link
-                  href={`/ambassadors/${ambassador.id}`}
+                <div
                   key={ambassador.id}
                   className="group relative block rounded-2xl overflow-hidden bg-white border border-white/20 shadow-lg hover:shadow-2xl hover:border-primary-yellow/40 transition-all duration-300 "
                 >
@@ -85,7 +84,7 @@ export default async function AmbassadorsPage() {
                       {ambassador.college}
                     </h4>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           )}

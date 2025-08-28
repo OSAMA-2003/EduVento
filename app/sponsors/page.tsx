@@ -1,5 +1,4 @@
 import { fetchAllSponsors } from "@/lib/api";
-import Link from "next/link";
 import Image from "next/image";
 import { Metadata } from "next";
 
@@ -44,7 +43,7 @@ export default async function SponsorsPage() {
                   className="mx-auto mb-4 opacity-60"
                 />
                 <h2 className="text-2xl font-bold text-primary-dark mb-2">
-                  لا يوجد مدربون حالياً
+                  لا يوجد رعاة حالياً
                 </h2>
                 <p className="text-gray-500 mb-2">
                   سيتم إضافة المزيد قريباً — تابعنا!
@@ -54,8 +53,8 @@ export default async function SponsorsPage() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-9 px-10 md:p-0 ">
               {sponsors.map((sponsor) => (
-                <Link
-                  href={`/partners/${sponsor.id}`}
+                <div
+                  
                   key={sponsor.id}
                   className="group relative block rounded-2xl overflow-hidden bg-white border border-white/20 shadow-lg hover:shadow-2xl hover:border-primary-yellow/40 transition-all duration-300 "
                 >
@@ -81,7 +80,7 @@ export default async function SponsorsPage() {
                       {sponsor.Sponsor_name}
                     </h3>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           )}
