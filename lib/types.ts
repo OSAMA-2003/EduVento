@@ -71,20 +71,15 @@ export interface Category {
 
 // types.ts
 export interface Blog {
-  id: string;
+  id:string;
   title: string;
-  excerpt: string;
   content: string;
   category: string;
-  date: string;           
-  readTime: string;       
-  image: string;
-  auther: string;         
-  tags: string[];
-  slug: string;
-  
-  created_at?: string;    
-  author?: string;       
+  created_at: string;
+  duration_bost: string;
+  image_url: string;
+  auther: any;
+  slug: string;   
 }
 
 // lib/types.ts

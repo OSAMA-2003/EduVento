@@ -2,21 +2,20 @@
 
 import {
   Facebook,
-  Twitter,
   Instagram,
   Linkedin,
   Mail,
-  Phone,
   MapPin,
   ArrowRight,
   Heart,
-  Star,
   Users,
   Award,
   ChevronRight,
   Handshake,
-  PhoneCall
 } from 'lucide-react';
+
+import { FaWhatsapp } from "react-icons/fa";
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -59,7 +58,7 @@ const Footer = () => {
     
     { icon: Instagram, href: 'https://www.instagram.com/eduventolearning', label: 'Instagram' },
     { icon: Linkedin, href: 'https://www.linkedin.com/company/edv-ler/', label: 'LinkedIn' },
-    { icon: PhoneCall, href: 'https://wa.me/201029317818', label: 'Facebook' },
+    { icon: FaWhatsapp, href: 'https://wa.me/201201345760', label: 'Whatsapp' },
   ];
 
   return (
@@ -174,12 +173,12 @@ const Footer = () => {
                   <Mail className="h-4 w-4 text-primary-yellow" />
                 </div>
                 <span className="text-gray-300 group-hover:text-white transition-colors duration-300 text-sm">
-                  eduvento@academy.com
+                 support@eduvento.online
                 </span>
               </div>
               <div className="flex items-center gap-3 p-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-colors duration-300 group">
                 <div className="w-8 h-8 bg-secondary-green/20 rounded-lg flex items-center justify-center">
-                  <Phone className="h-4 w-4 text-secondary-green" />
+                  <FaWhatsapp className="h-4 w-4 text-secondary-green" />
                 </div>
                 <span className="text-gray-300 group-hover:text-white transition-colors duration-300 text-sm">
                   01201345760

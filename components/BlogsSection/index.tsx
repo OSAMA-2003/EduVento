@@ -19,44 +19,57 @@ const BlogsSection = () => {
 
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+
+
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
+        setLoading(true);
         const data = await fetchAllArticles();
-        const latestBlogs = data
-          .slice(0, 5)
-          .map((blog) => ({
-            id: blog.id,
-            title: blog.title || 'مقال بدون عنوان',
-            excerpt:
-              blog.excerpt ||
-              (blog.content
-                ? `${blog.content.split(' ').slice(0, 20).join(' ')}...`
-                : 'لا يوجد مقتطف'),
-            content: blog.content || '',
-            category: blog.category || 'غير مصنف',
-            date: blog.created_at
-              ? new Date(blog.created_at).toLocaleDateString('ar-EG')
-              : new Date().toLocaleDateString('ar-EG'),
-            readTime: blog.readTime || '5 دقائق',
-            image:
-              blog.image ||
-              '/images/blog-placeholder.webp',
-            auther:blog.auther,
-            tags: blog.tags || [],
-            slug: blog.slug || blog.id.toString(),
-          }));
-        setBlogs(latestBlogs);
-      } catch (error) {
-        console.error('Error fetching blogs:', error);
+        console.log(data)
+  
+        if (data && data.length > 0) {
+          setBlogs(data); 
+        } else {
+          setError("مفيش مقالات متاحة دلوقتي");
+        }
+      } catch (err: any) {
+        console.error("Failed to load blogs:", err);
+        setError(err.message || "حدث خطأ أثناء تحميل المقالات");
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchBlogs();
   }, []);
+
+
+
+  if (error) {
+      return (
+        <div className="bg-gradient-smooth-blend py-20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-pattern opacity-10"></div>
+          <div className="text-center py-20 relative z-10">
+            <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto">
+              <div className="w-16 h-16 bg-alert-red rounded-full flex items-center justify-center mx-auto mb-4">
+              </div>
+              <h3 className="text-xl font-bold text-primary-dark mb-2">خطأ في التحميل</h3>
+              <p className="text-alert-red mb-4">{error}</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="btn-primary"
+              >
+                إعادة المحاولة
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
 
   return (
     <section
@@ -141,7 +154,7 @@ const BlogsSection = () => {
                     <div className="aspect-[4/3] overflow-hidden">
                       
                     <Image
-                      src={blog.image|| '/fallback.jpg'}
+                      src={blog.image_url|| '/fallback.jpg'}
                       alt={blog.title}
                       fill
                       loading='lazy'
@@ -153,7 +166,7 @@ const BlogsSection = () => {
 
                     <div className="absolute top-4 left-4">
                       <span className="bg-gradient-primary text-white text-sm font-medium px-3 py-1 rounded">
-                         {blog.date}
+                         {blog.created_at}
                       </span>
                     </div>
 

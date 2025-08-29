@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import { useInView } from 'framer-motion';
 import { 
   Mail, 
   Phone, 
@@ -11,9 +10,8 @@ import {
   Clock, 
   CheckCircle,
   Heart,
-  Star,
-  Users
 } from 'lucide-react';
+import { FaWhatsapp } from "react-icons/fa";
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -121,8 +119,8 @@ const ContactSection = () => {
               <div className="space-y-6">
                 {[
                   {
-                    icon: <Phone className="h-6 w-6" />,
-                    title: 'الهاتف',
+                    icon: <FaWhatsapp className="h-6 w-6" />,
+                    title: 'واتساب',
                     value: '01201345760',
                     color: 'from-logo-blue to-secondary-green',
                     bgColor: 'bg-logo-blue/10'
@@ -130,7 +128,7 @@ const ContactSection = () => {
                   {
                     icon: <Mail className="h-6 w-6" />,
                     title: 'البريد الإلكتروني',
-                    value: 'eduvento@academy.com',
+                    value: 'support@eduvento.online',
                     color: 'from-secondary-green to-primary-yellow',
                     bgColor: 'bg-secondary-green/10'
                   },

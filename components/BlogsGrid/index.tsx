@@ -13,45 +13,32 @@ const BlogsGrid = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState(''); // Keep searchTerm as string
+  const [searchTerm, setSearchTerm] = useState(''); 
   const [selectedCategory, setSelectedCategory] = useState('');
-  const blogsPerPage = 9;
+  const blogsPerPage = 10;
 
-  useEffect(() => {
-    const loadBlogs = async () => {
-      try {
-        setLoading(true);
-        const data = await fetchAllArticles();
+ useEffect(() => {
+  const loadBlogs = async () => {
+    try {
+      setLoading(true);
+      const data = await fetchAllArticles();
+      console.log(data)
 
-        const transformedBlogs = data.map((blog) => ({
-          id:blog.id,
-          title: blog.title || 'مقال بدون عنوان',
-          excerpt:
-            blog.excerpt ||
-            (blog.content
-              ? `${blog.content.split(' ').slice(0, 20).join(' ')}...`
-              : 'لا يوجد مقتطف'),
-          content: blog.content || '',
-          category: blog.category || 'غير مصنف', // Ensure category is string
-          date: blog.created_at ? new Date(blog.created_at).toLocaleDateString('ar-EG') : new Date().toLocaleDateString('ar-EG'),
-          readTime: blog.readTime || '5',
-          image: blog.image || '/images/blog-placeholder.webp', // Assuming image is string
-          auther: blog.auther || 'مجهول', // Corrected property name to 'auther'
-          tags: blog.tags || [],
-          slug: blog.slug || blog.id.toString(),
-        }));
-
-        setBlogs(transformedBlogs);
-      } catch (err: any) {
-        console.error('Failed to load blogs:', err);
-        setError(err.message || 'حدث خطأ أثناء تحميل المقالات');
-      } finally {
-        setLoading(false);
+      if (data && data.length > 0) {
+        setBlogs(data); 
+      } else {
+        setError("مفيش مقالات متاحة دلوقتي");
       }
-    };
+    } catch (err: any) {
+      console.error("Failed to load blogs:", err);
+      setError(err.message || "حدث خطأ أثناء تحميل المقالات");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    loadBlogs();
-  }, []);
+  loadBlogs();
+}, []);
 
   // Filter blogs
   const filteredBlogs = useMemo(() => {
@@ -203,7 +190,7 @@ const BlogsGrid = () => {
 
               {/* Results Count */}
               <div className="bg-primary-yellow text-primary-dark px-4 py-3 rounded-xl font-bold text-sm whitespace-nowrap">
-                {filteredBlogs.length} مقال
+                {filteredBlogs.length} مقالة
               </div>
             </div>
           </div>
@@ -296,42 +283,7 @@ const BlogsGrid = () => {
           </motion.div>
         )}
 
-        {/* ✅ Statistics Section */}
-        <motion.div
-          className="mt-16 text-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-        >
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary-yellow mb-2">
-                  {blogs.length}
-                </div>
-                <div className="text-white/80 text-sm">إجمالي المقالات</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-secondary-green mb-2">
-                  {categories.length}
-                </div>
-                <div className="text-white/80 text-sm">فئة متنوعة</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-white mb-2">
-                  50K+
-                </div>
-                <div className="text-white/80 text-sm">قارئ شهرياً</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-logo-blue mb-2">
-                  20+
-                </div>
-                <div className="text-white/80 text-sm">كاتب خبير</div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+       
       </div>
     </div>
   );

@@ -4,26 +4,23 @@ import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { 
   Mail, 
-  Phone, 
+  Facebook,
+  Instagram,
+  Linkedin,
   MapPin, 
   Send, 
   Clock, 
-  MessageCircle, 
   CheckCircle,
   Heart,
-  Star,
-  Users,
-  Headphones
 } from 'lucide-react';
+import { FaWhatsapp } from "react-icons/fa";
 
 const ContactContent = () => {
   const infoRef = useRef(null);
   const formRef = useRef(null);
-  const faqRef = useRef(null);
   
   const isInfoInView = useInView(infoRef, { once: true, margin: '-100px' });
   const isFormInView = useInView(formRef, { once: true, margin: '-100px' });
-  const isFaqInView = useInView(faqRef, { once: true, margin: '-100px' });
 
   const [formData, setFormData] = useState({
     name: '',
@@ -59,60 +56,63 @@ const ContactContent = () => {
     });
   };
 
-  const contactInfo = [
-    {
-      icon: Phone,
-      title: 'الهاتف',
-      details: ['01201345760'],
-      description: 'متاح من السبت إلى الخميس',
-      color: 'from-logo-blue to-secondary-green',
-      bgColor: 'bg-logo-blue/10'
-    },
-    {
-      icon: Mail,
-      title: 'البريد الإلكتروني',
-      details: ['eduvento@academy.com'],
-      // description: 'نرد خلال 24 ساعة',
-      color: 'from-secondary-green to-primary-yellow',
-      bgColor: 'bg-secondary-green/10'
-    },
-    {
-      icon: MapPin,
-      title: 'العنوان',
-      details: ['سوهاج، مصر'],
-      description: 'مفتوح من 9 صباحاً إلى 6 مساءً',
-      color: 'from-primary-yellow to-alert-red',
-      bgColor: 'bg-primary-yellow/10'
-    },
-  ];
+const contactInfo = [
+  {
+    icon: FaWhatsapp,
+    title: 'واتساب',
+    details: [
+      { text: '01201345760', href: 'https://wa.me/201201345760' }
+    ],
+    color: 'from-logo-blue to-secondary-green',
+  },
+  {
+    icon: Facebook,
+    title: 'فيسبوك',
+    details: [
+      { text: 'Eduvento', href: 'https://www.facebook.com/EduventoLearning' }
+    ],
+    color: 'blue-500',
+  },
+  {
+    icon: Instagram,
+    title: 'انستغرام',
+    details: [
+      { text: 'Eduvento', href: 'https://www.instagram.com/eduventolearning' }
+    ],
+    color: 'from-logo-blue to-secondary-green',
+  },
+  {
+    icon: Linkedin,
+    title: 'لينكد ان',
+    details: [
+      { text: 'Eduvento', href: 'https://www.linkedin.com/company/edv-ler/' }
+    ],
+    color: 'from-logo-blue to-secondary-green',
+  },
+  {
+    icon: Mail,
+    title: 'ايميل',
+    details: [
+      { text: 'support@eduvento.online', href: 'mailto:support@eduvento.online' }
+    ],
+    color: 'from-secondary-green to-primary-yellow',
+  },
+  {
+    icon: MapPin,
+    title: 'العنوان',
+    details: [
+      { text: 'سوهاج، مصر', href: ' ' }
+    ],
+    color: 'from-primary-yellow to-alert-red',
+  },
+];
 
   const workingHours = [
     { day: 'الاحد - الخميس', hours: '9:00 ص - 6:00 م', available: true },
    
   ];
 
-  const faqs = [
-    {
-      question: 'كم يستغرق الرد على الاستفسارات؟',
-      answer: 'نحن نرد على جميع الاستفسارات خلال 24 ساعة كحد أقصى، وفي أغلب الأحيان خلال ساعات قليلة.',
-      icon: <Clock className="h-5 w-5" />
-    },
-    {
-      question: 'هل يمكنني زيارة المكتب شخصياً؟',
-      answer: 'نعم، يمكنك زيارتنا خلال ساعات العمل الرسمية. يُفضل تحديد موعد مسبق للحصول على أفضل خدمة.',
-      icon: <MapPin className="h-5 w-5" />
-    },
-    {
-      question: 'هل تقدمون استشارات مجانية؟',
-      answer: 'نعم، نقدم استشارات مجانية لمساعدتك في اختيار الدورة المناسبة وتخطيط رحلتك التعليمية.',
-      icon: <Heart className="h-5 w-5" />
-    },
-    {
-      question: 'ما هي طرق التواصل المتاحة؟',
-      answer: 'يمكنك التواصل معنا عبر الهاتف، البريد الإلكتروني، النموذج أدناه، أو زيارة مكتبنا شخصياً.',
-      icon: <Headphones className="h-5 w-5" />
-    }
-  ];
+ 
 
   return (
     <div className="overflow-hidden">
@@ -136,7 +136,7 @@ const ContactContent = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-primary-yellow to-secondary-green mx-auto rounded-full"></div>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-8 px-10 md:px-2">
             {contactInfo.map((info, index) => (
               <motion.div
                 key={index}
@@ -145,30 +145,39 @@ const ContactContent = () => {
                 animate={isInfoInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
               >
-                <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 text-center shadow-2xl hover:shadow-3xl transition-all duration-500 group-hover:-translate-y-2 border border-white/20">
-                  <div className={`w-20 h-20 mx-auto bg-gradient-to-br ${info.color} rounded-2xl flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform duration-500`}>
-                    <info.icon className="h-10 w-10 text-logo-blue" />
-                  </div>
-                  
-                  <h3 className="text-2xl font-bold text-primary-dark mb-4 group-hover:text-logo-blue transition-colors duration-300">
-                    {info.title}
-                  </h3>
-                  
-                  <div className="space-y-2 mb-4">
-                    {info.details.map((detail, idx) => (
-                      <p key={idx} className="text-gray-700  direction-reverse font-medium group-hover:text-gray-900 transition-colors duration-300">
-                        {detail}
-                      </p>
-                    ))}
-                  </div>
-                  
-                  {/* <p className="text-gray-600 text-sm group-hover:text-gray-800 transition-colors duration-300">
-                    {info.description}
-                  </p> */}
 
-                  {/* Decorative elements */}
-                  <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-white/10 to-transparent rounded-full -translate-y-8 translate-x-8 group-hover:scale-150 transition-transform duration-700"></div>
-                </div>
+
+                <a
+  href={info.details[0]?.href} 
+  target="_blank"
+  rel="noopener noreferrer"
+  className="block"
+>
+  <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 text-center shadow-2xl hover:shadow-3xl transition-all duration-500 group-hover:-translate-y-2 border border-white/20">
+    <div className={`w-20 h-20 mx-auto bg-gradient-to-br  rounded-2xl flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform duration-500`}>
+      <info.icon className="h-10 w-10 text-logo-blue" />
+    </div>
+    
+    <h3 className="text-2xl font-bold text-primary-dark mb-4 group-hover:text-logo-blue transition-colors duration-300">
+      {info.title}
+    </h3>
+    
+    <div className="space-y-2 mb-4">
+      {info.details.map((detail, idx) => (
+        <p
+          key={idx}
+          className="text-gray-700 direction-reverse font-medium group-hover:text-gray-900 transition-colors duration-300"
+        >
+          {detail.text}
+        </p>
+      ))}
+    </div>
+
+    {/* Decorative elements */}
+    <div className="absolute top-4 right-4 w-16 h-16 bg-gradient-to-br from-white/10 to-transparent rounded-full -translate-y-8 translate-x-8 group-hover:scale-150 transition-transform duration-700"></div>
+  </div>
+</a>
+
               </motion.div>
             ))}
           </div>

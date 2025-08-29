@@ -4,24 +4,15 @@ import { motion } from 'framer-motion';
 import { Calendar, ArrowLeft, Clock, BookOpen, Eye, MessageCircle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Blog } from '@/lib/types';
 
-// ✅ Blog interface matching your API response
-interface BlogApiResponse {
-  id:string;
-  title: string;
-  excerpt: string;
-  content: string;
-  category: string;
-  date: string;
-  readTime: string;
-  image: string;
-  auther: any;
-  tags: string[];
-  slug: string;
-}
+
+
+
+
 
 interface BlogCardProps {
-  blog: BlogApiResponse;
+  blog: Blog;
   index?: number;
   variant?: 'default' | 'featured' | 'compact';
 }
@@ -31,16 +22,16 @@ const BlogCard = ({ blog, index = 0, variant = 'default' }: BlogCardProps) => {
   // Get category color
   const getCategoryColor = (category: string) => {
     switch (category.toLowerCase()) {
-      case 'تقنية':
+      case 'التعليم اونلاين':
       case 'technology':
         return 'bg-logo-blue';
-      case 'تعليم':
+      case 'التعليم اولاي':
       case 'education':
         return 'bg-secondary-green';
-      case 'برمجة':
+      case 'تعليم عن بعد':
       case 'programming':
         return 'bg-primary-yellow text-primary-dark';
-      case 'تصميم':
+      case 'التعليم الاليكتروني':
       case 'design':
         return 'bg-alert-red';
       default:
@@ -72,7 +63,7 @@ const BlogCard = ({ blog, index = 0, variant = 'default' }: BlogCardProps) => {
       {/* Image Section */}
       <div className="relative h-48 overflow-hidden">
         <Image
-  src={blog.image || fallbackImage}
+  src={blog.image_url || fallbackImage}
   alt={blog.title}
   fill
   sizes="(max-width:768px) 100vw, 50vw"
@@ -102,12 +93,12 @@ const BlogCard = ({ blog, index = 0, variant = 'default' }: BlogCardProps) => {
         <div className="flex items-center gap-3 text-xs text-gray-500 mb-3">
           <div className="flex items-center gap-1">
             <Calendar className="h-3 w-3 text-logo-blue" />
-            <span className={variant === 'featured' ? 'text-white/80' : 'text-gray-500'}>{blog.date}</span>
+            <span className={variant === 'featured' ? 'text-white/80' : 'text-gray-500'}>{blog.created_at}</span>
           </div>
           <span className={variant === 'featured' ? 'text-white/60' : 'text-gray-300'}>•</span>
           <div className="flex items-center gap-1">
             <Clock className="h-3 w-3 text-secondary-green" />
-            <span className={variant === 'featured' ? 'text-white/80' : 'text-gray-500'}>{blog.readTime}</span>
+            <span className={variant === 'featured' ? 'text-white/80' : 'text-gray-500'}>{blog.duration_bost}</span>
           </div>
         </div>
 
@@ -131,26 +122,10 @@ const BlogCard = ({ blog, index = 0, variant = 'default' }: BlogCardProps) => {
             ? 'text-white/90 group-hover:text-white'
             : 'text-gray-600 group-hover:text-gray-800'
         }`}>
-          {blog.excerpt}
+          {blog.content}
         </p>
 
-        {/* Tags */}
-        {blog.tags && blog.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {blog.tags.slice(0, 2).map((tag, tagIndex) => (
-              <span
-                key={tagIndex}
-                className={`px-2 py-1 rounded-full text-xs font-medium transition-colors duration-300 ${
-                  variant === 'featured'
-                    ? 'bg-white/20 text-white hover:bg-white/30'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+       
 
         {/* Footer */}
         <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-200">
