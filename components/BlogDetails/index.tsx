@@ -6,17 +6,11 @@ import {
   Calendar,
   Clock,
   User,
-  ArrowLeft,
   Share2,
-  BookOpen,
-  Eye,
-  MessageCircle,
   Heart,
-  TrendingUp,
 } from 'lucide-react'
 import Link from 'next/link'
 import { Blog } from '@/lib/types'
-import Image from 'next/image'
 
 interface BlogDetailsProps {
   blog: Blog
@@ -32,14 +26,13 @@ const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
 
   const isHeroInView = useInView(heroRef, { once: true, margin: '-100px' })
   const isContentInView = useInView(contentRef, { once: true, margin: '-100px' })
-  const isRelatedInView = useInView(relatedRef, { once: true, margin: '-100px' })
 
   const handleShare = async () => {
     try {
       if (navigator.share) {
         await navigator.share({
           title: blog.title,
-          text: blog.excerpt,
+          text: blog.content,
           url: window.location.href,
         })
       } else if (navigator.clipboard) {
@@ -62,24 +55,24 @@ const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
     : 'تاريخ غير معروف'
 
   const authorName = blog.auther || 'مؤلف غير معروف'
-  const readTime = blog.readTime || '5 دقائق'
+  const readTime = blog.duration_bost || '5 دقائق'
 
   const getCategoryColor = (category: string) => {
-    switch (category?.toLowerCase()) {
-      case 'تقنية':
+    switch (category.toLowerCase()) {
+      case 'التعليم اونلاين':
       case 'technology':
-        return 'bg-logo-blue'
-      case 'تعليم':
+        return 'bg-logo-blue';
+      case 'التعليم اولاي':
       case 'education':
-        return 'bg-secondary-green'
-      case 'برمجة':
+        return 'bg-secondary-green';
+      case 'تعليم عن بعد':
       case 'programming':
-        return 'bg-primary-yellow text-primary-dark'
-      case 'تصميم':
+        return 'bg-primary-yellow text-primary-dark';
+      case 'التعليم الاليكتروني':
       case 'design':
-        return 'bg-alert-red'
+        return 'bg-alert-red';
       default:
-        return 'bg-logo-blue'
+        return 'bg-logo-blue';
     }
   }
 
@@ -123,16 +116,7 @@ const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
               {blog.title || 'عنوان المقال'}
             </motion.h1>
 
-            {blog.excerpt && (
-              <motion.p
-                className="text-xl md:text-2xl text-gray-100 mb-8 max-w-4xl mx-auto leading-relaxed drop-shadow-lg"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                {blog.excerpt}
-              </motion.p>
-            )}
+           
 
             {/* Meta information */}
             <motion.div
@@ -335,110 +319,7 @@ const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
         </div>
       </div>
 
-      {/* ✅ Enhanced Related Articles */}
-      {relatedBlogs?.length > 0 && (
-        <section className="py-20 bg-gradient-secondary-enhanced relative overflow-hidden" ref={relatedRef}>
-          <div className="absolute inset-0 bg-gradient-mesh opacity-90"></div>
-          <div className="absolute inset-0 bg-pattern opacity-5"></div>
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-7xl mx-auto">
-              
-              <motion.div
-                className="text-center mb-16"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isRelatedInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="inline-block bg-primary-yellow/90 backdrop-blur-sm text-primary-dark px-6 py-2 rounded-full font-semibold text-sm uppercase tracking-wide shadow-lg mb-6">
-                  مقالات مشابهة
-                </div>
-                
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-2xl">
-                  مقالات قد تعجبك
-                </h2>
-                
-                <div className="w-24 h-2 bg-gradient-to-r from-primary-yellow to-secondary-green mx-auto rounded-full shadow-lg"></div>
-              </motion.div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {relatedBlogs.map((relatedBlog, index) => (
-                  <motion.article
-                    key={relatedBlog.id}
-                    className="bg-white/95 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition duration-500 group border border-white/20 flex flex-col"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={isRelatedInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ delay: index * 0.1, duration: 0.6 }}
-                    whileHover={{ y: -8, scale: 1.02 }}
-                  >
-                    {relatedBlog.image && (
-                      <div className="relative aspect-video overflow-hidden">
-                        <Image
-                            src={relatedBlog.image }
-                            alt={`صورة مصغرة لـ ${relatedBlog.title}`}
-                            fill
-                            // sizes="(max-width: 768px) 100vw, 33vw"
-                            className="object-cover transition-transform duration-700 group-hover:scale-110"
-                            loading="lazy"
-                            // width={500}
-                            // height={300}
-                          />
-                        
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                        
-                        {/* Hover overlay */}
-                        <div className="absolute inset-0 bg-logo-blue/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                          <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                            <BookOpen className="h-6 w-6 text-logo-blue" />
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                    
-                    <div className="p-6 flex flex-col justify-between flex-grow">
-                      <div>
-                        <h3 className="text-xl font-bold text-primary-dark mb-3 hover:text-logo-blue transition-colors duration-300 line-clamp-2 group-hover:text-logo-blue">
-                          <Link 
-                            href={`/blogs/${relatedBlog.id}`} 
-                            className="focus:outline-none focus:ring-2 focus:ring-logo-blue rounded"
-                          >
-                            {relatedBlog.title}
-                          </Link>
-                        </h3>
-                        
-                        {relatedBlog.excerpt && (
-                          <p className="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow group-hover:text-gray-800 transition-colors duration-300">
-                            {relatedBlog.excerpt}
-                          </p>
-                        )}
-                      </div>
-                      
-                      <div className="flex items-center justify-between mt-4">
-                        <div className="text-xs text-gray-500 flex items-center gap-2">
-                          <Calendar className="h-3 w-3" />
-                          <span>{new Date(relatedBlog.created_at || '').toLocaleDateString('ar-EG')}</span>
-                        </div>
-                        
-                        <Link
-                          href={`/blogs/${relatedBlog.id}`}
-                          className="group/btn inline-flex items-center gap-2 text-logo-blue hover:text-secondary-green font-semibold text-sm transition duration-300 relative"
-                          aria-label={`اقرأ المزيد عن ${relatedBlog.title}`}
-                        >
-                          <span>اقرأ المزيد</span>
-                          <ArrowLeft className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
-                        </Link>
-                      </div>
-                    </div>
-
-                    {/* Decorative element */}
-                    <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-logo-blue via-secondary-green to-primary-yellow transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                  </motion.article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
+    
     </div>
   );
 };
