@@ -1,7 +1,4 @@
-'use client';
-
 import BlogsGrid from '@/components/BlogsGrid';
-import { BookOpen, Users,TrendingUp } from 'lucide-react';
 import HeroComponent from '@/components/HeroComponent';
 
 export default function BlogsPage() {

@@ -40,9 +40,9 @@ export async function generateMetadata(
 
     return {
       title: article.title,
-      description: article.excerpt,
+      description: article.content,
       openGraph: {
-        images: article.image,
+        images: article.image_url,
       },
     };
   } catch (error) {
@@ -91,8 +91,8 @@ export default async function BlogPage({
   const blogData = {
     ...article,
     content: sanitizedContent,
-    date: article?.date
-      ? new Date(article.date).toLocaleDateString('ar-EG')
+    date: article?.created_at
+      ? new Date(article.created_at).toLocaleDateString('ar-EG')
       : new Date().toLocaleDateString('ar-EG'),
     author:
       typeof article?.auther === 'object'
