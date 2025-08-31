@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Clock, Users, Star, BookOpen, TrendingUp, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-
+export const dynamic = "force-dynamic";
 // ✅ Course interface matching your API response
 interface CourseApiResponse {
   id: number;

@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, BookOpen, Filter, Search } from 'lucide-react';
 import { fetchAllCourses } from '@/lib/api';
 import CourseCard from '../CourseCard';
+export const dynamic = "force-dynamic";
 
 // ✅ Course interface matching your API response
 interface CourseApiResponse {

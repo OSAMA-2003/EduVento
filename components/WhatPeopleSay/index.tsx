@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Quote, Heart } from 'lucide-react';
 import { fetchAllTestimonials } from "@/lib/api";
+export const dynamic = "force-dynamic";
 
 
 import 'swiper/css';

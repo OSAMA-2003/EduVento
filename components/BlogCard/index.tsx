@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Calendar, ArrowLeft, Clock, BookOpen, Eye, MessageCircle } from 'lucide-react';
+import { Calendar, ArrowLeft, Clock, Eye, MessageCircle } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Blog } from '@/lib/types';
@@ -9,6 +9,7 @@ import { Blog } from '@/lib/types';
 
 
 export const dynamic = "force-dynamic";
+
 
 
 interface BlogCardProps {
@@ -46,6 +47,7 @@ const BlogCard = ({ blog, index = 0, variant = 'default' }: BlogCardProps) => {
   };
 
   const fallbackImage = 'https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=800&h=600&fit=crop';
+
 
   return (
     <Link

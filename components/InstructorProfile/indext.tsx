@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { Instructor } from '@/lib/types';
+export const dynamic = "force-dynamic";
 
 interface InstructorProfileProps {
   instructor: Instructor;
