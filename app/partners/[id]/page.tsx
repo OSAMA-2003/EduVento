@@ -6,9 +6,7 @@ import Footer from '@/components/Footer';
 import Image from 'next/image';
 
 interface PartnerPageProps {
-  params: Promise<{
-    id: string;
-  }>;
+  params: { id: string };   // <-- should NOT be Promise
 }
 
 export async function generateStaticParams() {
@@ -21,7 +19,7 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PartnerPageProps): Promise<Metadata> {
-  const { id } = await params;
+  const { id } = params;   // no await
   const partner = await fetchPartnerById(Number(id));
   if (!partner) {
     return {
@@ -36,7 +34,7 @@ export async function generateMetadata({ params }: PartnerPageProps): Promise<Me
 }
 
 export default async function PartnerDetailsPage({ params }: PartnerPageProps) {
-  const { id } = await params;
+  const { id } = params;   // no await
   const partner = await fetchPartnerById(Number(id));
   if (!partner) notFound();
 
