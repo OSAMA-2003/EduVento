@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
+export const dynamic = "force-dynamic";
+
 
 interface PartnerPageProps {
   params: Promise<{

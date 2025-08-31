@@ -5,6 +5,8 @@ import Footer from '@/components/Footer';
 import CourseDetails from '@/components/CourseDetails'; // ✅ Now points to correct component
 import { fetchAllCourses, fetchCourseById } from '@/lib/api';
 import { notFound } from 'next/navigation';
+export const dynamic = "force-dynamic";
+
 
 // ✅ Updated interface for Next.js 15
 interface CoursePageProps {

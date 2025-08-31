@@ -9,6 +9,8 @@ import {
 } from '@/lib/api';
 
 import type { Metadata } from 'next';
+export const dynamic = "force-dynamic";
+
 
 // ✅ Static path generation
 export async function generateStaticParams() {
