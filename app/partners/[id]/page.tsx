@@ -5,8 +5,23 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  const { id } = params;
+interface PartnerPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+export async function generateStaticParams() {
+  try {
+    const partners = await fetchAllPartners();
+    return partners.map(inst => ({ id: inst.id.toString() }));
+  } catch {
+    return [];
+  }
+}
+
+export async function generateMetadata({ params }: PartnerPageProps): Promise<Metadata> {
+  const { id } = await params;
   const partner = await fetchPartnerById(Number(id));
   if (!partner) {
     return {
@@ -20,8 +35,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   };
 }
 
-export default async function PartnerDetailsPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function PartnerDetailsPage({ params }: PartnerPageProps) {
+  const { id } = await params;
   const partner = await fetchPartnerById(Number(id));
   if (!partner) notFound();
 
