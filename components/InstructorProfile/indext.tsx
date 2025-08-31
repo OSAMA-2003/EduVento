@@ -37,11 +37,7 @@ export default function InstructorProfile({ instructor }: InstructorProfileProps
             </span>
           )}
 
-          {instructor.years_experience !== undefined && instructor.years_experience !== null && (
-            <div className="text-sm text-primary-yellow font-medium">
-              🕒 <span className="font-semibold">الخبرة:</span> {instructor.years_experience} سنة
-            </div>
-          )}
+          
 
           {instructor.about_Instructor ? (
             <p className="text-gray-700 leading-relaxed whitespace-pre-line">{instructor.about_Instructor}</p>
