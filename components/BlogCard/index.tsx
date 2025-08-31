@@ -21,7 +21,7 @@ const BlogCard = ({ blog, index = 0, variant = 'default' }: BlogCardProps) => {
   
   // Get category color
   const getCategoryColor = (category: string) => {
-    switch (category.toLowerCase()) {
+    switch (category) {
       case 'التعليم اونلاين':
       case 'technology':
         return 'bg-logo-blue';
