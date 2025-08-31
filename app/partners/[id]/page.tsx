@@ -1,11 +1,9 @@
-import { fetchAllPartners, fetchPartnerById } from '@/lib/api'; 
+import { fetchAllInstructors, fetchInstructorById } from '@/lib/api';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
-import Image from 'next/image';
+import InstructorProfile from '@/components/InstructorProfile/indext';
 
-interface PartnerPageProps {
+interface InstructorPageProps {
   params: Promise<{
     id: string;
   }>;
@@ -13,91 +11,61 @@ interface PartnerPageProps {
 
 export async function generateStaticParams() {
   try {
-    const partners = await fetchAllPartners();
-    return partners.map(inst => ({ id: inst.id.toString() }));
+    const instructors = await fetchAllInstructors();
+    return instructors.map(inst => ({ id: inst.id.toString() }));
   } catch {
     return [];
   }
 }
 
-export async function generateMetadata({ params }: PartnerPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: InstructorPageProps): Promise<Metadata> {
   const { id } = await params;
-  const partner = await fetchPartnerById(Number(id));
-  if (!partner) {
+  const instructor = await fetchInstructorById(Number(id));
+  if (!instructor) {
     return {
-      title: 'شريك غير موجود',
-      description: 'الشريك المطلوب غير موجود',
+      title: 'مدرب غير موجود',
+      description: 'المدرب المطلوب غير موجود',
     };
   }
   return {
-    title: partner.partner_name,
-    description: partner.description || 'شريك تعليمي في Eduvento',
+    title: instructor.Instructor_name,
+    description: instructor.about_Instructor || 'مدرب في Eduvento',
   };
 }
 
-export default async function PartnerDetailsPage({ params }: PartnerPageProps) {
+export default async function InstructorDetailsPage({ params }: InstructorPageProps) {
   const { id } = await params;
-  const partner = await fetchPartnerById(Number(id));
-  if (!partner) notFound();
+  const instructor = await fetchInstructorById(Number(id));
+  if (!instructor) notFound();
 
   return (
     <>
-    
 
-      {/* Header / Hero Section */}
-      <section className=" min-h-screen bg-gradient-primary-enhanced py-20 md:py-28 text-white relative overflow-hidden">
-        <div className="container mx-auto px-4 flex flex-col items-center gap-14 text-center">
-          <div className="relative w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-4 border-white shadow-lg mb-6">
-            <Image
-              src={partner.logo_url}
-              alt={`صورة ${partner.partner_name}`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 25vw"
-            />
-          </div>
-
-          <h1 className="text-3xl md:text-5xl font-extrabold">{partner.partner_name}</h1>
-
-          {partner.description && (
-            <p className="mt-4 max-w-xl text-white/90 text-lg md:text-xl font-medium">
-              {partner.description}
-            </p>
-          )}
-        </div>
+      {/* Hero Section */}
+      <section className="relative bg-gradient-primary-enhanced overflow-hidden py-20 md:py-28 text-white flex flex-col items-center justify-center px-4">
+        <h1 className="text-4xl md:text-6xl font-extrabold max-w-3xl text-center leading-tight drop-shadow-lg">
+          {instructor.Instructor_name}
+        </h1>
+        {instructor.specialization && (
+          <span className="mt-5 inline-block bg-primary-yellow text-primary-dark px-8 py-2 rounded-full font-bold text-lg shadow-lg">
+            {instructor.specialization}
+          </span>
+        )}
+        {instructor.years_experience!== undefined && (
+          <span className="mt-2 inline-block font-bold text-white/80">
+            سنوات الخبرة: <span className="text-primary-yellow font-bold">{instructor.years_experience}</span>
+          </span>
+        )}
+        <p className="mt-8 max-w-xl text-center text-lg text-indigo-200 whitespace-pre-line">
+          {instructor.about_Instructor || 'مدرب محترف في Eduvento'}
+        </p>
       </section>
 
-      {/* Partner Details Section */}
-      {/* <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-8 border-b pb-2 border-gray-200">
-            معلومات الشريك
-          </h2>
+      {/* Profile/Main Content */}
+      <InstructorProfile instructor={instructor} />
 
-          <ul className="space-y-4 text-lg text-gray-700">
-            {partner.website_url && (
-              <li>
-                <strong className="text-gray-900">الموقع الإلكتروني:</strong>{' '}
-                <a
-                  href={partner.website_url}
-                  className="text-blue-600 hover:underline"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {partner.website_url}
-                </a>
-              </li>
-            )}
-            {partner.country && (
-              <li>
-                <strong className="text-gray-900">الدولة:</strong> {partner.country}
-              </li>
-            )}
-          </ul>
-        </div>
-      </section> */}
+      
 
-     
     </>
   );
 }
