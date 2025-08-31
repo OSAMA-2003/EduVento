@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { fetchAllArticles } from '@/lib/api';
 import { Blog } from '@/lib/types';
 import BlogCard from '../BlogCard';
+export const dynamic = "force-dynamic";
 
 const BlogsGrid = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
