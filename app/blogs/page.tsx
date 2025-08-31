@@ -3,7 +3,6 @@ import HeroComponent from "@/components/HeroComponent";
 
 
 
-export const revalidate = 60;
 
 export default function BlogsPage() {
   return (
