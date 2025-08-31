@@ -47,7 +47,7 @@ export default async function AmbassadorsPage() {
                   className="mx-auto mb-4 opacity-60"
                 />
                 <h2 className="text-2xl font-bold text-primary-dark mb-2">
-                  لا يوجد مدربون حالياً
+                  لا يوجد سفراء حالياً
                 </h2>
                 <p className="text-gray-500 mb-2">
                   سيتم إضافة المزيد قريباً — تابعنا!
