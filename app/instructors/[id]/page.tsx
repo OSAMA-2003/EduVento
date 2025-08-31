@@ -53,11 +53,7 @@ export default async function InstructorDetailsPage({ params }: InstructorPagePr
             {instructor.specialization}
           </span>
         )}
-        {instructor.years_experience!== undefined && (
-          <span className="mt-2 inline-block font-bold text-white/80">
-            سنوات الخبرة: <span className="text-primary-yellow font-bold">{instructor.years_experience}</span>
-          </span>
-        )}
+        
         <p className="mt-8 max-w-xl text-center text-lg text-indigo-200 whitespace-pre-line">
           {instructor.about_Instructor || 'مدرب محترف في Eduvento'}
         </p>
