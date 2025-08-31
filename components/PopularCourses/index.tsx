@@ -8,7 +8,6 @@ import { ArrowLeft, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 import { fetchAllCourses } from '@/lib/api';
 import CourseCard from '@/components/CourseCard';
-export const dynamic = "force-dynamic";
 
 import 'swiper/css';
 import 'swiper/css/navigation';

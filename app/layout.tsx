@@ -10,6 +10,8 @@ const cairo = Cairo({
   display: 'swap',
 });
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: {
     default: 'أكاديمية التعلم الرقمي - دورات تدريبية معتمدة',

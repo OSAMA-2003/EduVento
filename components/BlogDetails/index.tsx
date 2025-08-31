@@ -11,7 +11,6 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { Blog } from '@/lib/types'
-export const dynamic = "force-dynamic";
 
 interface BlogDetailsProps {
   blog: Blog

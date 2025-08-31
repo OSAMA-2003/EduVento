@@ -1,8 +1,7 @@
 import { fetchAllInstructors } from '@/lib/api';
 import Link from 'next/link';
 import Image from 'next/image';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
+
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,7 +9,6 @@ export const metadata: Metadata = {
   description: 'تعرف على فريق المدربين المحترفين في Eduvento',
 };
 
-export const dynamic = "force-dynamic";
 
 export default async function InstructorsPage() {
   const instructors = await fetchAllInstructors();

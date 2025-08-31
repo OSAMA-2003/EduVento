@@ -10,7 +10,6 @@ export const metadata: Metadata = {
   description: 'تعرف على فريق شركاؤنا في التعليم المحترفين في Eduvento',
 };
 
-export const dynamic = "force-dynamic";
 
 export default async function PartnersPage() {
   try {

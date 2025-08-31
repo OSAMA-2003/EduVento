@@ -12,7 +12,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-export const dynamic = "force-dynamic";
 
 const BlogsSection = () => {
   const ref = useRef(null);

@@ -2,7 +2,6 @@ import { fetchAllInstructors, fetchInstructorById } from '@/lib/api';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import InstructorProfile from '@/components/InstructorProfile/indext';
-export const dynamic = "force-dynamic";
 
 
 interface InstructorPageProps {
