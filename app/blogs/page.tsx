@@ -3,6 +3,7 @@ import HeroComponent from "@/components/HeroComponent";
 
 
 
+export const dynamic = "force-dynamic";
 
 export default function BlogsPage() {
   return (

@@ -1,10 +1,10 @@
 'use client';
 
-
 import CoursesGrid from '@/components/CoursesGrid';
 import HeroComponent from '@/components/HeroComponent';
 import WhatPeopleSay from '@/components/WhatPeopleSay';
 
+export const dynamic = "force-dynamic";
 
 export default function CoursesPage() {
 
