@@ -27,6 +27,8 @@ interface CourseCardProps {
   showInstructor?: boolean;
 }
 
+export const revalidate = 60;
+
 const CourseCard = ({ 
   course, 
   index = 0, 

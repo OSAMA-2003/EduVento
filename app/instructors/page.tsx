@@ -10,6 +10,8 @@ export const metadata: Metadata = {
   description: 'تعرف على فريق المدربين المحترفين في Eduvento',
 };
 
+export const revalidate = 60;
+
 export default async function InstructorsPage() {
   const instructors = await fetchAllInstructors();
 

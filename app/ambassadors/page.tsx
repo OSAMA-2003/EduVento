@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "تعرف على سفراؤنا  في Eduvento",
 };
 
+export const revalidate = 60;
+
 export default async function AmbassadorsPage() {
   const ambassadors = await fetchAllAmbassadors();
   console.log(ambassadors);

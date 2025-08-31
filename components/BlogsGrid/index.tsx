@@ -17,6 +17,8 @@ const BlogsGrid = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const blogsPerPage = 10;
 
+  export const revalidate = 60;
+
  useEffect(() => {
   const loadBlogs = async () => {
     try {

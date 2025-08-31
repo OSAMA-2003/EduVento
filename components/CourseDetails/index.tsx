@@ -76,6 +76,8 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
 
   const learningPoints = parseFullDescription(course.full_description);
 
+  export const revalidate = 60;
+
   // Get level color
 
   const getLevelColor = (level: string) => {

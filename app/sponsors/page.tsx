@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: "تعرف على الرعاة الاستراتيجيين  في Eduvento",
 };
 
+
+export const revalidate = 60;
+
 export default async function SponsorsPage() {
   const sponsors = await fetchAllSponsors();
   console.log(sponsors);

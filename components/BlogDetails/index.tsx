@@ -27,6 +27,8 @@ const BlogDetails = ({ blog, relatedBlogs }: BlogDetailsProps) => {
   const isHeroInView = useInView(heroRef, { once: true, margin: '-100px' })
   const isContentInView = useInView(contentRef, { once: true, margin: '-100px' })
 
+  export const revalidate = 60;
+
   const handleShare = async () => {
     try {
       if (navigator.share) {

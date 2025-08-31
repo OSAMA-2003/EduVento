@@ -29,6 +29,9 @@ interface CourseApiResponse {
   created_at: string;
 }
 
+
+export const revalidate = 60;
+
 const PopularCourses = () => {
   const ref = useRef(null);
   const cardRef = useRef(null);

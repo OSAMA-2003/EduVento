@@ -7,6 +7,8 @@ import { BookOpen, Users, Award } from 'lucide-react';
 import HeroComponent from '@/components/HeroComponent';
 import WhatPeopleSay from '@/components/WhatPeopleSay';
 
+export const revalidate = 60;
+
 export default function CoursesPage() {
 
 

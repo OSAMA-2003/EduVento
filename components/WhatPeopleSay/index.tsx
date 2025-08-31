@@ -29,6 +29,7 @@ export default function WhatPeopleSay() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
+  export const revalidate = 60;
   
 
   // ✅ Fetch testimonials once

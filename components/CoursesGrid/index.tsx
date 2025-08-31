@@ -22,6 +22,8 @@ interface CourseApiResponse {
   created_at: string;
 }
 
+export const revalidate = 60;
+
 const CoursesGrid = () => {
   const [courses, setCourses] = useState<CourseApiResponse[]>([]);
   const [filteredCourses, setFilteredCourses] = useState<CourseApiResponse[]>([]);
