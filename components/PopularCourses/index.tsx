@@ -30,7 +30,6 @@ interface CourseApiResponse {
 }
 
 
-export const revalidate = 60;
 
 const PopularCourses = () => {
   const ref = useRef(null);
