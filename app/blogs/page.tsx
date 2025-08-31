@@ -1,3 +1,5 @@
+'use client';
+
 import BlogsGrid from "@/components/BlogsGrid";
 import HeroComponent from "@/components/HeroComponent";
 
