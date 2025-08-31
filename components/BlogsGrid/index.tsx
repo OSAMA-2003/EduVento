@@ -44,13 +44,17 @@ const BlogsGrid = () => {
 
   // Filter blogs
   const filteredBlogs = useMemo(() => {
-    return blogs.filter(blog => {
-      const matchesSearch = blog.title.toLowerCase().includes(searchTerm.toLowerCase()) || // Search by title
-                           blog.title.toLowerCase().includes(searchTerm.toLowerCase()); // Search by excerpt
-      const matchesCategory = !selectedCategory || blog.category === selectedCategory;
-      return matchesSearch && matchesCategory;
-    });
-  }, [blogs, searchTerm, selectedCategory]);
+  return blogs.filter(blog => {
+    const title = blog.title ? blog.title.toLowerCase() : "";  
+    const search = searchTerm ? searchTerm.toLowerCase() : "";  
+
+    const matchesSearch = title.includes(search);
+    const matchesCategory = !selectedCategory || blog.category === selectedCategory;
+
+    return matchesSearch && matchesCategory;
+  });
+}, [blogs, searchTerm, selectedCategory]);
+
 
   const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
   const currentBlogs = useMemo(() => {

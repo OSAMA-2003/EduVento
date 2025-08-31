@@ -4,7 +4,6 @@ import BlogsGrid from "@/components/BlogsGrid";
 import HeroComponent from "@/components/HeroComponent";
 
 
-export const dynamic = "force-dynamic";
 
 
 export default function BlogsPage() {
