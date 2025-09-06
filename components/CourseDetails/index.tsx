@@ -46,13 +46,9 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
   console.log('🔗 Related Courses:', relatedCourses);
   console.groupEnd();
 
-  // ✅ Parse full_description to extract learning points
-  const parseFullDescription = (fullDesc: string) => {
-    if (!fullDesc) return [];
+ if (!course) {
+    return <div>No course data available</div>;
     
-    // Split by numbers (1 -, 2 -, etc.) and filter empty strings
-    const parts = fullDesc.split(/\d+\s*-\s*/).filter(part => part.trim());
-    return parts.map(part => part.trim().replace(/\r\n/g, ''));
   };
 
   // const learningPoints = parseFullDescription(course.full_description);
