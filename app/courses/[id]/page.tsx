@@ -1,16 +1,14 @@
 // app/courses/[id]/page.tsx
 
-
-import CourseDetails from '@/components/CourseDetails'; // ✅ Now points to correct component
+import CourseDetails from '@/components/CourseDetails';
 import { fetchAllCourses, fetchCourseById } from '@/lib/api';
 import { notFound } from 'next/navigation';
 
-
-// ✅ Updated interface for Next.js 15
+// ✅ Correct interface: params is NOT a Promise
 interface CoursePageProps {
-  params: Promise<{
+  params: {
     id: string;
-  }>;
+  };
 }
 
 export async function generateStaticParams() {
@@ -25,9 +23,8 @@ export async function generateStaticParams() {
   }
 }
 
-// ✅ Updated function to handle Promise params
 export default async function CoursePage({ params }: CoursePageProps) {
-  const { id } = await params; // ✅ Await the params Promise
+  const { id } = params; // ✅ No await needed
   const courseId = parseInt(id, 10);
 
   if (isNaN(courseId)) {
@@ -44,7 +41,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
   // ✅ Optionally fetch related courses
   const allCourses = await fetchAllCourses();
   const relatedCourses = allCourses
-    .filter(c => c.id !== course.id && c.category?.name === course.category?.name)
+    .filter((c) => c.id !== course.id && c.category?.name === course.category?.name)
     .slice(0, 3);
 
   return (
@@ -53,5 +50,3 @@ export default async function CoursePage({ params }: CoursePageProps) {
     </main>
   );
 }
-
-
