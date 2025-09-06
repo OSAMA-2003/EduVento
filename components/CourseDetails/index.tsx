@@ -34,8 +34,8 @@ interface CourseDetailsProps {
     Instructor_name: string;
     Instructor_image_url: string;
     students_numbers: string;
-    starts: string; // rating
-    WhatLearn: string
+    starts: string;
+    WhatLearn: string;
 
     language?: string;
     // category?: any;
