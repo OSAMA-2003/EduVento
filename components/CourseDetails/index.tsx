@@ -55,7 +55,7 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
     return parts.map(part => part.trim().replace(/\r\n/g, ''));
   };
 
-  const learningPoints = parseFullDescription(course.full_description);
+  const learningPoints = parseFullDescription(course.WhatLearn);
 
 
   // Get level color
