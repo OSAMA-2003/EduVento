@@ -22,6 +22,7 @@ const BlogsSection = () => {
   const [error, setError] = useState<string | null>(null);
 
 
+  const fallbackImage = 'https://images.unsplash.com/photo-1432821596592-e2c18b78144f?w=800&h=600&fit=crop';
 
 
   useEffect(() => {
@@ -154,7 +155,7 @@ const BlogsSection = () => {
                     <div className="aspect-[4/3] overflow-hidden">
                       
                     <Image
-                      src={blog.image_url|| '/fallback.jpg'}
+                      src={blog.image_url|| fallbackImage}
                       alt={blog.title}
                       fill
                       loading='lazy'
