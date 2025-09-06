@@ -2,8 +2,6 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Course } from '@/lib/types'
-
 import { 
   Clock, 
   Users, 
@@ -25,7 +23,28 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 interface CourseDetailsProps {
-  course: Course;
+  course: {
+    id: number;
+    title: string;
+    description: string;
+    full_description: string;
+    image_url: string;
+    duration: string;
+    level: string;
+    Instructor_name: string;
+    Instructor_image_url: string;
+    students_numbers: string;
+    starts: string; // rating
+    // Optional fields that might not exist in your API
+    // price?: number;
+    // discountedPrice?: number;
+    // lessons?: any[];
+    // whatYouWillLearn?: string[];
+    // requirements?: string[];
+    // certificate?: boolean;
+    language?: string;
+    // category?: any;
+  };
   relatedCourses?: any[];
 }
 
@@ -46,24 +65,16 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
   console.log('🔗 Related Courses:', relatedCourses);
   console.groupEnd();
 
- if (!course) {
-    return <div>No course data available</div>;
+  // ✅ Parse full_description to extract learning points
+  const parseFullDescription = (fullDesc: string) => {
+    if (!fullDesc) return [];
     
+    // Split by numbers (1 -, 2 -, etc.) and filter empty strings
+    const parts = fullDesc.split(/\d+\s*-\s*/).filter(part => part.trim());
+    return parts.map(part => part.trim().replace(/\r\n/g, ''));
   };
 
-  // const learningPoints = parseFullDescription(course.full_description);
-
-
-  // ✅ Parse WhatLearn string from API into an array
-const parseWhatLearn = (data: string) => {
-  if (!data) return [];
-  return data
-    .split(/\d+\s*-\s*/) // split by "1-", "2-", etc.
-    .map(part => part.trim().replace(/\r\n/g, ''))
-    .filter(Boolean);
-};
-
-const WhatLearn = parseWhatLearn(course.WhatLearn);
+  const learningPoints = parseFullDescription(course.full_description);
 
 
   // Get level color
@@ -139,7 +150,7 @@ const WhatLearn = parseWhatLearn(course.WhatLearn);
                     { icon: <Clock className="h-5 w-5" />, label: course.duration, color: 'bg-logo-blue' },
                     { icon: <Users className="h-5 w-5" />, label: `${course.students_numbers} طالب`, color: 'bg-secondary-green' },
                     { icon: <Star className="h-5 w-5" />, label: `${course.starts} تقييم`, color: 'bg-primary-yellow' },
-                    { icon: <BookOpen className="h-5 w-5" />, label: `${WhatLearn.length} موضوع`, color: 'bg-alert-red' },
+                    { icon: <BookOpen className="h-5 w-5" />, label: `${learningPoints.length} موضوع`, color: 'bg-alert-red' },
                   ].map((stat, index) => (
                     <motion.div
                       key={index}
@@ -358,41 +369,38 @@ const WhatLearn = parseWhatLearn(course.WhatLearn);
                 </div>
               </motion.section>
 
-             {/* What You'll Learn */}
-{WhatLearn.length > 0 && (
-  <motion.section
-    className="card-primary mb-8"
-    initial={{ opacity: 0, y: 30 }}
-    animate={isContentInView ? { opacity: 1, y: 0 } : {}}
-    transition={{ duration: 0.6, delay: 0.1 }}
-  >
-    <div className="flex items-center gap-3 mb-6">
-      <div className="w-12 h-12 bg-gradient-to-br from-secondary-green to-primary-yellow rounded-xl flex items-center justify-center">
-        <CheckCircle className="h-6 w-6 text-white" />
-      </div>
-      <h2 className="text-3xl font-bold text-logo-blue">ماذا ستتعلم</h2>
-    </div>
-    <div className="grid grid-cols-1 gap-4">
-      {WhatLearn.map((point, index) => (
-        <motion.div
-          key={index}
-          className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300 group"
-          initial={{ opacity: 0, x: -20 }}
-          animate={isContentInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ delay: 0.2 + index * 0.05, duration: 0.5 }}
-        >
-          <div className="w-6 h-6 bg-secondary-green rounded-full flex items-center justify-center mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-            <CheckCircle className="h-4 w-4 text-white" />
-          </div>
-          <span className="text-gray-700 group-hover:text-gray-900 transition-colors duration-300">
-            {point}
-          </span>
-        </motion.div>
-      ))}
-    </div>
-  </motion.section>
-)}
-
+              {/* What You'll Learn */}
+              {learningPoints.length > 0 && (
+                <motion.section
+                  className="card-primary mb-8"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isContentInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-12 bg-gradient-to-br from-secondary-green to-primary-yellow rounded-xl flex items-center justify-center">
+                      <CheckCircle className="h-6 w-6 text-white" />
+                    </div>
+                    <h2 className="text-3xl font-bold text-logo-blue">ماذا ستتعلم</h2>
+                  </div>
+                  <div className="grid grid-cols-1 gap-4">
+                    {learningPoints.map((point, index) => (
+                      <motion.div
+                        key={index}
+                        className="flex items-start gap-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors duration-300 group"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={isContentInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ delay: 0.2 + index * 0.05, duration: 0.5 }}
+                      >
+                        <div className="w-6 h-6 bg-secondary-green rounded-full flex items-center justify-center mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                          <CheckCircle className="h-4 w-4 text-white" />
+                        </div>
+                        <span className="text-gray-700 group-hover:text-gray-900 transition-colors duration-300">{point}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.section>
+              )}
 
               {/* Full Description */}
               <motion.section
