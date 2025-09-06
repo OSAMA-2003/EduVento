@@ -4,7 +4,7 @@ import CourseDetails from '@/components/CourseDetails';
 import { fetchAllCourses, fetchCourseById } from '@/lib/api';
 import { notFound } from 'next/navigation';
 
-// ✅ Correct interface: params is NOT a Promise
+// ✅ params here is NOT a Promise
 interface CoursePageProps {
   params: {
     id: string;
@@ -24,7 +24,7 @@ export async function generateStaticParams() {
 }
 
 export default async function CoursePage({ params }: CoursePageProps) {
-  const { id } = params; // ✅ No await needed
+  const { id } = params; // ✅ no await needed
   const courseId = parseInt(id, 10);
 
   if (isNaN(courseId)) {
@@ -38,7 +38,6 @@ export default async function CoursePage({ params }: CoursePageProps) {
     notFound();
   }
 
-  // ✅ Optionally fetch related courses
   const allCourses = await fetchAllCourses();
   const relatedCourses = allCourses
     .filter((c) => c.id !== course.id && c.category?.name === course.category?.name)
