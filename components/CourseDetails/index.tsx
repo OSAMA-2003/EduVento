@@ -2,6 +2,8 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Course } from '@/lib/types'
+
 import { 
   Clock, 
   Users, 
@@ -23,23 +25,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 interface CourseDetailsProps {
-  course: {
-    id: number;
-    title: string;
-    description: string;
-    full_description: string;
-    image_url: string;
-    duration: string;
-    level: string;
-    Instructor_name: string;
-    Instructor_image_url: string;
-    students_numbers: string;
-    starts: string;
-    WhatLearn: string;
-
-    language?: string;
-    // category?: any;
-  };
+  course: Course;
   relatedCourses?: any[];
 }
 
@@ -61,13 +47,13 @@ const CourseDetails = ({ course, relatedCourses }: CourseDetailsProps) => {
   console.groupEnd();
 
   // ✅ Parse full_description to extract learning points
-  // const parseFullDescription = (fullDesc: string) => {
-  //   if (!fullDesc) return [];
+  const parseFullDescription = (fullDesc: string) => {
+    if (!fullDesc) return [];
     
     // Split by numbers (1 -, 2 -, etc.) and filter empty strings
-  //   const parts = fullDesc.split(/\d+\s*-\s*/).filter(part => part.trim());
-  //   return parts.map(part => part.trim().replace(/\r\n/g, ''));
-  // };
+    const parts = fullDesc.split(/\d+\s*-\s*/).filter(part => part.trim());
+    return parts.map(part => part.trim().replace(/\r\n/g, ''));
+  };
 
   // const learningPoints = parseFullDescription(course.full_description);
 
