@@ -2,6 +2,8 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Course } from '@/lib/types'
+
 import { 
   Clock, 
   Users, 
@@ -23,28 +25,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 interface CourseDetailsProps {
-  course: {
-    id: number;
-    title: string;
-    description: string;
-    full_description: string;
-    image_url: string;
-    duration: string;
-    level: string;
-    Instructor_name: string;
-    Instructor_image_url: string;
-    students_numbers: string;
-    starts: string; // rating
-    // Optional fields that might not exist in your API
-    // price?: number;
-    // discountedPrice?: number;
-    // lessons?: any[];
-    // whatYouWillLearn?: string[];
-    // requirements?: string[];
-    // certificate?: boolean;
-    language?: string;
-    // category?: any;
-  };
+  course: Course;
   relatedCourses?: any[];
 }
 
