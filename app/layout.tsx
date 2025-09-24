@@ -10,12 +10,12 @@ const cairo = Cairo({
   display: 'swap',
 });
 
-// export const dynamic = "force-dynamic";
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: {
     default: 'EduVento  ',
-    template: ' شركة التعلم الرقمي',
+    template: ' EduVento',
   },
   description: 'شركة Eduvento بدأت سنة 2024 برؤية واضحة: إن التعليم التقني عالي الجودة لازم يكون متاح لكل الناس في المنطقة العربية. بدأنا واحنا عندنا إيمان عميق إن التعليم هو المفتاح الأساسي للتقدم والتطور في حياة كل واحد سواء على المستوى الشخصي أو المهني',
 
