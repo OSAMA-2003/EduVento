@@ -10,14 +10,16 @@ const cairo = Cairo({
   display: 'swap',
 });
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: {
-    default: 'أكاديمية التعلم الرقمي - دورات تدريبية معتمدة',
-    template: ' أكاديمية التعلم الرقمي',
+    default: 'EduVento  ',
+    template: ' شركة التعلم الرقمي',
   },
-  description: 'أكاديمية رائدة في التعليم الرقمي تقدم دورات تدريبية معتمدة في مختلف المجالات التقنية والمهنية',
+  description: 'شركة Eduvento بدأت سنة 2024 برؤية واضحة: إن التعليم التقني عالي الجودة لازم يكون متاح لكل الناس في المنطقة العربية. بدأنا واحنا عندنا إيمان عميق إن التعليم هو المفتاح الأساسي للتقدم والتطور في حياة كل واحد سواء على المستوى الشخصي أو المهني',
+
+  icons: [{ rel: "icon", url: "/images/logo2.png" }],
 };
 
 export default function RootLayout({
