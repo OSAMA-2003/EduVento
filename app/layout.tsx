@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: ' EduVento',
   },
   description: 'شركة رائدة في التعليم الرقمي تهدف إلى تمكين الأفراد من اكتساب المهارات اللازمة لمواكبة التطور التقني والمهني في العصر الحديث',
-
+ 
   icons: [{ rel: "icon", url: "/images/logo2.png" }],
 };
 
